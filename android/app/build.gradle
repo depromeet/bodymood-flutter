@@ -26,6 +26,20 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('/Users/gohhwain/work/android/bodymood-keys/upload_key.jks')
+            storePassword 'rlghks!1'
+            keyAlias 'bodymood'
+            keyPassword 'rlghks!1'
+        }
+        release {
+            storeFile file('/Users/gohhwain/work/android/bodymood-keys/upload_key.jks')
+            storePassword 'rlghks!1'
+            keyAlias 'bodymood'
+            keyPassword 'rlghks!1'
+        }
+    }
     compileSdkVersion 31
 
     compileOptions {
@@ -51,10 +65,13 @@ android {
     }
 
     buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+        }
         release {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
         }
     }
 }
@@ -65,4 +82,9 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "com.kakao.sdk:v2-user:2.8.2" // 카카오 로그인
+    implementation "com.kakao.sdk:v2-talk:2.8.2" // 친구, 메시지(카카오톡)
+    implementation "com.kakao.sdk:v2-story:2.8.2" // 카카오스토리
+    implementation "com.kakao.sdk:v2-link:2.8.2" // 메시지(카카오링크)
+    implementation "com.kakao.sdk:v2-navi:2.8.2" // 카카오내비
 }
