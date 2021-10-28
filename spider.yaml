@@ -19,6 +19,9 @@ groups:
   - path: assets/images/splash
     class_name: SplashImages
     types: [.png, .jpg, .jpeg, .webp, .webm, .bmp, .svg]
+  - path: assets/images/login/
+    class_name: LoginImages
+    types: [.png, .jpg, .jpeg, .webp, .webm, .bmp, .svg]
   - path: assets/images/my-album/
     class_name: MyAlbumImages
     types: [.png, .jpg, .jpeg, .webp, .webm, .bmp, .svg]

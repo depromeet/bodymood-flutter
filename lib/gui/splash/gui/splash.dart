@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bodymood/gui/constants/color.dart';
 import 'package:bodymood/resources/resources.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class BodyMoodMain extends StatelessWidget {
   static const route = '/';
@@ -44,12 +45,10 @@ class _TitleOverlayState extends State<TitleOverlay> {
 
   void finishSplash() {
     if (mounted && !_visible) {
-      debugPrint('change text opacity');
       setState(() {
         _visible = true;
         Timer(Duration(milliseconds: _splashDurationInMilliseconds), () {
-          debugPrint('go to login page');
-          // Navigator.of(context).pushNamed('/login');
+          Navigator.of(context).pushNamed('/login');
         });
       });
     }
@@ -65,9 +64,9 @@ class _TitleOverlayState extends State<TitleOverlay> {
         child: AnimatedOpacity(
           opacity: _visible ? 1.0 : 0.0,
           duration: Duration(milliseconds: _splashDurationInMilliseconds),
-          child: const Text(
+          child: Text(
             'Bo\n   dy\nmoo\n     d ',
-            style: TextStyle(
+            style: GoogleFonts.playfairDisplay().copyWith(
               fontSize: 170,
               height: 180 / 170,
               color: clPrimaryBlack,
