@@ -29,9 +29,9 @@ class BodyMoodRoute {
     Navigator.of(context).pushNamed(path);
   }
 
-  final GotoHandler main = (context) => _goto(context, '/');
-  final GotoHandler login = (context) => _goto(context, '/login');
-  final GotoHandler myAlbum = (context) => _goto(context, '/my-album');
+  final GotoHandler main = (context) => _goto(context, BodyMoodMain.route);
+  final GotoHandler login = (context) => _goto(context, LoginPage.route);
+  final GotoHandler myAlbum = (context) => _goto(context, MyAlbumPage.route);
 }
 
 class BodyMoodReplacer extends BodyMoodRoute {
