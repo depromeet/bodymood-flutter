@@ -1,8 +1,10 @@
 import 'dart:ui';
 
-import 'package:bodymood/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'interactor/auth_interactor.dart';
+import 'routes/routes.dart';
 
 void main() {
   runApp(
@@ -30,6 +32,9 @@ class BodyMood extends StatelessWidget {
               onPrimary: Colors.white,
             ),
       ),
+      builder: (context, child) {
+        return AuthInteractor(child: child ?? SizedBox.shrink());
+      },
       initialRoute: '/',
       onGenerateRoute: onGenerateRoute,
     );

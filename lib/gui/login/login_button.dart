@@ -1,10 +1,11 @@
-import 'package:bodymood/bloc/auth/controller/ds/social_type.dart';
-import 'package:bodymood/bloc/auth/controller/inteface/social_auth_provider.dart';
-import 'package:bodymood/bloc/auth/providers/apple/apple_auth_provider.dart';
-import 'package:bodymood/bloc/auth/providers/kakao/kakao_auth_provider.dart';
-import 'package:bodymood/bloc/auth/auth_manager.dart';
-import 'package:bodymood/gui/constants/color.dart';
-import 'package:bodymood/resources/resources.dart';
+import '../../bloc/auth/controller/ds/social_type.dart';
+import '../../bloc/auth/controller/inteface/social_auth_provider.dart';
+import '../../bloc/auth/controller/riverpods/auth_token.dart';
+import '../../bloc/auth/providers/apple/apple_auth_provider.dart';
+import '../../bloc/auth/providers/kakao/kakao_auth_provider.dart';
+import '../../bloc/auth/auth_manager.dart';
+import '../constants/color.dart';
+import '../../resources/resources.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -53,7 +54,8 @@ class LoginButton extends ConsumerWidget {
       child: TextButton(
         onPressed: () async {
           final token = await authManager.updateAuthToken(socialAuthProvider);
-          debugPrint(token.toString());
+          final tokenProvider = ref.read(authTokenProvider);
+          tokenProvider.state = token;
         },
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,

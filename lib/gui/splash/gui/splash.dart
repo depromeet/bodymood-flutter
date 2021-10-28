@@ -1,12 +1,8 @@
-import 'dart:async';
-
-import 'package:bodymood/gui/constants/color.dart';
-import 'package:bodymood/resources/resources.dart';
+import '../../constants/color.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class BodyMoodMain extends StatelessWidget {
-  static const route = '/';
   const BodyMoodMain({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -47,9 +43,6 @@ class _TitleOverlayState extends State<TitleOverlay> {
     if (mounted && !_visible) {
       setState(() {
         _visible = true;
-        Timer(Duration(milliseconds: _splashDurationInMilliseconds), () {
-          Navigator.of(context).pushNamed('/login');
-        });
       });
     }
   }

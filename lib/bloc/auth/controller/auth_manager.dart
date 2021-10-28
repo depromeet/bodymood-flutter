@@ -1,6 +1,6 @@
-import 'package:bodymood/bloc/auth/controller/ds/auth_token.dart';
-import 'package:bodymood/bloc/auth/controller/inteface/social_auth_provider.dart';
-import 'package:bodymood/bloc/auth/controller/inteface/server_auth_provider.dart';
+import 'ds/auth_token.dart';
+import 'inteface/social_auth_provider.dart';
+import 'inteface/server_auth_provider.dart';
 
 class AuthManager {
   AuthManager({

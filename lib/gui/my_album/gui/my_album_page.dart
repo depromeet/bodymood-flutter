@@ -1,9 +1,8 @@
-import 'package:bodymood/resources/resources.dart';
+import '../../../resources/resources.dart';
 import 'package:flutter/material.dart';
 
-class MyAlbumPage extends StatelessWidget {
-  static const route = '/my-album';
-  const MyAlbumPage({Key? key}) : super(key: key);
+class PostersPage extends StatelessWidget {
+  const PostersPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

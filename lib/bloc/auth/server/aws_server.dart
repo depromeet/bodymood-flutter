@@ -1,7 +1,7 @@
-import 'package:bodymood/bloc/auth/controller/ds/auth_token.dart';
-import 'package:bodymood/bloc/auth/controller/ds/social_auth_token.dart';
-import 'package:bodymood/bloc/auth/controller/inteface/server_auth_provider.dart';
-import 'package:bodymood/bloc/auth/server/ds/auth_response.dart';
+import '../controller/ds/auth_token.dart';
+import '../controller/ds/social_auth_token.dart';
+import '../controller/inteface/server_auth_provider.dart';
+import 'ds/auth_response.dart';
 import 'package:dio/dio.dart';
 
 class BodyMoodAuthServer extends ServerAuthProviderBase {
