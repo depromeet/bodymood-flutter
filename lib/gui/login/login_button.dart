@@ -1,4 +1,3 @@
-import 'package:bodymood/interactor/loading/fullpage_loading_interactor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,7 +9,7 @@ import '../../bloc/auth/controller/inteface/social_auth_provider.dart';
 import '../../bloc/auth/providers/apple/apple_auth_provider.dart';
 import '../../bloc/auth/providers/kakao/kakao_auth_provider.dart';
 import '../../interactor/auth/riverpods/auth_token.dart';
-import '../../interactor/loading/riverpods/loading_state_provider.dart';
+import '../../interactor/loading/fullpage_loading_interactor.dart';
 import '../../resources/resources.dart';
 import '../../routes/path.dart';
 import '../../routes/path_provider.dart';

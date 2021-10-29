@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../resources/resources.dart';
+import '../../interactor/posters/riverpod/posters_provider.dart';
+import '../widgets/appbar/appbar.dart';
+import 'button/create_poster_button.dart';
+import 'posters_view/empty_posters_view.dart';
+import 'posters_view/grid_view.dart';
 
 class PostersPage extends StatelessWidget {
   const PostersPage({Key? key}) : super(key: key);
@@ -12,81 +17,42 @@ class PostersPage extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(24),
-              child: SingleChildScrollView(
-                child: Wrap(
-                  runSpacing: 16,
-                  spacing: 16,
-                  alignment: WrapAlignment.spaceBetween,
-                  children: [
-                    Image.asset(MyAlbumImages.posterImage),
-                    Image.asset(MyAlbumImages.posterImage),
-                    Image.asset(MyAlbumImages.posterImage),
-                    Image.asset(MyAlbumImages.posterImage),
-                    Image.asset(MyAlbumImages.posterImage),
-                    Image.asset(MyAlbumImages.posterImage),
-                    Image.asset(MyAlbumImages.posterImage),
-                    Image.asset(MyAlbumImages.posterImage),
-                    Image.asset(MyAlbumImages.posterImage),
-                    Image.asset(MyAlbumImages.posterImage),
-                    Image.asset(MyAlbumImages.posterImage),
-                    Image.asset(MyAlbumImages.posterImage),
-                    Image.asset(MyAlbumImages.posterImage),
-                    Image.asset(MyAlbumImages.posterImage),
-                    Image.asset(MyAlbumImages.posterImage),
-                    Image.asset(MyAlbumImages.posterImage),
-                    Image.asset(MyAlbumImages.posterImage),
-                    Image.asset(MyAlbumImages.posterImage),
-                    Image.asset(MyAlbumImages.posterImage),
-                    Image.asset(MyAlbumImages.posterImage),
-                    Image.asset(MyAlbumImages.posterImage),
-                  ],
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: const [
+                BodymoodAppbar(),
+                Expanded(
+                  child: PostersListView(),
                 ),
-              ),
+              ],
             ),
-            Positioned(
-              child: Column(
-                children: [
-                  SizedBox(
-                    width: 56,
-                    height: 56,
-                    child: OutlinedButton(
-                      onPressed: () {},
-                      child: const Icon(
-                        Icons.camera,
-                        color: Colors.black,
-                      ),
-                      style: OutlinedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        shape: const CircleBorder(),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  SizedBox(
-                    width: 56,
-                    height: 56,
-                    child: TextButton(
-                      onPressed: () {},
-                      child: const Icon(
-                        Icons.photo_library,
-                        color: Colors.white,
-                      ),
-                      style: OutlinedButton.styleFrom(
-                        backgroundColor: const Color(0xff18192b),
-                        shape: const CircleBorder(),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              bottom: 80,
-              right: 24,
-            ),
+            _buildCreatePosterButton(),
           ],
         ),
       ),
     );
+  }
+
+  Widget _buildCreatePosterButton() {
+    return const Positioned(
+      left: 0,
+      right: 0,
+      bottom: 56,
+      child: CreatePosterButton(),
+    );
+  }
+}
+
+class PostersListView extends ConsumerWidget {
+  const PostersListView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, ref) {
+    final postersNotifier = ref.watch(postersProvider.notifier);
+    final postersCount = ref.watch(postersProvider);
+
+    return postersNotifier.isEmpty
+        ? const EmptyPostersView()
+        : PostersGridView(postersCount: postersCount);
   }
 }

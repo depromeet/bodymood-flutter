@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 
 const _widgets = {
   BodyMoodPath.splash: BodyMoodSplashPage(),
-  BodyMoodPath.home: BodyMoodSplashPage(),
+  BodyMoodPath.home: PostersPage(),
   BodyMoodPath.login: LoginPage(),
   BodyMoodPath.posters: PostersPage(),
 };
