@@ -1,6 +1,6 @@
-import 'package:bodymood/bloc/auth/controller/ds/auth_token.dart';
-import 'package:bodymood/bloc/auth/controller/inteface/social_auth_provider.dart';
-import 'package:bodymood/bloc/auth/controller/inteface/server_auth_provider.dart';
+import 'ds/auth_token.dart';
+import 'inteface/server_auth_provider.dart';
+import 'inteface/social_auth_provider.dart';
 
 class AuthManager {
   AuthManager({
@@ -14,8 +14,15 @@ class AuthManager {
 
   Future<AuthToken> updateAuthToken(SocialAuthProviderBase provider) async {
     final socialToken = await provider.getToken();
-    _authToken = await _server.login(socialToken);
-    return _authToken;
+    return socialToken.maybeMap(
+      failed: (_) {
+        return const UnauthorizedToken();
+      },
+      orElse: () async {
+        _authToken = await _server.login(socialToken);
+        return _authToken;
+      },
+    );
   }
 
   Future<bool> resetAuthToken() async {

@@ -1,5 +1,6 @@
-import 'package:bodymood/bloc/auth/controller/ds/auth_token.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../../controller/ds/auth_token.dart';
 
 part 'auth_response.freezed.dart';
 part 'auth_response.g.dart';

@@ -1,13 +1,15 @@
 // ignore_for_file: prefer_function_declarations_over_variables
 import 'package:bodymood/gui/login/login_page.dart';
-import 'package:bodymood/gui/my_album/gui/my_album_page.dart';
-import 'package:bodymood/gui/splash/gui/splash.dart';
+import 'package:bodymood/gui/posters/posters_page.dart';
+import 'package:bodymood/gui/splash/splash.dart';
+import 'package:bodymood/routes/path.dart';
 import 'package:flutter/material.dart';
 
 const _widgets = {
-  BodyMoodMain.route: BodyMoodMain(),
-  LoginPage.route: LoginPage(),
-  MyAlbumPage.route: MyAlbumPage(),
+  BodyMoodPath.splash: BodyMoodSplashPage(),
+  BodyMoodPath.home: BodyMoodSplashPage(),
+  BodyMoodPath.login: LoginPage(),
+  BodyMoodPath.posters: PostersPage(),
 };
 
 Route onGenerateRoute(RouteSettings settings) {
@@ -17,25 +19,4 @@ Route onGenerateRoute(RouteSettings settings) {
       return widget;
     },
   );
-}
-
-final goto = BodyMoodRoute();
-final replace = BodyMoodReplacer();
-
-typedef GotoHandler = void Function(BuildContext);
-
-class BodyMoodRoute {
-  static void _goto(BuildContext context, String path) {
-    Navigator.of(context).pushNamed(path);
-  }
-
-  final GotoHandler main = (context) => _goto(context, BodyMoodMain.route);
-  final GotoHandler login = (context) => _goto(context, LoginPage.route);
-  final GotoHandler myAlbum = (context) => _goto(context, MyAlbumPage.route);
-}
-
-class BodyMoodReplacer extends BodyMoodRoute {
-  static void _goto(BuildContext context, String path) {
-    Navigator.of(context).pushReplacementNamed(path);
-  }
 }

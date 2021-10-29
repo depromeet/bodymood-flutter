@@ -1,13 +1,14 @@
 import 'dart:async';
 
-import 'package:bodymood/gui/constants/color.dart';
-import 'package:bodymood/resources/resources.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class BodyMoodMain extends StatelessWidget {
-  static const route = '/';
-  const BodyMoodMain({Key? key}) : super(key: key);
+import '../../interactor/auth/riverpods/auth_token.dart';
+import '../constants/color.dart';
+
+class BodyMoodSplashPage extends StatelessWidget {
+  const BodyMoodSplashPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,23 +16,23 @@ class BodyMoodMain extends StatelessWidget {
       body: Stack(
         fit: StackFit.expand,
         children: const [
-          TitleOverlay(),
+          _TitleOverlay(),
         ],
       ),
     );
   }
 }
 
-class TitleOverlay extends StatefulWidget {
-  const TitleOverlay({
+class _TitleOverlay extends ConsumerStatefulWidget {
+  const _TitleOverlay({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<TitleOverlay> createState() => _TitleOverlayState();
+  _TitleOverlayState createState() => _TitleOverlayState();
 }
 
-class _TitleOverlayState extends State<TitleOverlay> {
+class _TitleOverlayState extends ConsumerState<_TitleOverlay> {
   bool _visible = false;
   final _splashDurationInMilliseconds = 1000;
 
@@ -47,10 +48,13 @@ class _TitleOverlayState extends State<TitleOverlay> {
     if (mounted && !_visible) {
       setState(() {
         _visible = true;
-        Timer(Duration(milliseconds: _splashDurationInMilliseconds), () {
-          Navigator.of(context).pushNamed('/login');
-        });
       });
+      Timer(
+        Duration(milliseconds: _splashDurationInMilliseconds),
+        () {
+          ref.refresh(authTokenProvider);
+        },
+      );
     }
   }
 
