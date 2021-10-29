@@ -1,8 +1,10 @@
+import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+
 import '../controller/ds/auth_token.dart';
 import '../controller/ds/social_auth_token.dart';
 import '../controller/inteface/server_auth_provider.dart';
 import 'ds/auth_response.dart';
-import 'package:dio/dio.dart';
 
 class BodyMoodAuthServer extends ServerAuthProviderBase {
   final _dio = Dio();
@@ -22,17 +24,16 @@ class BodyMoodAuthServer extends ServerAuthProviderBase {
         );
       },
       apple: (_) {
-        final endpoint = _authEndpoint + '/apple';
         throw UnimplementedError();
       },
       orElse: () {
-        throw UnimplementedError();
+        debugPrint('not loggedin');
       },
     );
 
-    if (response.statusCode == 200) {
+    if (response?.statusCode == 200) {
       final serverAuthResponse =
-          SuccessfulServerAuthResponse.fromJson(response.data!);
+          SuccessfulServerAuthResponse.fromJson(response!.data!);
       return serverAuthResponse.token;
     }
     return const UnauthorizedToken();

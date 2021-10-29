@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../bloc/auth/controller/ds/social_type.dart';
+import '../../interactor/loading/fullpage_loading_interactor.dart';
 import 'login_button.dart';
 
 class LoginPage extends StatelessWidget {
@@ -9,11 +10,13 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          _buildLoginButtonColumn(),
-        ],
+      body: FullpageLoadingInteractor(
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            _buildLoginButtonColumn(),
+          ],
+        ),
       ),
     );
   }

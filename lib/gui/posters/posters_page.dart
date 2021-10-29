@@ -1,5 +1,6 @@
-import '../../../resources/resources.dart';
 import 'package:flutter/material.dart';
+
+import '../../resources/resources.dart';
 
 class PostersPage extends StatelessWidget {
   const PostersPage({Key? key}) : super(key: key);
