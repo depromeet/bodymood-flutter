@@ -1,7 +1,8 @@
-import '../../controller/ds/social_auth_token.dart';
-import '../../controller/inteface/social_auth_provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:kakao_flutter_sdk/all.dart';
+
+import '../../controller/ds/social_auth_token.dart';
+import '../../controller/inteface/social_auth_provider.dart';
 
 class KakaoAuthProvider extends SocialAuthProviderBase {
   @override

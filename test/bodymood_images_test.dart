@@ -7,5 +7,6 @@ void main() {
   test('bodymood_images assets test', () {
     expect(true, File(BodymoodImages.plusIcon).existsSync());
     expect(true, File(BodymoodImages.bodymoodTitle).existsSync());
+    expect(true, File(BodymoodImages.arrowBackIcon).existsSync());
   });
 }

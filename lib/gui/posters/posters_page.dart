@@ -10,6 +10,12 @@ import 'posters_view/grid_view.dart';
 class PostersPage extends StatelessWidget {
   const PostersPage({Key? key}) : super(key: key);
 
+  static Page page() {
+    return const MaterialPage(
+      child: PostersPage(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +28,7 @@ class PostersPage extends StatelessWidget {
               children: const [
                 BodymoodAppbar(),
                 Expanded(
-                  child: PostersListView(),
+                  child: _PostersListView(),
                 ),
               ],
             ),
@@ -43,8 +49,8 @@ class PostersPage extends StatelessWidget {
   }
 }
 
-class PostersListView extends ConsumerWidget {
-  const PostersListView({Key? key}) : super(key: key);
+class _PostersListView extends ConsumerWidget {
+  const _PostersListView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, ref) {

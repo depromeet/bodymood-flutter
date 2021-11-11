@@ -7,6 +7,12 @@ import 'login_button.dart';
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
 
+  static Page page() {
+    return const MaterialPage(
+      child: LoginPage(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,14 +1,19 @@
 import 'dart:async';
 
+import '../../bloc/app_state/core/app_state_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../interactor/auth/riverpods/auth_token.dart';
 import '../constants/color.dart';
 
 class BodyMoodSplashPage extends StatelessWidget {
   const BodyMoodSplashPage({Key? key}) : super(key: key);
+
+  static Page page() {
+    return const MaterialPage(child: BodyMoodSplashPage());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,9 +55,10 @@ class _TitleOverlayState extends ConsumerState<_TitleOverlay> {
         _visible = true;
       });
       Timer(
-        Duration(milliseconds: _splashDurationInMilliseconds),
+        Duration(milliseconds: _splashDurationInMilliseconds + 500),
         () {
-          ref.refresh(authTokenProvider);
+          final appStateManager = ref.read(appStateManageProvider);
+          appStateManager.initialized();
         },
       );
     }
@@ -68,15 +74,7 @@ class _TitleOverlayState extends ConsumerState<_TitleOverlay> {
         child: AnimatedOpacity(
           opacity: _visible ? 1.0 : 0.0,
           duration: Duration(milliseconds: _splashDurationInMilliseconds),
-          child: Text(
-            'Bo\n   dy\nmoo\n     d ',
-            style: GoogleFonts.playfairDisplay().copyWith(
-              fontSize: 170,
-              height: 180 / 170,
-              color: clPrimaryBlack,
-              letterSpacing: -2,
-            ),
-          ),
+          child: _buildMainText(),
         ),
       ),
     );
@@ -95,6 +93,18 @@ class _TitleOverlayState extends ConsumerState<_TitleOverlay> {
           flex: 48,
         ),
       ],
+    );
+  }
+
+  Text _buildMainText() {
+    return Text(
+      'Bo\n   dy\nmoo\n     d ',
+      style: GoogleFonts.playfairDisplay().copyWith(
+        fontSize: 170,
+        height: 180 / 170,
+        color: clPrimaryBlack,
+        letterSpacing: -2,
+      ),
     );
   }
 }

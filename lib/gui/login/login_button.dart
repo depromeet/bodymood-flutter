@@ -11,8 +11,6 @@ import '../../bloc/auth/providers/kakao/kakao_auth_provider.dart';
 import '../../interactor/auth/riverpods/auth_token.dart';
 import '../../interactor/loading/fullpage_loading_interactor.dart';
 import '../../resources/resources.dart';
-import '../../routes/path.dart';
-import '../../routes/path_provider.dart';
 import '../constants/color.dart';
 
 class LoginButton extends ConsumerWidget {
@@ -79,7 +77,6 @@ class LoginButton extends ConsumerWidget {
   onLoginButtonClicked(WidgetRef ref) async {
     final authManager = ref.read(authManagerProvider);
     final tokenProvider = ref.read(authTokenProvider);
-    final pathProvider = ref.read(currentPathProvider);
     final socialAuthProvider = type.map<SocialAuthProviderBase>(
       kakao: (_) => KakaoAuthProvider(),
       apple: (_) => AppleAuthProvider(),
@@ -87,14 +84,11 @@ class LoginButton extends ConsumerWidget {
 
     FullpageLoadingInteractor.setLoading(ref);
     final token = await authManager.updateAuthToken(socialAuthProvider);
-    token.when(
+    token.maybeWhen(
       authorizedToken: (_, __) {
-        pathProvider.state = BodyMoodPath.posters;
         tokenProvider.state = token;
       },
-      unauthorizedToken: () {
-        // debugPrint('failed to authorize');
-      },
+      orElse: () {},
     );
     FullpageLoadingInteractor.unsetLoading(ref);
   }

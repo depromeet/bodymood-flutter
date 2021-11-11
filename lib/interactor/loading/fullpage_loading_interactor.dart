@@ -19,7 +19,6 @@ class FullpageLoadingInteractor extends ConsumerWidget {
   @override
   Widget build(context, ref) {
     final isLoading = ref.watch(isLoadingStateProvider).state;
-    debugPrint(isLoading.toString());
     return Stack(
       fit: StackFit.expand,
       children: [
