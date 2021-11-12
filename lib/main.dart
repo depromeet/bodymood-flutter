@@ -2,14 +2,9 @@ import 'dart:ui';
 
 import 'bloc/app_state/core/app_state_manager.dart';
 import 'bloc/auth/core/auth_state_manager.dart';
-import 'interactor/route/route_interactor.dart';
 import 'routes/auth_router.dart';
-import 'routes/path.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import 'interactor/auth/auth_interactor.dart';
-import 'routes/routes.dart';
 
 void main() {
   runApp(

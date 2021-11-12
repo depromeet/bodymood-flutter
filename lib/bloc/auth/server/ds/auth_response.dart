@@ -10,7 +10,7 @@ class ServerAuthResponse with _$ServerAuthResponse {
   factory ServerAuthResponse.success({
     required String code,
     required String message,
-    @JsonKey(name: 'data') required AuthorizedToken token,
+    @JsonKey(name: 'data') required ServerAuthTokenAuthorized token,
   }) = SuccessfulServerAuthResponse;
   factory ServerAuthResponse.fail() = FailedServerAuthResponse;
 

@@ -1,3 +1,6 @@
+import '../../auth/controller/auth_token_manager_provider.dart';
+import '../../auth/social/kakao/kakao_auth_refresher.dart';
+
 import 'model/app_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -21,7 +24,13 @@ class AppStateManager {
         orElse: () => false,
       );
 
-  void initialized() {
+  void initialize() async {
+    final authTokenManager = _read(authTokenManagerProvider);
+    await authTokenManager.updateAuthToken(KakaoAuthRefresher());
+    _initialized();
+  }
+
+  void _initialized() {
     _setAppState(AppState.initialized());
   }
 

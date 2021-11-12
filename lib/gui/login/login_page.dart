@@ -1,7 +1,7 @@
+import '../../routes/path.dart';
 import 'package:flutter/material.dart';
 
 import '../../bloc/auth/controller/ds/social_type.dart';
-import '../../interactor/loading/fullpage_loading_interactor.dart';
 import 'login_button.dart';
 
 class LoginPage extends StatelessWidget {
@@ -9,6 +9,8 @@ class LoginPage extends StatelessWidget {
 
   static Page page() {
     return const MaterialPage(
+      name: BodymoodPath.login,
+      key: ValueKey(BodymoodPath.login),
       child: LoginPage(),
     );
   }
@@ -16,13 +18,11 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FullpageLoadingInteractor(
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            _buildLoginButtonColumn(),
-          ],
-        ),
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          _buildLoginButtonColumn(),
+        ],
       ),
     );
   }

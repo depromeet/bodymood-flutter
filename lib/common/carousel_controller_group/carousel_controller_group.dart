@@ -12,14 +12,14 @@ typedef OnPageChangedHandler = void Function(
 );
 
 class CarouselControllerGroup implements CarouselControllerImpl {
-  Completer<Null> _readyCompleter = Completer<Null>();
-  List<OnPageChangedHandler> _pageChangedHandlers = [];
+  Completer _readyCompleter = Completer();
+  final List<OnPageChangedHandler> _pageChangedHandlers = [];
 
   final _states = <CarouselState?>[];
 
   void dispose() {
     _states.clear();
-    _readyCompleter = Completer<Null>();
+    _readyCompleter = Completer();
     _pageChangedHandlers.clear();
   }
 
@@ -41,7 +41,8 @@ class CarouselControllerGroup implements CarouselControllerImpl {
   bool get ready => _states.isNotEmpty && _states.any((state) => state != null);
 
   @override
-  Future<Null> get onReady => _readyCompleter.future;
+  // ignore: prefer_void_to_null
+  Future<Null> get onReady => _readyCompleter.future as Future<Null>;
 
   /// Animates the controlled [CarouselSlider] to the next page.
   ///

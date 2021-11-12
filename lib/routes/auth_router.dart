@@ -1,10 +1,11 @@
+import 'package:flutter/material.dart';
+
 import '../bloc/app_state/core/app_state_manager.dart';
 import '../bloc/auth/core/auth_state_manager.dart';
 import '../gui/login/login_page.dart';
-import '../gui/posters/posters_page.dart';
+import '../gui/posters/posters_router.dart';
 import '../gui/splash/splash.dart';
 import 'path.dart';
-import 'package:flutter/material.dart';
 
 class BodymoodAuthRouter extends RouterDelegate
     with ChangeNotifier, PopNavigatorRouterDelegateMixin {
@@ -27,7 +28,7 @@ class BodymoodAuthRouter extends RouterDelegate
         if (!appStateManager.isInitialized) ...[
           BodyMoodSplashPage.page(),
         ] else if (authManager.isLoggedIn) ...[
-          PostersPage.page(),
+          PostersPageRouter.page(),
         ] else ...[
           LoginPage.page(),
         ],

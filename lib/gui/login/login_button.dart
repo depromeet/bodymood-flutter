@@ -3,13 +3,11 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../bloc/auth/auth_manager.dart';
+import '../../bloc/auth/controller/auth_token_manager_provider.dart';
 import '../../bloc/auth/controller/ds/social_type.dart';
 import '../../bloc/auth/controller/inteface/social_auth_provider.dart';
-import '../../bloc/auth/providers/apple/apple_auth_provider.dart';
-import '../../bloc/auth/providers/kakao/kakao_auth_provider.dart';
-import '../../interactor/auth/riverpods/auth_token.dart';
-import '../../interactor/loading/fullpage_loading_interactor.dart';
+import '../../bloc/auth/social/apple/apple_auth_provider.dart';
+import '../../bloc/auth/social/kakao/kakao_auth_provider.dart';
 import '../../resources/resources.dart';
 import '../constants/color.dart';
 
@@ -75,21 +73,16 @@ class LoginButton extends ConsumerWidget {
   }
 
   onLoginButtonClicked(WidgetRef ref) async {
-    final authManager = ref.read(authManagerProvider);
-    final tokenProvider = ref.read(authTokenProvider);
+    final authManager = ref.read(authTokenManagerProvider);
     final socialAuthProvider = type.map<SocialAuthProviderBase>(
       kakao: (_) => KakaoAuthProvider(),
       apple: (_) => AppleAuthProvider(),
     );
 
-    FullpageLoadingInteractor.setLoading(ref);
     final token = await authManager.updateAuthToken(socialAuthProvider);
     token.maybeWhen(
-      authorizedToken: (_, __) {
-        tokenProvider.state = token;
-      },
+      authorizedToken: (_, __) {},
       orElse: () {},
     );
-    FullpageLoadingInteractor.unsetLoading(ref);
   }
 }

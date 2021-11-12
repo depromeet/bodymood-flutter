@@ -6,21 +6,30 @@ import '../controller/ds/social_auth_token.dart';
 import '../controller/inteface/server_auth_provider.dart';
 import 'ds/auth_response.dart';
 
-class BodyMoodAuthServer extends ServerAuthProviderBase {
+class BodymoodAuthServer extends ServerAuthProviderBase {
   final _dio = Dio();
   final _authEndpoint = 'https://dev.bodymood.me/api/v1/auth/';
   @override
-  Future<AuthToken> login(SocialAuthToken socialToken) async {
+  Future<ServerAuthToken> login(SocialAuthToken socialToken) async {
     final response = await socialToken.maybeMap(
       kakao: (token) async {
         final endpoint = _authEndpoint + '/kakao';
-        return _dio.post<Map<String, dynamic>>(
+        final tokenBody = socialToken.toJson();
+        tokenBody.removeWhere((key, value) => key != 'accessToken');
+
+        return _dio
+            .post<Map<String, dynamic>>(
           endpoint,
-          data: socialToken.toJson(),
+          data: tokenBody,
           options: Options(
             contentType: 'application/json',
             responseType: ResponseType.json,
           ),
+        )
+            .catchError(
+          (error, stackTrace) async {
+            debugPrint(error.toString());
+          },
         );
       },
       apple: (_) {
@@ -36,16 +45,16 @@ class BodyMoodAuthServer extends ServerAuthProviderBase {
           SuccessfulServerAuthResponse.fromJson(response!.data!);
       return serverAuthResponse.token;
     }
-    return const UnauthorizedToken();
+    return const ServerAuthToken.unauthorizedToken();
   }
 
   @override
-  Future<bool> logout() {
-    throw UnimplementedError();
+  Future<bool> logout() async {
+    return true;
   }
 
   @override
-  Future<AuthToken> refresh(AuthToken token) {
+  Future<ServerAuthToken> refresh(ServerAuthToken token) {
     throw UnimplementedError();
   }
 }

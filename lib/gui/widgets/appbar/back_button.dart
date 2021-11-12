@@ -1,9 +1,8 @@
-import '../../../interactor/route/riverpod/path_provider.dart';
-import '../../../interactor/route/riverpod/route_path_setting.dart';
-import '../../../resources/resources.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+
+import '../../../resources/resources.dart';
 
 class BodymoodBackButton extends ConsumerWidget {
   const BodymoodBackButton({
@@ -18,9 +17,8 @@ class BodymoodBackButton extends ConsumerWidget {
     return InkWell(
       customBorder: const CircleBorder(),
       onTap: () {
-        final route = ref.read(currentPathProvider.notifier);
-        onTap?.call();
         Navigator.pop(context);
+        onTap?.call();
       },
       child: SvgPicture.asset(
         BodymoodImages.arrowBackIcon,

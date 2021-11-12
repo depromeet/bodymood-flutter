@@ -1,7 +1,7 @@
+import '../../routes/path.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../interactor/posters/riverpod/posters_provider.dart';
 import '../widgets/appbar/appbar.dart';
 import 'button/create_poster_button.dart';
 import 'posters_view/empty_posters_view.dart';
@@ -12,6 +12,8 @@ class PostersPage extends StatelessWidget {
 
   static Page page() {
     return const MaterialPage(
+      name: BodymoodPath.posters,
+      key: ValueKey(BodymoodPath.posters),
       child: PostersPage(),
     );
   }
@@ -52,13 +54,11 @@ class PostersPage extends StatelessWidget {
 class _PostersListView extends ConsumerWidget {
   const _PostersListView({Key? key}) : super(key: key);
 
+  final lenlen = 0;
   @override
   Widget build(BuildContext context, ref) {
-    final postersNotifier = ref.watch(postersProvider.notifier);
-    final postersCount = ref.watch(postersProvider);
-
-    return postersNotifier.isEmpty
+    return lenlen == 0
         ? const EmptyPostersView()
-        : PostersGridView(postersCount: postersCount);
+        : PostersGridView(postersCount: lenlen);
   }
 }

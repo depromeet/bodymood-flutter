@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import '../../routes/path.dart';
+
 import '../../bloc/app_state/core/app_state_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,7 +13,11 @@ class BodyMoodSplashPage extends StatelessWidget {
   const BodyMoodSplashPage({Key? key}) : super(key: key);
 
   static Page page() {
-    return const MaterialPage(child: BodyMoodSplashPage());
+    return const MaterialPage(
+      name: BodymoodPath.splash,
+      key: ValueKey(BodymoodPath.splash),
+      child: BodyMoodSplashPage(),
+    );
   }
 
   @override
@@ -58,7 +64,7 @@ class _TitleOverlayState extends ConsumerState<_TitleOverlay> {
         Duration(milliseconds: _splashDurationInMilliseconds + 500),
         () {
           final appStateManager = ref.read(appStateManageProvider);
-          appStateManager.initialized();
+          appStateManager.initialize();
         },
       );
     }

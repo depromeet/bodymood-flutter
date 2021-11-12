@@ -1,8 +1,8 @@
+import '../../../bloc/posters/poster_editor_state_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../interactor/posters/riverpod/posters_provider.dart';
 import '../../../resources/resources.dart';
 import '../../constants/color.dart';
 
@@ -35,7 +35,7 @@ class CreatePosterButton extends ConsumerWidget {
         decoration: buttonBoxDecoration,
         child: TextButton(
           onPressed: () {
-            ref.read(postersProvider.notifier).createPoster();
+            ref.read(posterEditorStateManagerProvider).createPoster();
           },
           style: TextButton.styleFrom(
             shape: const CircleBorder(),

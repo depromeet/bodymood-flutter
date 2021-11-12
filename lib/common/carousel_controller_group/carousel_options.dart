@@ -1,6 +1,7 @@
-import 'carousel_controller_group.dart';
 import 'package:carousel_slider/carousel_options.dart';
 import 'package:flutter/material.dart';
+
+import 'carousel_controller_group.dart';
 
 CarouselOptions getSyncAllCarouselOption(
   CarouselControllerGroup controller, {
