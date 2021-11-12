@@ -49,13 +49,16 @@ class ExerciseTabPage extends ConsumerWidget {
   }
 
   Widget _buildExerciseList(List<ExerciseDetail> subs, int categoryNum) {
-    return ListView.builder(
+    return ListView.separated(
       itemCount: subs.length,
       itemBuilder: (context, detailIndex) {
         final detail = subs[detailIndex];
         return ExerciseDetailItem(
           detail: detail,
         );
+      },
+      separatorBuilder: (BuildContext context, int index) {
+        return const SizedBox(height: 24);
       },
     );
   }

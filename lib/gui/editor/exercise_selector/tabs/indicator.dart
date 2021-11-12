@@ -27,7 +27,6 @@ class ExerciseTabIndicator extends StatelessWidget {
           ),
           child: Stack(
             children: [
-              _SelectedTabResponder(controller: controller),
               _SelectedTabIndicator(
                 maxBarWidth: constraints.maxWidth,
               ),
@@ -35,60 +34,6 @@ class ExerciseTabIndicator extends StatelessWidget {
           ),
         );
       },
-    );
-  }
-}
-
-class _SelectedTabResponder extends ConsumerStatefulWidget {
-  const _SelectedTabResponder({
-    Key? key,
-    required this.controller,
-  }) : super(key: key);
-
-  final CarouselControllerGroup controller;
-
-  @override
-  ConsumerState<_SelectedTabResponder> createState() =>
-      _SelectedTabResponderState();
-}
-
-class _SelectedTabResponderState extends ConsumerState<_SelectedTabResponder> {
-  StateController<int>? _selectedTabState;
-  @override
-  void initState() {
-    super.initState();
-    widget.controller.addPageChangedListener(_changeSelectedTabTo);
-    _selectedTabState = ref.read(selectedTabProvider);
-  }
-
-  @override
-  void dispose() {
-    _selectedTabState?.state = 0;
-    widget.controller.removePageChangedListener(_changeSelectedTabTo);
-    super.dispose();
-  }
-
-  _changeSelectedTabTo(int index, _) {
-    _selectedTabState?.state = index;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final exercises = ref.watch(exercisesProvider);
-    return CarouselSlider.builder(
-      carouselController: widget.controller,
-      itemBuilder: (_, __, ___) => const SizedBox.shrink(),
-      itemCount: 10,
-      options: getSyncAllCarouselOption(
-        widget.controller,
-        viewportFraction: 1 /
-            exercises.maybeMap<num>(
-              orElse: () => 1.0,
-              data: (data) {
-                return data.value.length;
-              },
-            ),
-      ),
     );
   }
 }

@@ -7,7 +7,7 @@ CarouselOptions getSyncAllCarouselOption(
   CarouselControllerGroup controller, {
   double viewportFraction = 1.0,
   double aspectRatio = 16 / 9,
-  Axis scrollDirextion = Axis.horizontal,
+  Axis scrollDirection = Axis.horizontal,
   bool disableCenter = true,
   CenterPageEnlargeStrategy enlargeStrategy = CenterPageEnlargeStrategy.scale,
 }) {
@@ -20,7 +20,7 @@ CarouselOptions getSyncAllCarouselOption(
     viewportFraction: viewportFraction,
     scrollPhysics: const BouncingScrollPhysics(),
     aspectRatio: aspectRatio,
-    scrollDirection: scrollDirextion,
+    scrollDirection: scrollDirection,
     enlargeStrategy: enlargeStrategy,
   );
 }

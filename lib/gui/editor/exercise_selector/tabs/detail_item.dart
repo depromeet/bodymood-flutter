@@ -38,7 +38,7 @@ class ExerciseDetailItem extends ConsumerWidget {
         duration: const Duration(milliseconds: 300),
         color: backgroundColor,
         padding: padding,
-        height: 56,
+        height: isSelected ? 56 : 40,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,

@@ -50,7 +50,7 @@ class ExerciseTabBar extends ConsumerWidget {
     final exercises = ref.watch(exercisesProvider);
     final viewportSize = MediaQuery.of(context).size;
     final deviceWidth = viewportSize.width;
-    const tabWidth = 195.0;
+    const tabWidth = 150.0;
     const leftPadding = 24.0;
     final viewportFraction =
         _getTabViewportFraction(deviceWidth, tabWidth, leftPadding);
@@ -133,25 +133,27 @@ class _ExerciseTabItem extends ConsumerWidget {
     final koreanFontSize = isSelected ? 14.0 : 12.0;
     const animationDuration = Duration(milliseconds: 300);
 
-    return GestureDetector(
-      onTap: () {
-        controller.animateToPage(index);
-        controller.syncAll(index);
-      },
-      child: AnimatedOpacity(
-        duration: animationDuration,
-        opacity: mainOpacity,
-        child: Container(
-          width: tabWidth,
-          margin: const EdgeInsets.only(right: 32),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              _buildEnglishTitle(animationDuration, englishFontSize),
-              const SizedBox(height: 4),
-              _buildKoreanTitle(animationDuration, koreanFontSize),
-            ],
+    return FittedBox(
+      child: GestureDetector(
+        onTap: () {
+          controller.animateToPage(index);
+          controller.syncAll(index);
+        },
+        child: AnimatedOpacity(
+          duration: animationDuration,
+          opacity: mainOpacity,
+          child: Container(
+            width: tabWidth,
+            margin: const EdgeInsets.only(right: 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                _buildEnglishTitle(animationDuration, englishFontSize),
+                const SizedBox(height: 4),
+                _buildKoreanTitle(animationDuration, koreanFontSize),
+              ],
+            ),
           ),
         ),
       ),
