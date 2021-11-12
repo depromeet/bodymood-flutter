@@ -1,19 +1,22 @@
-import '../../../../common/carousel_controller_group/carousel_controller_group.dart';
-import 'page.dart';
-import 'indicator.dart';
-import 'tab_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ExerciseSelectorBody extends StatefulWidget {
+import '../../../../common/carousel_controller_group/carousel_controller_group.dart';
+import 'indicator.dart';
+import 'page.dart';
+import 'tab_bar.dart';
+
+class ExerciseSelectorBody extends ConsumerStatefulWidget {
   const ExerciseSelectorBody({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<ExerciseSelectorBody> createState() => _ExerciseSelectorBodyState();
+  ConsumerState<ExerciseSelectorBody> createState() =>
+      _ExerciseSelectorBodyState();
 }
 
-class _ExerciseSelectorBodyState extends State<ExerciseSelectorBody> {
+class _ExerciseSelectorBodyState extends ConsumerState<ExerciseSelectorBody> {
   final _controller = CarouselControllerGroup();
 
   @override
@@ -29,13 +32,15 @@ class _ExerciseSelectorBodyState extends State<ExerciseSelectorBody> {
 
   @override
   Widget build(BuildContext context) {
+    final tabHeight = 52.0;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         SizedBox(
-          height: 52,
+          height: tabHeight,
           child: ExerciseTabBar(
             controller: _controller,
+            tabHeight: tabHeight,
           ),
         ),
         const SizedBox(height: 18),

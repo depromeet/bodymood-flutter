@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../bloc/editor/model/selected_exercises.dart';
-import 'seletable_item_notifier.dart';
+import '../base/seletable_item_notifier.dart';
 
 final selectedExerciseProvider = ChangeNotifierProvider<ExerciseNotifier>(
   (_) => ExerciseNotifier(),

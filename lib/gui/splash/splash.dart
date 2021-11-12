@@ -1,12 +1,11 @@
 import 'dart:async';
 
-import '../../routes/path.dart';
-
-import '../../bloc/app_state/core/app_state_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../bloc/app_state/core/app_state_manager.dart';
+import '../../routes/path.dart';
 import '../constants/color.dart';
 
 class BodyMoodSplashPage extends StatelessWidget {

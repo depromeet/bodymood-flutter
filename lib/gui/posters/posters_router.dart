@@ -1,8 +1,8 @@
-import '../../bloc/posters/poster_editor_state_manager.dart';
-import '../../routes/path.dart';
-import '../../routes/poster_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../bloc/editor/poster_editor_state_manager.dart';
+import '../../routes/poster_router.dart';
 
 class PostersPageRouter extends ConsumerWidget {
   PostersPageRouter({

@@ -1,13 +1,13 @@
-import '../../routes/path.dart';
-
-import 'template/comming_soon.dart';
-import 'template/first_template.dart';
-import '../widgets/appbar/appbar.dart';
-import '../widgets/appbar/back_button.dart';
-import '../widgets/appbar/text_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../routes/path.dart';
+import '../widgets/appbar/appbar.dart';
+import '../widgets/appbar/back_button.dart';
+import '../widgets/appbar/text_title.dart';
+import 'template/comming_soon.dart';
+import 'template/first_template.dart';
 
 final List<Widget> _templates = [
   const FirstPosterTemplate(),

@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import 'item_editor.dart';
 import 'poster_preview.dart';
-import 'package:flutter/material.dart';
 
 class EditablePosterArea extends StatelessWidget {
   const EditablePosterArea({

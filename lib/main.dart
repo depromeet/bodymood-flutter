@@ -1,10 +1,11 @@
 import 'dart:ui';
 
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'bloc/app_state/core/app_state_manager.dart';
 import 'bloc/auth/core/auth_state_manager.dart';
 import 'routes/auth_router.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
   runApp(

@@ -1,12 +1,12 @@
-import '../core/auth_state_manager.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../core/auth_state_manager.dart';
 import 'ds/auth_token.dart';
 import 'inteface/server_auth_provider.dart';
 import 'inteface/social_auth_provider.dart';
 
-class AuthTokenManager {
-  AuthTokenManager({
+class BodymoodAuthTokenManager {
+  BodymoodAuthTokenManager({
     required ServerAuthProviderBase server,
     required Reader reader,
   })  : _server = server,

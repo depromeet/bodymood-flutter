@@ -1,23 +1,21 @@
+import '../../../bloc/editor/riverpod/selected_photo_provider.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../bloc/editor/riverpod/seletable_item_notifier.dart';
+import '../../../bloc/editor/base/seletable_item_notifier.dart';
 
 class PosterItemSelectorArea extends ConsumerWidget {
   const PosterItemSelectorArea({
     Key? key,
     this.child,
-    required this.provider,
   }) : super(key: key);
 
   final Widget? child;
-  final ChangeNotifierProvider<PosterItemsNotifier> provider;
 
   @override
   Widget build(BuildContext context, ref) {
-    ref.watch(provider);
-    final selected = ref.watch(provider.notifier).selected;
+    final selected = ref.watch(selectedImageProvider).selected;
 
     return AspectRatio(
       aspectRatio: 250 / 140,

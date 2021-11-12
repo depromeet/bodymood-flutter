@@ -1,9 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../bloc/posters/core/ds/poster_store.dart';
-import 'seletable_item_notifier.dart';
+import '../base/seletable_item_notifier.dart';
 
-final selectedPhotoProvider = ChangeNotifierProvider<PhotoNotifier>(
+final selectedImageProvider = ChangeNotifierProvider<PhotoNotifier>(
   (_) => PhotoNotifier(),
 );
 

@@ -1,16 +1,25 @@
-import 'edit_progress/checker_bar.dart';
-import 'editable_poster.dart';
-import 'riverpod/all_provider.dart';
-import '../widgets/appbar/appbar.dart';
-import '../widgets/appbar/back_button.dart';
-import '../widgets/appbar/text_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../routes/path.dart';
+import '../widgets/appbar/appbar.dart';
+import '../widgets/appbar/back_button.dart';
+import '../widgets/appbar/text_title.dart';
 import 'complete_button/complete_button.dart';
+import 'edit_progress/checker_bar.dart';
+import 'editable_poster.dart';
+import 'riverpod/all_provider.dart';
 
-class EditPosterPage extends ConsumerWidget {
-  const EditPosterPage({Key? key}) : super(key: key);
+class PosterEditorPage extends ConsumerWidget {
+  const PosterEditorPage({Key? key}) : super(key: key);
+
+  static Page page() {
+    return const MaterialPage(
+      name: BodymoodPath.editor,
+      key: ValueKey(BodymoodPath.editor),
+      child: PosterEditorPage(),
+    );
+  }
 
   @override
   Widget build(BuildContext context, ref) {

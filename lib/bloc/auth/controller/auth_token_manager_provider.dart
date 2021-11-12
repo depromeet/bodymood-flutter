@@ -5,7 +5,7 @@ import 'auth_token_manager.dart';
 
 final authTokenManagerProvider = Provider(
   (ref) {
-    return AuthTokenManager(
+    return BodymoodAuthTokenManager(
       server: BodymoodAuthServer(),
       reader: ref.read,
     );

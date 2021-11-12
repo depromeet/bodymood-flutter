@@ -3,12 +3,21 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../bloc/editor/model/emotion.dart';
 import '../../../bloc/editor/riverpod/emotions_provider.dart';
+import '../../../routes/path.dart';
 import '../../constants/color.dart';
 import '../../widgets/appbar/appbar.dart';
 import '../../widgets/appbar/back_button.dart';
 
 class EmotionSelectorPage extends ConsumerWidget {
   const EmotionSelectorPage({Key? key}) : super(key: key);
+
+  static Page page() {
+    return const MaterialPage(
+      name: BodymoodPath.selectEmotion,
+      key: ValueKey(BodymoodPath.selectEmotion),
+      child: EmotionSelectorPage(),
+    );
+  }
 
   @override
   Widget build(BuildContext context, ref) {
@@ -17,11 +26,11 @@ class EmotionSelectorPage extends ConsumerWidget {
     return Scaffold(
       body: SafeArea(
         child: Column(
-          children: [
-            const BodymoodAppbar(
+          children: const [
+            BodymoodAppbar(
               leading: BodymoodBackButton(),
             ),
-            body,
+            // body,
           ],
         ),
       ),
@@ -37,7 +46,7 @@ class EmotionSelectorPage extends ConsumerWidget {
             childAspectRatio: 1 / 1,
           ),
           padding: const EdgeInsets.symmetric(horizontal: 36),
-          children: [],
+          children: const [],
         ),
       );
     }, error: (_) {

@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../bloc/editor/riverpod/seletable_item_notifier.dart';
+import '../../../bloc/editor/base/seletable_item_notifier.dart';
 import '../../../resources/resources.dart';
 import '../../constants/color.dart';
 

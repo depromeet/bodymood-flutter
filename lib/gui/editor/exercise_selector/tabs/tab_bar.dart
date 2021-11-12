@@ -8,19 +8,21 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../bloc/editor/model/exercise_category.dart';
+import '../../../../bloc/editor/riverpod/exercises_provider.dart';
 import '../../../../common/carousel_controller_group/carousel_controller_group.dart';
 import '../../../../common/carousel_controller_group/carousel_options.dart';
 import '../../../constants/color.dart';
-import '../riverpod/exercises.dart';
 import 'riverpod/selected_tab_provider.dart';
 
 class ExerciseTabBar extends ConsumerWidget {
   const ExerciseTabBar({
     Key? key,
     required this.controller,
+    required this.tabHeight,
   }) : super(key: key);
 
   final CarouselControllerGroup controller;
+  final double tabHeight;
 
   double _getTabViewportFraction(
     double deviceWidth, [
@@ -48,7 +50,7 @@ class ExerciseTabBar extends ConsumerWidget {
     final exercises = ref.watch(exercisesProvider);
     final viewportSize = MediaQuery.of(context).size;
     final deviceWidth = viewportSize.width;
-    const tabWidth = 140.0;
+    const tabWidth = 195.0;
     const leftPadding = 24.0;
     final viewportFraction =
         _getTabViewportFraction(deviceWidth, tabWidth, leftPadding);
@@ -85,7 +87,7 @@ class ExerciseTabBar extends ConsumerWidget {
                 options: getSyncAllCarouselOption(
                   controller,
                   viewportFraction: viewportFraction,
-                  aspectRatio: tabWidth / 52,
+                  aspectRatio: tabWidth / tabHeight,
                 ),
               ),
             ),
@@ -167,7 +169,7 @@ class _ExerciseTabItem extends ConsumerWidget {
         color: clPrimaryBlack.withOpacity(0.7),
       ),
       child: Text(
-        list[index].koreanTitle,
+        list[index].koreanName,
       ),
     );
   }
@@ -177,7 +179,7 @@ class _ExerciseTabItem extends ConsumerWidget {
     return AnimatedDefaultTextStyle(
       duration: animationDuration,
       child: Text(
-        list[index].engilshTitle,
+        list[index].englishName,
       ),
       style: GoogleFonts.playfairDisplay().copyWith(
         fontWeight: FontWeight.bold,

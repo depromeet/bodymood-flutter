@@ -4,25 +4,19 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../bloc/editor/model/exercise_detail.dart';
 import '../../../../bloc/editor/model/selected_exercises.dart';
-import '../../../../bloc/editor/riverpod/exercise_provider.dart';
+import '../../../../bloc/editor/riverpod/selected_exercise_provider.dart';
 import '../../../constants/color.dart';
 
 class ExerciseDetailItem extends ConsumerWidget {
   ExerciseDetailItem({
     Key? key,
     required ExerciseDetail detail,
-    required this.categoryNum,
-    required this.detailNum,
   }) : super(key: key) {
     _thisItem = SelectedExercise(
       detail: detail,
-      categoryNum: categoryNum,
-      detailNum: detailNum,
     );
   }
 
-  final int categoryNum;
-  final int detailNum;
   late final SelectedExercise _thisItem;
 
   @override
@@ -50,7 +44,7 @@ class ExerciseDetailItem extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              _thisItem.detail.englishTitle,
+              _thisItem.detail.englishName,
               style: GoogleFonts.playfairDisplay(
                 fontSize: 14,
                 height: 1.4,
@@ -60,7 +54,7 @@ class ExerciseDetailItem extends ConsumerWidget {
             ),
             const SizedBox(height: 2),
             Text(
-              _thisItem.detail.koreanTitle,
+              _thisItem.detail.koreanName,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 12,

@@ -1,5 +1,6 @@
-import '../../constants/color.dart';
 import 'package:flutter/material.dart';
+
+import '../../constants/color.dart';
 
 class AppbarTextTitle extends StatelessWidget {
   const AppbarTextTitle({

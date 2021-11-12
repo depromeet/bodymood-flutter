@@ -1,7 +1,7 @@
-import '../../../routes/path.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../bloc/editor/poster_editor_state_manager.dart';
 import 'title.dart';
 
 class PosterEmotionSelector extends ConsumerWidget {
@@ -11,7 +11,7 @@ class PosterEmotionSelector extends ConsumerWidget {
   Widget build(BuildContext context, ref) {
     return MaterialButton(
       onPressed: () {
-        Navigator.of(context).pushNamed(BodymoodPath.chooseEmotion);
+        ref.read(posterEditorStateManagerProvider).selectEmotion();
       },
       child: const Center(
         child: ItemSelectorTitle(

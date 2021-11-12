@@ -6,18 +6,22 @@ part 'exercise_detail.g.dart';
 @JsonSerializable()
 class ExerciseDetail with EquatableMixin {
   const ExerciseDetail({
-    required this.englishTitle,
-    required this.koreanTitle,
+    required this.englishName,
+    required this.koreanName,
+    required this.categoryId,
+    required this.detailId,
   });
-  final String koreanTitle;
-  final String englishTitle;
+  final String koreanName;
+  final String englishName;
+  final int categoryId;
+  final int detailId;
   factory ExerciseDetail.fromJson(Map<String, dynamic> json) =>
       _$ExerciseDetailFromJson(json);
   Map<String, dynamic> toJson() => _$ExerciseDetailToJson(this);
 
   @override
   List<Object?> get props => [
-        englishTitle,
-        koreanTitle,
+        englishName,
+        koreanName,
       ];
 }

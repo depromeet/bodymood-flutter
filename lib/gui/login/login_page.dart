@@ -1,7 +1,7 @@
-import '../../routes/path.dart';
 import 'package:flutter/material.dart';
 
 import '../../bloc/auth/controller/ds/social_type.dart';
+import '../../routes/path.dart';
 import 'login_button.dart';
 
 class LoginPage extends StatelessWidget {

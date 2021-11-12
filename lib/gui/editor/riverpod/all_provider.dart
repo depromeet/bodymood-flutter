@@ -1,12 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../bloc/editor/riverpod/emotion_provider.dart';
-import '../../../bloc/editor/riverpod/exercise_provider.dart';
-import '../../../bloc/editor/riverpod/photo_provider.dart';
-import '../../../bloc/editor/riverpod/seletable_item_notifier.dart';
+import '../../../bloc/editor/base/seletable_item_notifier.dart';
+import '../../../bloc/editor/riverpod/selected_emotion_provider.dart';
+import '../../../bloc/editor/riverpod/selected_exercise_provider.dart';
+import '../../../bloc/editor/riverpod/selected_photo_provider.dart';
 
 final _deps = <ChangeNotifierProvider<PosterItemsNotifier>>[
-  selectedPhotoProvider,
+  selectedImageProvider,
   selectedExerciseProvider,
   selectedEmotionProvider,
 ];

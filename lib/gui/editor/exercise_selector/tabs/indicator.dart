@@ -1,11 +1,12 @@
-import '../../../../common/carousel_controller_group/carousel_controller_group.dart';
-import '../../../../common/carousel_controller_group/carousel_options.dart';
-import '../../../constants/color.dart';
-import '../riverpod/exercises.dart';
-import 'riverpod/selected_tab_provider.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../../bloc/editor/riverpod/exercises_provider.dart';
+import '../../../../common/carousel_controller_group/carousel_controller_group.dart';
+import '../../../../common/carousel_controller_group/carousel_options.dart';
+import '../../../constants/color.dart';
+import 'riverpod/selected_tab_provider.dart';
 
 class ExerciseTabIndicator extends StatelessWidget {
   const ExerciseTabIndicator({

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../bloc/editor/riverpod/emotion_provider.dart';
-import '../../../bloc/editor/riverpod/exercise_provider.dart';
-import '../../../bloc/editor/riverpod/photo_provider.dart';
+import '../../../bloc/editor/riverpod/selected_emotion_provider.dart';
+import '../../../bloc/editor/riverpod/selected_exercise_provider.dart';
+import '../../../bloc/editor/riverpod/selected_photo_provider.dart';
 import 'checker.dart';
 
 class EditProgressCheckerBar extends StatelessWidget {
@@ -17,7 +17,7 @@ class EditProgressCheckerBar extends StatelessWidget {
       children: [
         EditProgressChecker(
           title: '사진',
-          provider: selectedPhotoProvider,
+          provider: selectedImageProvider,
         ),
         const SizedBox(width: 16),
         EditProgressChecker(

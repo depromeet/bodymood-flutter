@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../bloc/editor/riverpod/exercise_provider.dart';
+import '../../../bloc/editor/riverpod/selected_exercise_provider.dart';
 import '../../constants/color.dart';
 
 class ReturnExerciseButton extends ConsumerWidget {

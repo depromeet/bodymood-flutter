@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../bloc/editor/model/exercise_detail.dart';
+import '../../../../bloc/editor/riverpod/exercises_provider.dart';
 import '../../../../common/carousel_controller_group/carousel_controller_group.dart';
 import '../../../../common/carousel_controller_group/carousel_options.dart';
 import '../../../constants/color.dart';
-import '../riverpod/exercises.dart';
 import 'detail_item.dart';
 
 class ExerciseTabPage extends ConsumerWidget {
@@ -17,7 +17,9 @@ class ExerciseTabPage extends ConsumerWidget {
   final CarouselControllerGroup controller;
   @override
   Widget build(BuildContext context, ref) {
-    final exercisesValue = ref.watch(exercisesProvider);
+    final exercisesValue = ref.watch(
+      exercisesProvider,
+    );
 
     return exercisesValue.map(
       data: _buildCategoryPage,
@@ -53,8 +55,6 @@ class ExerciseTabPage extends ConsumerWidget {
         final detail = subs[detailIndex];
         return ExerciseDetailItem(
           detail: detail,
-          categoryNum: categoryNum,
-          detailNum: detailIndex,
         );
       },
     );

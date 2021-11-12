@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../bloc/editor/model/emotion.dart';
 import '../../../bloc/editor/model/selected_emotion.dart';
-import 'seletable_item_notifier.dart';
+import '../base/seletable_item_notifier.dart';
 
 final selectedEmotionProvider = ChangeNotifierProvider<EmotionNotifier>(
   (_) => EmotionNotifier(EmotionNotSelected()),
@@ -17,13 +17,14 @@ class EmotionNotifier extends PosterItemsNotifier {
 
   updateEmotion(BodymoodEmotion emotion) {
     _emotion = EmotionSelected(emotion);
+    notifyListeners();
   }
 
   @override
   reset([bool shouldNotifyListeners = false]) {
     _emotion = EmotionNotSelected();
     if (shouldNotifyListeners) {
-      ;
+      notifyListeners();
     }
   }
 

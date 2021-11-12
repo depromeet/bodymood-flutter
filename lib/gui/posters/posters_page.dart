@@ -1,7 +1,7 @@
-import '../../routes/path.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../routes/path.dart';
 import '../widgets/appbar/appbar.dart';
 import 'button/create_poster_button.dart';
 import 'posters_view/empty_posters_view.dart';

@@ -1,16 +1,25 @@
+import '../../../routes/path.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../../bloc/editor/riverpod/photo_provider.dart';
+import '../../../bloc/editor/riverpod/selected_photo_provider.dart';
 import '../../../bloc/posters/core/ds/poster_store.dart';
 import '../../../resources/resources.dart';
 import 'title.dart';
 
-class PosterPhotoSelector extends ConsumerWidget {
-  const PosterPhotoSelector({Key? key}) : super(key: key);
+class PosterImageSelector extends ConsumerWidget {
+  const PosterImageSelector({Key? key}) : super(key: key);
+
+  static Page page() {
+    return const MaterialPage(
+      name: BodymoodPath.selectImage,
+      key: ValueKey(BodymoodPath.selectImage),
+      child: PosterImageSelector(),
+    );
+  }
 
   @override
   Widget build(BuildContext context, ref) {
@@ -67,7 +76,7 @@ class PosterPhotoSelector extends ConsumerWidget {
       source: source,
       maxWidth: 800,
     );
-    final photoProvider = ref.read(selectedPhotoProvider.notifier);
+    final photoProvider = ref.read(selectedImageProvider.notifier);
     photoProvider.updatePhoto(
       image?.path == null ? EmptyImageStore() : LocalImageStore(image!.path),
     );

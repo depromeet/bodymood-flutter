@@ -1,5 +1,6 @@
-import 'model/auth_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'model/auth_state.dart';
 
 final _authStateProvider =
     StateProvider<AuthState>((ref) => AuthState.loggedOut());

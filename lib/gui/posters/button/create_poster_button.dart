@@ -1,8 +1,8 @@
-import '../../../bloc/posters/poster_editor_state_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../bloc/editor/poster_editor_state_manager.dart';
 import '../../../resources/resources.dart';
 import '../../constants/color.dart';
 
