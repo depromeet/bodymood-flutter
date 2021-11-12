@@ -1,14 +1,14 @@
+import 'package:bodymood/bloc/editor/riverpod/selected_emotion_provider.dart';
+import 'package:bodymood/gui/constants/color.dart';
+import 'package:bodymood/gui/editor/emotion_selector/emotion_grid_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../bloc/editor/model/emotion.dart';
-import '../../../bloc/editor/riverpod/emotions_provider.dart';
 import '../../../routes/path.dart';
-import '../../constants/color.dart';
 import '../../widgets/appbar/appbar.dart';
 import '../../widgets/appbar/back_button.dart';
 
-class EmotionSelectorPage extends ConsumerWidget {
+class EmotionSelectorPage extends StatelessWidget {
   const EmotionSelectorPage({Key? key}) : super(key: key);
 
   static Page page() {
@@ -20,43 +20,59 @@ class EmotionSelectorPage extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, ref) {
-    final emotions = ref.watch(emotionsProvider);
-    final body = _buildBody(emotions);
+  Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: const [
-            BodymoodAppbar(
-              leading: BodymoodBackButton(),
+      body: Stack(
+        children: [
+          const EmotionGridView(),
+          const SafeArea(
+            child: BodymoodAppbar(
+              leading: BodymoodBackButton(
+                color: Colors.white,
+              ),
+              title: SizedBox.shrink(),
             ),
-            // body,
-          ],
-        ),
+          ),
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: FinishEmotionSelectionButton(),
+          ),
+        ],
       ),
     );
   }
+}
 
-  Widget _buildBody(AsyncValue<List<BodymoodEmotion>> emotions) {
-    return emotions.map(data: (data) {
-      return Center(
-        child: GridView(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 4,
-            childAspectRatio: 1 / 1,
+class FinishEmotionSelectionButton extends ConsumerWidget {
+  const FinishEmotionSelectionButton({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, ref) {
+    final isEmotionSelected = ref.watch(selectedEmotionProvider).selected;
+    return GestureDetector(
+      onTap: () {
+        Navigator.pop(context);
+      },
+      child: Container(
+        height: 56,
+        decoration: BoxDecoration(
+          color: isEmotionSelected ? clPrimaryBlack : clGray400,
+        ),
+        child: const Center(
+          child: Text(
+            '선택 완료',
+            style: TextStyle(
+              fontSize: 16,
+              height: 19 / 16,
+              color: clPrimaryWhite,
+            ),
           ),
-          padding: const EdgeInsets.symmetric(horizontal: 36),
-          children: const [],
         ),
-      );
-    }, error: (_) {
-      return const Text('serverError');
-    }, loading: (_) {
-      return const Center(
-        child: RefreshProgressIndicator(
-          color: clPrimaryBlack,
-        ),
-      );
-    });
+      ),
+    );
   }
 }

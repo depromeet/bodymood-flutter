@@ -5,8 +5,8 @@ import '../../auth/controller/auth_token_manager.dart';
 import '../base/remote_data_getter.dart';
 import '../model/exercise_category.dart';
 import '../model/exercise_detail.dart';
-import 'model/exercise_data.dart';
-import 'model/response.dart';
+import 'model/exericse_api/exercise_data.dart';
+import 'model/exericse_api/response.dart';
 
 class BodymoodExerciseCategoryApi
     extends RemoteDataGetter<List<ExerciseCategory>> {

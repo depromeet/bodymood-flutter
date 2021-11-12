@@ -8,9 +8,11 @@ class BodymoodBackButton extends ConsumerWidget {
   const BodymoodBackButton({
     Key? key,
     this.onTap,
+    this.color,
   }) : super(key: key);
 
   final Function? onTap;
+  final Color? color;
 
   @override
   Widget build(BuildContext context, ref) {
@@ -23,6 +25,7 @@ class BodymoodBackButton extends ConsumerWidget {
       child: SvgPicture.asset(
         BodymoodImages.arrowBackIcon,
         fit: BoxFit.contain,
+        color: color ?? Colors.black,
       ),
     );
   }
