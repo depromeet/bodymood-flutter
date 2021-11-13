@@ -1,0 +1,113 @@
+import 'dart:io';
+
+import 'package:bodymood/bloc/posters/riverpod/poster_album_provider.dart';
+import 'package:bodymood/bloc/posters/riverpod/poster_index_provider.dart';
+import 'package:bodymood/gui/constants/color.dart';
+import 'package:bodymood/gui/editor/preview/preview_bottom_sheet.dart';
+import 'package:bodymood/gui/posters/util/image_to_network_file.dart';
+import 'package:bodymood/gui/widgets/appbar/appbar.dart';
+import 'package:bodymood/gui/widgets/appbar/back_button.dart';
+import 'package:bodymood/resources/resources.dart';
+import 'package:bodymood/routes/path.dart';
+import 'package:flowder/flowder.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:intl/intl.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:share_plus/share_plus.dart';
+
+class PosterViewPage extends ConsumerWidget {
+  const PosterViewPage({Key? key}) : super(key: key);
+
+  static Page page() {
+    return const MaterialPage(
+      name: BodymoodPath.posterView,
+      key: ValueKey(BodymoodPath.posterView),
+      child: PosterViewPage(),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context, ref) {
+    final index = ref.read(posterViewIndexProvider).state;
+    final poster = ref.read(posterAlbumProvider)[index];
+    final date = getImageDateString(poster);
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          children: [
+            _buildAppBar(date),
+            const SizedBox(height: 24),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: AspectRatio(
+                    aspectRatio: 327 / 581,
+                    child: Image.network(
+                      poster.imageUrl,
+                      fit: BoxFit.cover,
+                      loadingBuilder: (_, child, __) {
+                        return Container(
+                          color: clGray200,
+                          child: child,
+                        );
+                      },
+                    )),
+              ),
+            ),
+            const SizedBox(height: 57),
+            GestureDetector(
+              onTap: () async {
+                final path = await getImageTempFilePath(poster);
+                final file = File(path);
+                if (await file.exists()) {
+                  await Share.shareFiles([path]);
+                } else {
+                  final utils = DownloaderUtils(
+                    progress: ProgressImplementation(),
+                    file: file,
+                    onDone: () async {
+                      await Share.shareFiles([path]);
+                    },
+                    progressCallback: (current, total) {},
+                  );
+                  final core = await Flowder.download(poster.imageUrl, utils);
+                }
+              },
+              child: Container(
+                height: 56,
+                decoration: const BoxDecoration(
+                  color: clPrimaryBlack,
+                ),
+                child: Center(
+                  child: SvgPicture.asset(
+                    EditPosterImages.iconShare,
+                    color: clPrimaryWhite,
+                    height: 28,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  BodymoodAppbar _buildAppBar(String date) {
+    return BodymoodAppbar(
+      leading: const BodymoodBackButton(
+        color: clPrimaryBlack,
+      ),
+      title: Text(
+        date,
+        style: const TextStyle(
+          fontSize: 16,
+          height: 19 / 16,
+          color: clPrimaryBlack,
+        ),
+      ),
+    );
+  }
+}

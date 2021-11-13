@@ -1,5 +1,7 @@
 import 'package:bodymood/gui/editor/preview/preview_page.dart';
+import 'package:bodymood/gui/posters/poster_view_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../bloc/editor/poster_editor_state_manager.dart';
 import '../gui/create/create_poster_page.dart';
@@ -13,12 +15,14 @@ class BodymoodPosterRouter extends RouterDelegate
     with ChangeNotifier, PopNavigatorRouterDelegateMixin {
   BodymoodPosterRouter({
     required this.posterEditorStateManager,
+    required this.posterViewIndex,
     GlobalKey<NavigatorState>? navigatorKey,
   }) : navigatorKey = navigatorKey ?? GlobalKey<NavigatorState>();
 
   @override
   final GlobalKey<NavigatorState> navigatorKey;
   final PosterEditorStateManager posterEditorStateManager;
+  final StateController<int> posterViewIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -27,20 +31,24 @@ class BodymoodPosterRouter extends RouterDelegate
       onPopPage: _onPopPage,
       pages: [
         PostersPage.page(),
-        if (posterEditorStateManager.isCreatingMode) ...[
-          CreatePosterPage.page(),
-        ],
-        if (!posterEditorStateManager.isPreviewMode &&
-            posterEditorStateManager.templateSelected) ...[
-          PosterEditorPage.page(),
-        ],
-        if (posterEditorStateManager.isPreviewMode) ...[
-          PosterPreviewPage.page(),
-        ],
-        if (posterEditorStateManager.isSelectingExercises) ...[
-          ExerciseSelectorPage.page(),
-        ] else if (posterEditorStateManager.isSelectingEmotion) ...[
-          EmotionSelectorPage.page(),
+        if (posterViewIndex.state != -1) ...[
+          PosterViewPage.page(),
+        ] else ...[
+          if (posterEditorStateManager.isCreatingMode) ...[
+            CreatePosterPage.page(),
+          ],
+          if (!posterEditorStateManager.isPreviewMode &&
+              posterEditorStateManager.templateSelected) ...[
+            PosterEditorPage.page(),
+          ],
+          if (posterEditorStateManager.isPreviewMode) ...[
+            PosterPreviewPage.page(),
+          ],
+          if (posterEditorStateManager.isSelectingExercises) ...[
+            ExerciseSelectorPage.page(),
+          ] else if (posterEditorStateManager.isSelectingEmotion) ...[
+            EmotionSelectorPage.page(),
+          ],
         ],
       ],
     );
@@ -63,6 +71,10 @@ class BodymoodPosterRouter extends RouterDelegate
         path == BodymoodPath.selectExercises ||
         path == BodymoodPath.selectImage) {
       posterEditorStateManager.finishItemSelection();
+    }
+
+    if (path == BodymoodPath.posterView) {
+      posterViewIndex.state = -1;
     }
 
     return true;

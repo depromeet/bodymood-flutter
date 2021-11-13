@@ -1,3 +1,4 @@
+import 'package:bodymood/bloc/posters/riverpod/poster_album_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -54,11 +55,9 @@ class PostersPage extends ConsumerWidget {
 class _PostersListView extends ConsumerWidget {
   const _PostersListView({Key? key}) : super(key: key);
 
-  final lenlen = 0;
   @override
   Widget build(BuildContext context, ref) {
-    return lenlen == 0
-        ? const EmptyPostersView()
-        : PostersGridView(postersCount: lenlen);
+    final posters = ref.watch(posterAlbumProvider);
+    return posters.isEmpty ? const EmptyPostersView() : const PostersGridView();
   }
 }

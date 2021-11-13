@@ -27,7 +27,7 @@ class BodymoodApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     final authStateManager = ref.watch(authStateManagerProvider);
-    final appStateManager = ref.watch(appStateManageProvider);
+    final appStateManager = ref.watch(appStateManagerProvider);
     final authStateRouter = BodymoodAuthRouter(
       authManager: authStateManager,
       appStateManager: appStateManager,

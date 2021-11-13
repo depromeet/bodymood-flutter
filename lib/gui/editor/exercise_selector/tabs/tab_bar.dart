@@ -6,14 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
-
-import '../../../../bloc/editor/model/exercise_category.dart';
 import '../../../../bloc/editor/riverpod/exercises_provider.dart';
 import '../../../../common/carousel_controller_group/carousel_controller_group.dart';
 import '../../../../common/carousel_controller_group/carousel_options.dart';
 import '../../../constants/color.dart';
-import 'riverpod/selected_tab_provider.dart';
 
 class ExerciseTabBar extends ConsumerWidget {
   const ExerciseTabBar({

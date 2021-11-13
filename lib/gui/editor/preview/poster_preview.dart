@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:after_layout/after_layout.dart';
 import 'package:bodymood/bloc/auth/controller/auth_token_manager_provider.dart';
 import 'package:bodymood/bloc/editor/api/poster_creation_api.dart';
@@ -116,7 +115,7 @@ class _PosterPreviewState extends ConsumerState<PosterPreview>
 
     final tokenManager = ref.read(authTokenManagerProvider);
     final api = BodymoodPosterCreationApi(tokenManager);
-    final result = await api.create(
+    await api.create(
       PosterDetail(
         posterImagePath: posterPath,
         originalImagePath: originalImagePath,

@@ -1,3 +1,5 @@
+import 'package:bodymood/bloc/posters/riverpod/poster_album_provider.dart';
+
 import '../../auth/controller/auth_token_manager_provider.dart';
 import '../../auth/social/kakao/kakao_auth_refresher.dart';
 
@@ -6,7 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final _appStateProvider = StateProvider((_) => AppState.initializing());
 
-final appStateManageProvider = Provider((ref) {
+final appStateManagerProvider = Provider((ref) {
   final appState = ref.watch(_appStateProvider).state;
   return AppStateManager(read: ref.read, appState: appState);
 });
@@ -27,6 +29,8 @@ class AppStateManager {
   void initialize() async {
     final authTokenManager = _read(authTokenManagerProvider);
     await authTokenManager.updateAuthToken(KakaoAuthRefresher());
+    final posters = _read(posterAlbumProvider.notifier);
+    await posters.refresh();
     _initialized();
   }
 

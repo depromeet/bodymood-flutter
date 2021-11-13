@@ -1,4 +1,3 @@
-import 'package:bodymood/bloc/editor/poster_editor_state_manager.dart';
 import 'package:bodymood/bloc/editor/riverpod/poster_path_provider.dart';
 import 'package:bodymood/gui/constants/color.dart';
 import 'package:bodymood/resources/resources.dart';

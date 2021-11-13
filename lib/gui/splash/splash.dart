@@ -60,9 +60,9 @@ class _TitleOverlayState extends ConsumerState<_TitleOverlay> {
         _visible = true;
       });
       Timer(
-        Duration(milliseconds: _splashDurationInMilliseconds + 500),
+        Duration(milliseconds: _splashDurationInMilliseconds),
         () {
-          final appStateManager = ref.read(appStateManageProvider);
+          final appStateManager = ref.read(appStateManagerProvider);
           appStateManager.initialize();
         },
       );
