@@ -1,6 +1,6 @@
 import 'package:bodymood/common/carousel_controller_group/carousel_controller_group.dart';
-import 'package:bodymood/gui/constants/color.dart';
 import 'package:bodymood/gui/editor/exercise_selector/tabs/riverpod/selected_tab_provider.dart';
+import 'package:bodymood/gui/editor/exercise_selector/util/get_font_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -28,6 +28,7 @@ class ExerciseTabBarItem extends ConsumerWidget {
     final englishFontSize = isSelected ? 22.0 : 18.0;
     final koreanFontSize = isSelected ? 14.0 : 12.0;
     const animationDuration = Duration(milliseconds: 300);
+    final fontColor = getFontColor(ref.read);
 
     return FittedBox(
       child: GestureDetector(
@@ -46,9 +47,10 @@ class ExerciseTabBarItem extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                _buildEnglishTitle(animationDuration, englishFontSize),
+                _buildEnglishTitle(
+                    animationDuration, englishFontSize, fontColor),
                 const SizedBox(height: 4),
-                _buildKoreanTitle(animationDuration, koreanFontSize),
+                _buildKoreanTitle(animationDuration, koreanFontSize, fontColor),
               ],
             ),
           ),
@@ -58,14 +60,17 @@ class ExerciseTabBarItem extends ConsumerWidget {
   }
 
   AnimatedDefaultTextStyle _buildKoreanTitle(
-      Duration animationDuration, double koreanFontSize) {
+    Duration animationDuration,
+    double koreanFontSize,
+    Color fontColor,
+  ) {
     return AnimatedDefaultTextStyle(
       duration: animationDuration,
       style: TextStyle(
         fontWeight: FontWeight.bold,
         fontSize: koreanFontSize,
         height: 17 / 14,
-        color: clPrimaryBlack.withOpacity(0.7),
+        color: fontColor.withOpacity(0.7),
       ),
       child: Text(
         list[index].koreanName,
@@ -74,7 +79,10 @@ class ExerciseTabBarItem extends ConsumerWidget {
   }
 
   AnimatedDefaultTextStyle _buildEnglishTitle(
-      Duration animationDuration, double englishFontSize) {
+    Duration animationDuration,
+    double englishFontSize,
+    Color fontColor,
+  ) {
     return AnimatedDefaultTextStyle(
       duration: animationDuration,
       child: Text(
@@ -84,7 +92,7 @@ class ExerciseTabBarItem extends ConsumerWidget {
         fontWeight: FontWeight.bold,
         fontSize: englishFontSize,
         height: 1.4,
-        color: clPrimaryBlack,
+        color: fontColor,
       ),
     );
   }

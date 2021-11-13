@@ -1,3 +1,6 @@
+import 'package:bodymood/bloc/editor/riverpod/selected_emotion_provider.dart';
+import 'package:bodymood/bloc/editor/riverpod/selected_exercise_provider.dart';
+import 'package:bodymood/bloc/editor/riverpod/selected_photo_provider.dart';
 import 'package:flutter/material.dart';
 
 import 'item_selector/area.dart';
@@ -15,17 +18,20 @@ class ItemSelector extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       mainAxisSize: MainAxisSize.max,
-      children: const [
+      children: [
         PosterItemSelectorArea(
-          child: PosterImageSelector(),
+          child: const PosterImageSelector(),
+          provider: selectedImageProvider,
         ),
-        SizedBox(height: 24),
+        const SizedBox(height: 24),
         PosterItemSelectorArea(
-          child: PosterExerciseSelector(),
+          child: const PosterExerciseSelector(),
+          provider: selectedExerciseProvider,
         ),
-        SizedBox(height: 24),
+        const SizedBox(height: 24),
         PosterItemSelectorArea(
-          child: PosterEmotionSelector(),
+          child: const PosterEmotionSelector(),
+          provider: selectedEmotionProvider,
         ),
       ],
     );

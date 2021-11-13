@@ -18,7 +18,7 @@ class BodymoodPosterFetchApi {
 
   Future<List<PosterImage>> refresh() async {
     currentPage = 0;
-    return _getPosters();
+    return getNext();
   }
 
   Future<List<PosterImage>> getNext() async {

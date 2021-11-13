@@ -1,6 +1,4 @@
-import 'package:bodymood/bloc/editor/riverpod/selected_emotion_provider.dart';
-
-import '../../../bloc/editor/riverpod/selected_photo_provider.dart';
+import 'package:bodymood/bloc/editor/base/seletable_item_notifier.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -9,15 +7,15 @@ class PosterItemSelectorArea extends ConsumerWidget {
   const PosterItemSelectorArea({
     Key? key,
     this.child,
+    required this.provider,
   }) : super(key: key);
 
   final Widget? child;
+  final ChangeNotifierProvider<PosterItemsNotifier> provider;
 
   @override
   Widget build(BuildContext context, ref) {
-    final selected = ref.watch(selectedImageProvider).selected ||
-        ref.watch(selectedEmotionProvider).selected;
-
+    final selected = ref.watch(provider).selected;
     return AspectRatio(
       aspectRatio: 250 / 140,
       child: DottedBorder(

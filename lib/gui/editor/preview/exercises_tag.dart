@@ -17,13 +17,15 @@ class ExercisesTag extends ConsumerWidget {
             previousValue + '\n' + element.detail.englishName);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12),
-      child: Text(
-        exercises,
-        style: GoogleFonts.playfairDisplay(
-          fontWeight: FontWeight.bold,
-          fontSize: 36,
-          height: 1.3,
-          color: clPrimaryWhite,
+      child: FittedBox(
+        child: Text(
+          exercises,
+          style: GoogleFonts.playfairDisplay(
+            fontWeight: FontWeight.bold,
+            fontSize: 36,
+            height: 1.3,
+            color: clPrimaryWhite,
+          ),
         ),
       ),
     );

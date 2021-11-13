@@ -1,4 +1,5 @@
 import 'package:bodymood/bloc/posters/riverpod/poster_album_provider.dart';
+import 'package:bodymood/gui/constants/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -58,6 +59,15 @@ class _PostersListView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     final posters = ref.watch(posterAlbumProvider);
-    return posters.isEmpty ? const EmptyPostersView() : const PostersGridView();
+    return RefreshIndicator(
+      onRefresh: () async {
+        final album = ref.read(posterAlbumProvider.notifier);
+        await album.refresh();
+      },
+      backgroundColor: clPrimaryWhite,
+      color: clPrimaryBlack,
+      child:
+          posters.isEmpty ? const EmptyPostersView() : const PostersGridView(),
+    );
   }
 }

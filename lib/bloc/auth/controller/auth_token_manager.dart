@@ -24,7 +24,8 @@ class BodymoodAuthTokenManager {
     final socialToken = await provider.getToken();
     return socialToken.maybeMap(
       failed: (_) {
-        return const ServerAuthToken.unauthorizedToken();
+        _authToken = const ServerAuthToken.unauthorizedToken();
+        return _authToken;
       },
       orElse: () async {
         _authToken = await _server.login(socialToken);

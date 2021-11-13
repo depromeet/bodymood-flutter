@@ -1,3 +1,5 @@
+import 'package:bodymood/bloc/editor/riverpod/selected_emotion_provider.dart';
+import 'package:bodymood/gui/editor/exercise_selector/util/get_font_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -28,17 +30,18 @@ class ExerciseDetailItem extends ConsumerWidget {
         isSelected ? clPrimaryBlack.withOpacity(0.1) : Colors.transparent;
     final padding =
         isSelected ? const EdgeInsets.only(left: 24) : EdgeInsets.zero;
+    final fontColor = getFontColor(ref.read);
+
     return GestureDetector(
       onTap: () {
         final selectedItemNotifier =
             ref.read(selectedExerciseProvider.notifier);
         selectedItemNotifier.updateList(_thisItem);
       },
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
+      child: Container(
         color: backgroundColor,
         padding: padding,
-        height: isSelected ? 56 : 40,
+        height: 56,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -49,7 +52,7 @@ class ExerciseDetailItem extends ConsumerWidget {
                 fontSize: 14,
                 height: 1.4,
                 fontWeight: FontWeight.bold,
-                color: clPrimaryBlack,
+                color: fontColor,
               ),
             ),
             const SizedBox(height: 2),
@@ -59,7 +62,7 @@ class ExerciseDetailItem extends ConsumerWidget {
                 fontWeight: FontWeight.bold,
                 fontSize: 12,
                 height: 14 / 12,
-                color: clPrimaryBlack.withOpacity(0.6),
+                color: fontColor.withOpacity(0.6),
               ),
             ),
           ],
