@@ -1,50 +1,61 @@
-import 'package:bodymood/bloc/auth/controller/ds/auth_token.dart';
-import 'package:bodymood/bloc/auth/controller/ds/social_auth_token.dart';
-import 'package:bodymood/bloc/auth/controller/inteface/server_auth_provider.dart';
-import 'package:bodymood/bloc/auth/server/ds/auth_response.dart';
+import 'package:bodymood/common/api_server.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 
-class BodyMoodAuthServer extends ServerAuthProviderBase {
+import '../controller/ds/auth_token.dart';
+import '../controller/ds/social_auth_token.dart';
+import '../controller/inteface/server_auth_provider.dart';
+import 'ds/auth_response.dart';
+
+class BodymoodAuthServer extends ServerAuthProviderBase {
   final _dio = Dio();
-  final _authEndpoint = 'https://dev.bodymood.me/api/v1/auth/';
+  final _authEndpoint = '${bodymoodEndpoint}/api/v1/auth/';
   @override
-  Future<AuthToken> login(SocialAuthToken socialToken) async {
+  Future<ServerAuthToken> login(SocialAuthToken socialToken) async {
     final response = await socialToken.maybeMap(
       kakao: (token) async {
         final endpoint = _authEndpoint + '/kakao';
-        return _dio.post<Map<String, dynamic>>(
+        final tokenBody = socialToken.toJson();
+        tokenBody.removeWhere((key, value) => key != 'accessToken');
+
+        return _dio
+            .post<Map<String, dynamic>>(
           endpoint,
-          data: socialToken.toJson(),
+          data: tokenBody,
           options: Options(
             contentType: 'application/json',
             responseType: ResponseType.json,
           ),
+        )
+            .catchError(
+          (error, stackTrace) async {
+            debugPrint(error.toString());
+          },
         );
       },
       apple: (_) {
-        final endpoint = _authEndpoint + '/apple';
         throw UnimplementedError();
       },
       orElse: () {
-        throw UnimplementedError();
+        debugPrint('not loggedin');
       },
     );
 
-    if (response.statusCode == 200) {
+    if (response?.statusCode == 200) {
       final serverAuthResponse =
-          SuccessfulServerAuthResponse.fromJson(response.data!);
+          SuccessfulServerAuthResponse.fromJson(response!.data!);
       return serverAuthResponse.token;
     }
-    return const UnauthorizedToken();
+    return const ServerAuthToken.unauthorizedToken();
   }
 
   @override
-  Future<bool> logout() {
-    throw UnimplementedError();
+  Future<bool> logout() async {
+    return true;
   }
 
   @override
-  Future<AuthToken> refresh(AuthToken token) {
+  Future<ServerAuthToken> refresh(ServerAuthToken token) {
     throw UnimplementedError();
   }
 }

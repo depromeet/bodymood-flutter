@@ -15,7 +15,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.0+1
+version: 1.0.0+7
 
 environment:
   sdk: ">=2.15.0-116.0.dev <3.0.0"
@@ -43,6 +43,20 @@ dependencies:
   dio: ^4.0.0
   freezed_annotation: ^0.15.0
   json_annotation: ^4.3.0
+  dotted_border: ^2.0.0+1
+  image_picker: ^0.8.4+4
+  linked_scroll_controller: ^0.2.0
+  carousel_slider:
+    git: https://github.com/wurikiji/flutter_carousel_slider_group
+  equatable: ^2.0.3
+  intl: ^0.17.0
+  after_layout: ^1.1.0
+  screenshot: ^1.2.3
+  mime_type: ^1.0.0
+  share_plus: ^3.0.4
+  cached_network_image: ^3.1.0+1
+  network_to_file_image: ^3.0.3
+  flowder: ^0.2.0
 
 dev_dependencies:
   flutter_test:
@@ -59,7 +73,12 @@ dev_dependencies:
   freezed: ^0.15.0+1
   build_runner: ^2.1.4
   json_serializable: ^6.0.1
+  flutter_launcher_icons: ^0.9.2
 
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/app-icon.png"
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -73,8 +92,12 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/splash/
-    - assets/images/my-album/
+    - assets/images/posters/
     - assets/images/login/
+    - assets/images/common/
+    - assets/images/create/
+    - assets/images/edit/
+    - assets/fonts/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

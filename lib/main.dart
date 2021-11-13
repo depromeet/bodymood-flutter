@@ -1,37 +1,55 @@
 import 'dart:ui';
 
-import 'package:bodymood/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'bloc/app_state/core/app_state_manager.dart';
+import 'bloc/auth/core/auth_state_manager.dart';
+import 'routes/auth_router.dart';
+
 void main() {
   runApp(
-    const ProviderScope(
+    ProviderScope(
       child: DefaultTextStyle(
-        style: TextStyle(
+        style: const TextStyle(
           fontFamily: 'Pretendard Variable',
         ),
-        child: BodyMood(),
+        child: BodymoodApp(),
       ),
     ),
   );
 }
 
-class BodyMood extends StatelessWidget {
-  const BodyMood({Key? key}) : super(key: key);
+class BodymoodApp extends ConsumerWidget {
+  BodymoodApp({Key? key}) : super(key: key);
 
+  final _navKey = GlobalKey<NavigatorState>();
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    final authStateManager = ref.watch(authStateManagerProvider);
+    final appStateManager = ref.watch(appStateManagerProvider);
+    final authStateRouter = BodymoodAuthRouter(
+      authManager: authStateManager,
+      appStateManager: appStateManager,
+    );
+
     return MaterialApp(
+      navigatorKey: _navKey,
+      color: Colors.white,
       theme: ThemeData(
         fontFamily: 'Pretendard Variable',
         colorScheme: Theme.of(context).colorScheme.copyWith(
               primary: const Color(0xff18192b),
               onPrimary: Colors.white,
             ),
+        brightness: Brightness.light,
+        scaffoldBackgroundColor: Colors.white,
       ),
-      initialRoute: '/',
-      onGenerateRoute: onGenerateRoute,
+      title: 'Bodymood',
+      home: Router(
+        routerDelegate: authStateRouter,
+        backButtonDispatcher: RootBackButtonDispatcher(),
+      ),
     );
   }
 }

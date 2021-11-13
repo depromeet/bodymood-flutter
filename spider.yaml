@@ -22,8 +22,17 @@ groups:
   - path: assets/images/login/
     class_name: LoginImages
     types: [.png, .jpg, .jpeg, .webp, .webm, .bmp, .svg]
-  - path: assets/images/my-album/
-    class_name: MyAlbumImages
+  - path: assets/images/common/
+    class_name: BodymoodImages
+    types: [.png, .jpg, .jpeg, .webp, .webm, .bmp, .svg]
+  - path: assets/images/create/
+    class_name: CreatePosterImages
+    types: [.png, .jpg, .jpeg, .webp, .webm, .bmp, .svg]
+  - path: assets/images/edit/
+    class_name: EditPosterImages
+    types: [.png, .jpg, .jpeg, .webp, .webm, .bmp, .svg]
+  - path: assets/images/posters/
+    class_name: PostersImages
     types: [.png, .jpg, .jpeg, .webp, .webm, .bmp, .svg]
 #  - path: assets/vectors
 #    class_name: Svgs

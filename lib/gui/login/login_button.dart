@@ -1,14 +1,15 @@
-import 'package:bodymood/bloc/auth/controller/ds/social_type.dart';
-import 'package:bodymood/bloc/auth/controller/inteface/social_auth_provider.dart';
-import 'package:bodymood/bloc/auth/providers/apple/apple_auth_provider.dart';
-import 'package:bodymood/bloc/auth/providers/kakao/kakao_auth_provider.dart';
-import 'package:bodymood/bloc/auth/auth_manager.dart';
-import 'package:bodymood/gui/constants/color.dart';
-import 'package:bodymood/resources/resources.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+
+import '../../bloc/auth/controller/auth_token_manager_provider.dart';
+import '../../bloc/auth/controller/ds/social_type.dart';
+import '../../bloc/auth/controller/inteface/social_auth_provider.dart';
+import '../../bloc/auth/social/apple/apple_auth_provider.dart';
+import '../../bloc/auth/social/kakao/kakao_auth_provider.dart';
+import '../../resources/resources.dart';
+import '../constants/color.dart';
 
 class LoginButton extends ConsumerWidget {
   const LoginButton({
@@ -20,14 +21,9 @@ class LoginButton extends ConsumerWidget {
 
   @override
   Widget build(context, ref) {
-    final authManager = ref.read(authManagerProvider);
     final title = type.map<String>(
       apple: (_) => 'Apple 로그인',
       kakao: (_) => '카카오 로그인',
-    );
-    final socialAuthProvider = type.map<SocialAuthProviderBase>(
-      kakao: (_) => KakaoAuthProvider(),
-      apple: (_) => AppleAuthProvider(),
     );
     final textColor = type.map<Color>(
       apple: (_) => clPrimaryWhite,
@@ -51,10 +47,7 @@ class LoginButton extends ConsumerWidget {
         height: 45,
       ),
       child: TextButton(
-        onPressed: () async {
-          final token = await authManager.updateAuthToken(socialAuthProvider);
-          debugPrint(token.toString());
-        },
+        onPressed: () => onLoginButtonClicked(ref),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -76,6 +69,20 @@ class LoginButton extends ConsumerWidget {
           ],
         ),
       ),
+    );
+  }
+
+  onLoginButtonClicked(WidgetRef ref) async {
+    final authManager = ref.read(authTokenManagerProvider);
+    final socialAuthProvider = type.map<SocialAuthProviderBase>(
+      kakao: (_) => KakaoAuthProvider(),
+      apple: (_) => AppleAuthProvider(),
+    );
+
+    final token = await authManager.updateAuthToken(socialAuthProvider);
+    token.maybeWhen(
+      authorizedToken: (_, __) {},
+      orElse: () {},
     );
   }
 }

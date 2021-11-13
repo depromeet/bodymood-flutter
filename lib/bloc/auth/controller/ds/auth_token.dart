@@ -4,10 +4,11 @@ part 'auth_token.freezed.dart';
 part 'auth_token.g.dart';
 
 @freezed
-class AuthToken with _$AuthToken {
-  const factory AuthToken.authorizedToken(
-      String accessToken, String refreshToken) = AuthorizedToken;
-  const factory AuthToken.unauthorizedToken() = UnauthorizedToken;
-  factory AuthToken.fromJson(Map<String, dynamic> json) =>
-      _$AuthTokenFromJson(json);
+class ServerAuthToken with _$ServerAuthToken {
+  const factory ServerAuthToken.authorizedToken(
+      String accessToken, String refreshToken) = ServerAuthTokenAuthorized;
+  const factory ServerAuthToken.unauthorizedToken() =
+      ServerAuthTokenUnauthorized;
+  factory ServerAuthToken.fromJson(Map<String, dynamic> json) =>
+      _$ServerAuthTokenFromJson(json);
 }
