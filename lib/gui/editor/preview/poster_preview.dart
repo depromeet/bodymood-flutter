@@ -45,15 +45,15 @@ class _PosterPreviewState extends ConsumerState<PosterPreview>
       color: clPrimaryWhite,
       width: 5,
     );
-    return Screenshot(
-      controller: screenshotController,
-      child: Container(
-        key: posterKey,
-        margin: const EdgeInsets.symmetric(horizontal: 24),
-        decoration: BoxDecoration(
-          boxShadow: boxShadow,
-          border: border,
-        ),
+    return Container(
+      key: posterKey,
+      margin: const EdgeInsets.symmetric(horizontal: 24),
+      decoration: BoxDecoration(
+        boxShadow: boxShadow,
+        border: border,
+      ),
+      child: Screenshot(
+        controller: screenshotController,
         child: AspectRatio(
           aspectRatio: 327 / 580,
           child: Stack(
