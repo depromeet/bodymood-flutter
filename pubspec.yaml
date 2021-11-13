@@ -49,6 +49,11 @@ dependencies:
   carousel_slider:
     git: https://github.com/wurikiji/flutter_carousel_slider_group
   equatable: ^2.0.3
+  intl: ^0.17.0
+  after_layout: ^1.1.0
+  screenshot: ^1.2.3
+  mime_type: ^1.0.0
+  share_plus: ^3.0.4
 
 dev_dependencies:
   flutter_test:

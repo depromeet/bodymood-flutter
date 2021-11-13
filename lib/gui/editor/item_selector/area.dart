@@ -1,9 +1,9 @@
+import 'package:bodymood/bloc/editor/riverpod/selected_emotion_provider.dart';
+
 import '../../../bloc/editor/riverpod/selected_photo_provider.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../../bloc/editor/base/seletable_item_notifier.dart';
 
 class PosterItemSelectorArea extends ConsumerWidget {
   const PosterItemSelectorArea({
@@ -15,7 +15,8 @@ class PosterItemSelectorArea extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final selected = ref.watch(selectedImageProvider).selected;
+    final selected = ref.watch(selectedImageProvider).selected ||
+        ref.watch(selectedEmotionProvider).selected;
 
     return AspectRatio(
       aspectRatio: 250 / 140,

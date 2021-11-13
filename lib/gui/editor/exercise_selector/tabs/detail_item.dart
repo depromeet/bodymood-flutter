@@ -25,7 +25,7 @@ class ExerciseDetailItem extends ConsumerWidget {
     final isSelected =
         selectedItems.exercises.any((selected) => selected == _thisItem);
     final backgroundColor =
-        isSelected ? clPrimaryBlack.withOpacity(0.1) : Colors.white;
+        isSelected ? clPrimaryBlack.withOpacity(0.1) : Colors.transparent;
     final padding =
         isSelected ? const EdgeInsets.only(left: 24) : EdgeInsets.zero;
     return GestureDetector(

@@ -1,3 +1,6 @@
+import 'package:bodymood/bloc/editor/riverpod/selected_emotion_provider.dart';
+import 'package:bodymood/bloc/editor/riverpod/selected_exercise_provider.dart';
+import 'package:bodymood/bloc/editor/riverpod/selected_photo_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -35,6 +38,9 @@ class CreatePosterButton extends ConsumerWidget {
         decoration: buttonBoxDecoration,
         child: TextButton(
           onPressed: () {
+            ref.read(selectedEmotionProvider).reset();
+            ref.read(selectedExerciseProvider).reset();
+            ref.read(selectedImageProvider).reset();
             ref.read(posterEditorStateManagerProvider).createPoster();
           },
           style: TextButton.styleFrom(

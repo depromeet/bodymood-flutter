@@ -6,7 +6,8 @@ class BodymoodPath {
   static const editor = '/edit';
   static const posters = '/posters';
   static const posterDetail = posters + '/detail';
-  static const selectImage = '/edit/image';
-  static const selectExercises = '/edit/exercises';
-  static const selectEmotion = '/edit/emotion';
+  static const selectImage = editor + '/image';
+  static const selectExercises = editor + '/exercises';
+  static const selectEmotion = editor + '/emotion';
+  static const editorPreview = editor + '/preview';
 }

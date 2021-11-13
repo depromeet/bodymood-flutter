@@ -2,12 +2,10 @@ import 'package:bodymood/bloc/editor/riverpod/emotions_provider.dart';
 import 'package:bodymood/bloc/editor/riverpod/selected_emotion_provider.dart';
 import 'package:bodymood/gui/constants/color.dart';
 import 'package:bodymood/gui/editor/emotion_selector/emotion_selector_item.dart';
+import 'package:bodymood/gui/editor/emotion_selector/emotional_background.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-typedef EmotionBackgroundBuilder = Widget Function(
-    BuildContext context, Widget child);
 
 class EmotionGridView extends ConsumerWidget {
   const EmotionGridView({Key? key}) : super(key: key);
@@ -50,32 +48,10 @@ class EmotionGridView extends ConsumerWidget {
       error: _buildOnError,
       loading: _buildOnLoading,
     );
-    final backgroundBuilder = selectedEmotion.map<EmotionBackgroundBuilder>(
-      empty: (_) {
-        return (_, child) => child;
-      },
-      selected: (selected) {
-        final startColor = Color(
-            int.parse(selected.emotion.startColor.replaceAll('#', '0xff')));
-        final endColor =
-            Color(int.parse(selected.emotion.endColor.replaceAll('#', '0xff')));
-        return (_, child) => AnimatedContainer(
-              duration: const Duration(milliseconds: 300),
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    startColor,
-                    endColor,
-                  ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-              ),
-              child: child,
-            );
-      },
+
+    return EmotionalBackground(
+      child: body,
     );
-    return backgroundBuilder(context, body);
   }
 
   Text _buildEmotionSelectorTitle() {

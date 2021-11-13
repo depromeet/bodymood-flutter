@@ -6,5 +6,6 @@ part 'poster_editor_mode.freezed.dart';
 class PosterEditorMode with _$PosterEditorMode {
   factory PosterEditorMode.edit() = PosterEditorEdit;
   factory PosterEditorMode.create() = PosterEditorCreate;
+  factory PosterEditorMode.preview() = PosterEditorPreview;
   factory PosterEditorMode.none() = PosterEditorNone;
 }

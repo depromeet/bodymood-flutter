@@ -1,7 +1,8 @@
+import 'package:bodymood/gui/editor/emotion_selector/emotional_background.dart';
 import 'package:flutter/material.dart';
 
 import 'item_editor.dart';
-import 'poster_preview.dart';
+import 'background_image.dart';
 
 class EditablePosterArea extends StatelessWidget {
   const EditablePosterArea({
@@ -25,7 +26,8 @@ class EditablePosterArea extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            const PosterPreview(),
+            const PosterBackgroundImage(),
+            const EmotionalBackground(opacity: 0.4, onlySelected: true),
             Container(
               padding: editablePosterBoxPadding,
               child: const ItemSelector(),

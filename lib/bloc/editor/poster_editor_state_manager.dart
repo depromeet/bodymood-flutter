@@ -1,44 +1,41 @@
+import 'package:bodymood/bloc/editor/model/poster_editor_state.dart';
+import 'package:bodymood/bloc/editor/riverpod/editor_state_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'model/item_being_selected.dart';
 import 'model/poster_editor_mode.dart';
-import 'riverpod/editor_mode_provider.dart';
-import 'riverpod/item_being_selected_provider.dart';
-import 'riverpod/selected_template_provider.dart';
 
 final posterEditorStateManagerProvider = Provider((ref) {
-  final editorMode = ref.watch(posterEditorModeProvider).state;
-  final selectedTamplate = ref.watch(selectedTemplateProvider).state;
-  final itemBeingSelected = ref.watch(itemBeingSelectedProvider).state;
+  final editorState = ref.watch(editorStateProvider).state;
   return PosterEditorStateManager(
     read: ref.read,
-    mode: editorMode,
-    selectedTemplate: selectedTamplate,
-    itemBeingSelected: itemBeingSelected,
+    state: editorState,
   );
 });
 
 class PosterEditorStateManager {
   PosterEditorStateManager({
     required Reader read,
-    required this.mode,
-    required this.selectedTemplate,
-    required this.itemBeingSelected,
+    required this.state,
   }) : _read = read;
 
   final Reader _read;
-  final PosterEditorMode mode;
-  final int selectedTemplate;
-  final ItemBeingSelected itemBeingSelected;
+  final PosterEditorState state;
 
   void createPoster() {
     _setEditorMode(PosterEditorMode.create());
   }
 
+  void showPreview() {
+    _setEditorMode(PosterEditorMode.preview());
+  }
+
   void clearAll() {
-    _setEditorMode(PosterEditorMode.none());
-    _setItemBeingSelected(NothingBeingSelected());
-    clearTemplate();
+    _read(editorStateProvider).state = PosterEditorState(
+      itemBeingSelected: ItemBeingSelected.none(),
+      mode: PosterEditorMode.none(),
+      posterTemplate: -1,
+    );
   }
 
   void clearTemplate() {
@@ -46,7 +43,9 @@ class PosterEditorStateManager {
   }
 
   void setTemplate(int index) {
-    _read(selectedTemplateProvider).state = index;
+    _read(editorStateProvider).state = state.copyWith(
+      posterTemplate: index,
+    );
   }
 
   void selectImage() {
@@ -66,26 +65,39 @@ class PosterEditorStateManager {
   }
 
   void _setItemBeingSelected(ItemBeingSelected item) {
-    _read(itemBeingSelectedProvider).state = item;
+    _read(editorStateProvider).state = state.copyWith(
+      itemBeingSelected: item,
+    );
   }
 
   void _setEditorMode(PosterEditorMode mode) {
-    _read(posterEditorModeProvider).state = mode;
+    _read(editorStateProvider).state = state.copyWith(
+      mode: mode,
+    );
   }
 
-  bool get isEditing => mode.maybeMap(edit: (_) => true, orElse: () => false);
-  bool get isCreating =>
-      mode.maybeMap(create: (_) => true, orElse: () => false);
-  bool get isSelectingImage => itemBeingSelected.maybeMap(
+  bool get isEditingMode =>
+      state.mode.maybeMap(edit: (_) => true, orElse: () => false);
+
+  bool get isCreatingMode =>
+      state.mode.maybeMap(create: (_) => true, orElse: () => false);
+
+  bool get isPreviewMode =>
+      state.mode.maybeMap(preview: (_) => true, orElse: () => false);
+
+  bool get templateSelected => state.posterTemplate != -1;
+
+  bool get isSelectingImage => state.itemBeingSelected.maybeMap(
         image: (_) => true,
         orElse: () => false,
       );
-  bool get isSelectingExercises => itemBeingSelected.maybeMap(
+
+  bool get isSelectingExercises => state.itemBeingSelected.maybeMap(
         exercises: (_) => true,
         orElse: () => false,
       );
 
-  bool get isSelectingEmotion => itemBeingSelected.maybeMap(
+  bool get isSelectingEmotion => state.itemBeingSelected.maybeMap(
         emotion: (_) => true,
         orElse: () => false,
       );

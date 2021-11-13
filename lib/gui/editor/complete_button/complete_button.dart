@@ -1,3 +1,4 @@
+import 'package:bodymood/bloc/editor/poster_editor_state_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -16,7 +17,11 @@ class CompletePosterEditingButton extends ConsumerWidget {
   Widget build(BuildContext context, ref) {
     final completed = ref.watch(posterItemsProvider.notifier).selectedAll;
     return TextButton(
-      onPressed: () {},
+      onPressed: completed
+          ? () {
+              ref.read(posterEditorStateManagerProvider).showPreview();
+            }
+          : null,
       child: Text(
         '완료',
         style: TextStyle(

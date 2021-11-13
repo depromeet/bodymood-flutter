@@ -16,7 +16,8 @@ class EmotionSelectorItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final selectedEmotion = ref.watch(selectedEmotionProvider).emotion;
+    final emotionNotifier = ref.watch(selectedEmotionProvider);
+    final selectedEmotion = emotionNotifier.emotion;
     final isSelected = selectedEmotion.maybeMap(
       selected: (selected) {
         return selected.emotion == emotion;
@@ -29,11 +30,12 @@ class EmotionSelectorItem extends ConsumerWidget {
     );
 
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: () {
         ref.read(selectedEmotionProvider).updateEmotion(emotion);
       },
       child: Opacity(
-        opacity: isSelected ? 1.0 : 0.5,
+        opacity: isSelected | !emotionNotifier.selected ? 1.0 : 0.5,
         child: SizedBox(
           height: 94,
           child: Column(
@@ -41,7 +43,7 @@ class EmotionSelectorItem extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               _buildKoreanTitle(fontColor, isSelected),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               _buildEnglishTitle(fontColor, isSelected),
             ],
           ),

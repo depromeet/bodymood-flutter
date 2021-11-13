@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../routes/path.dart';
 import '../widgets/appbar/appbar.dart';
@@ -13,7 +12,7 @@ final List<Widget> _templates = [
   const FirstPosterTemplate(),
 ];
 
-class CreatePosterPage extends ConsumerWidget {
+class CreatePosterPage extends StatelessWidget {
   const CreatePosterPage({Key? key}) : super(key: key);
 
   static Page page() {
@@ -25,12 +24,12 @@ class CreatePosterPage extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, ref) {
+  Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Column(
           children: [
-            _buildAppbar(ref),
+            _buildAppbar(),
             Expanded(
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
@@ -56,7 +55,7 @@ class CreatePosterPage extends ConsumerWidget {
     );
   }
 
-  BodymoodAppbar _buildAppbar(WidgetRef ref) {
+  BodymoodAppbar _buildAppbar() {
     const title = '템플릿 선택';
     return const BodymoodAppbar(
       leading: BodymoodBackButton(),

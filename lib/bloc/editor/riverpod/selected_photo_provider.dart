@@ -1,3 +1,5 @@
+import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../bloc/posters/core/ds/poster_store.dart';
@@ -20,6 +22,12 @@ class PhotoNotifier extends PosterItemsNotifier {
 
   @override
   bool get selected => _image.maybeMap(empty: (_) => false, orElse: () => true);
+
+  ImageProvider? get imageProvider => image.map(
+        local: (data) => FileImage(File(data.path)),
+        remote: (data) => NetworkImage(data.path),
+        empty: (_) => null,
+      );
 
   @override
   void reset([bool shouldNotifyListeners = false]) {

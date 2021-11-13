@@ -1,6 +1,7 @@
 import 'package:bodymood/bloc/editor/riverpod/selected_emotion_provider.dart';
 import 'package:bodymood/gui/constants/color.dart';
 import 'package:bodymood/gui/editor/emotion_selector/emotion_grid_view.dart';
+import 'package:bodymood/gui/editor/emotion_selector/finish_emotion_selection_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -25,15 +26,13 @@ class EmotionSelectorPage extends StatelessWidget {
       body: Stack(
         children: [
           const EmotionGridView(),
-          const SafeArea(
+          SafeArea(
             child: BodymoodAppbar(
-              leading: BodymoodBackButton(
-                color: Colors.white,
-              ),
-              title: SizedBox.shrink(),
+              leading: _buildReactiveBackButton(),
+              title: const SizedBox.shrink(),
             ),
           ),
-          Positioned(
+          const Positioned(
             bottom: 0,
             left: 0,
             right: 0,
@@ -43,36 +42,15 @@ class EmotionSelectorPage extends StatelessWidget {
       ),
     );
   }
-}
 
-class FinishEmotionSelectionButton extends ConsumerWidget {
-  const FinishEmotionSelectionButton({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context, ref) {
-    final isEmotionSelected = ref.watch(selectedEmotionProvider).selected;
-    return GestureDetector(
-      onTap: () {
-        Navigator.pop(context);
+  Consumer _buildReactiveBackButton() {
+    return Consumer(
+      builder: (context, ref, _) {
+        final isSelected = ref.watch(selectedEmotionProvider).selected;
+        return BodymoodBackButton(
+          color: isSelected ? clPrimaryWhite : clPrimaryBlack,
+        );
       },
-      child: Container(
-        height: 56,
-        decoration: BoxDecoration(
-          color: isEmotionSelected ? clPrimaryBlack : clGray400,
-        ),
-        child: const Center(
-          child: Text(
-            '선택 완료',
-            style: TextStyle(
-              fontSize: 16,
-              height: 19 / 16,
-              color: clPrimaryWhite,
-            ),
-          ),
-        ),
-      ),
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:bodymood/gui/editor/emotion_selector/emotional_background.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -23,17 +24,22 @@ class ExerciseSelectorPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: const [
-            BodymoodAppbar(
-              leading: BodymoodBackButton(),
-              title: AppbarTextTitle(title: '운동 선택'),
+        child: Stack(
+          children: [
+            const EmotionalBackground(onlySelected: true),
+            Column(
+              children: const [
+                BodymoodAppbar(
+                  leading: BodymoodBackButton(),
+                  title: AppbarTextTitle(title: '운동 선택'),
+                ),
+                SizedBox(height: 18),
+                Expanded(
+                  child: ExerciseSelectorBody(),
+                ),
+                ReturnExerciseButton(),
+              ],
             ),
-            SizedBox(height: 18),
-            Expanded(
-              child: ExerciseSelectorBody(),
-            ),
-            ReturnExerciseButton(),
           ],
         ),
       ),

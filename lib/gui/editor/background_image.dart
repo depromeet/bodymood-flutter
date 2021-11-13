@@ -6,8 +6,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../bloc/editor/riverpod/selected_photo_provider.dart';
 import '../../bloc/posters/core/ds/poster_store.dart';
 
-class PosterPreview extends ConsumerWidget {
-  const PosterPreview({Key? key}) : super(key: key);
+class PosterBackgroundImage extends ConsumerWidget {
+  const PosterBackgroundImage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, ref) {

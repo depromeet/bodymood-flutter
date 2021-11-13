@@ -7,7 +7,7 @@ import 'button/create_poster_button.dart';
 import 'posters_view/empty_posters_view.dart';
 import 'posters_view/grid_view.dart';
 
-class PostersPage extends StatelessWidget {
+class PostersPage extends ConsumerWidget {
   const PostersPage({Key? key}) : super(key: key);
 
   static Page page() {
@@ -19,7 +19,7 @@ class PostersPage extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
     return Scaffold(
       body: SafeArea(
         child: Stack(

@@ -1,3 +1,4 @@
+import 'package:bodymood/bloc/editor/riverpod/selected_emotion_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -13,16 +14,14 @@ class ItemSelectorTitle extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final photo = ref.watch(selectedImageProvider);
+    final selected = ref.watch(selectedImageProvider).selected ||
+        ref.watch(selectedEmotionProvider).selected;
     return Text(
       itemTitle,
       style: TextStyle(
         fontSize: 16,
         height: 19 / 16,
-        color: photo.image.maybeMap(
-          empty: (_) => const Color.fromRGBO(80, 80, 80, 0.7),
-          orElse: () => Colors.white,
-        ),
+        color: selected ? Colors.white : const Color.fromRGBO(80, 80, 80, 0.7),
         fontWeight: FontWeight.bold,
       ),
     );

@@ -1,9 +1,10 @@
+import 'package:bodymood/gui/editor/preview/preview_page.dart';
 import 'package:flutter/material.dart';
 
 import '../bloc/editor/poster_editor_state_manager.dart';
 import '../gui/create/create_poster_page.dart';
-import '../gui/editor/edit_poster.dart';
-import '../gui/editor/emotion_selector/emotion_selector.dart';
+import '../gui/editor/poster_editor_page.dart';
+import '../gui/editor/emotion_selector/emotion_selector_page.dart';
 import '../gui/editor/exercise_selector/exercise_selector.dart';
 import '../gui/posters/posters_page.dart';
 import 'path.dart';
@@ -26,11 +27,15 @@ class BodymoodPosterRouter extends RouterDelegate
       onPopPage: _onPopPage,
       pages: [
         PostersPage.page(),
-        if (posterEditorStateManager.isCreating) ...[
+        if (posterEditorStateManager.isCreatingMode) ...[
           CreatePosterPage.page(),
         ],
-        if (posterEditorStateManager.selectedTemplate != -1) ...[
+        if (!posterEditorStateManager.isPreviewMode &&
+            posterEditorStateManager.templateSelected) ...[
           PosterEditorPage.page(),
+        ],
+        if (posterEditorStateManager.isPreviewMode) ...[
+          PosterPreviewPage.page(),
         ],
         if (posterEditorStateManager.isSelectingExercises) ...[
           ExerciseSelectorPage.page(),
@@ -46,7 +51,7 @@ class BodymoodPosterRouter extends RouterDelegate
       return false;
     }
     final path = route.settings.name;
-    if (path == BodymoodPath.create) {
+    if (path == BodymoodPath.create || path == BodymoodPath.editorPreview) {
       posterEditorStateManager.clearAll();
     }
 
