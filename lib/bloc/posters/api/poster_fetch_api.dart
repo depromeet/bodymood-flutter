@@ -2,6 +2,7 @@ import 'package:bodymood/bloc/auth/controller/auth_token_manager.dart';
 import 'package:bodymood/bloc/auth/controller/ds/auth_token.dart';
 import 'package:bodymood/bloc/posters/api/model/fetch_result.dart';
 import 'package:bodymood/bloc/posters/model/poster_image.dart';
+import 'package:bodymood/common/api_server.dart';
 import 'package:dio/dio.dart';
 
 class BodymoodPosterFetchApi {
@@ -13,7 +14,7 @@ class BodymoodPosterFetchApi {
   final int fetchCount;
   int currentPage = 0;
 
-  final _endpoint = 'https://dev.bodymood.me/api/v1/posters';
+  final _endpoint = '${bodymoodEndpoint}/api/v1/posters';
   final _dio = Dio();
 
   Future<List<PosterImage>> refresh() async {

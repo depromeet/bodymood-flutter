@@ -1,3 +1,4 @@
+import 'package:bodymood/common/api_server.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
@@ -14,8 +15,7 @@ class BodymoodExerciseCategoryApi
     required this.tokenManager,
   });
   final BodymoodAuthTokenManager tokenManager;
-  static const _endpoint =
-      'https://dev.bodymood.me/api/v1/exercises/categories';
+  static const _endpoint = '${bodymoodEndpoint}/api/v1/exercises/categories';
   final Dio _dio = Dio();
 
   @override
