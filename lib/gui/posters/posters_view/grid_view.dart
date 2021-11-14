@@ -1,6 +1,8 @@
+import 'package:bodymood/bloc/posters/model/poster_image.dart';
 import 'package:bodymood/bloc/posters/riverpod/poster_album_provider.dart';
 import 'package:bodymood/bloc/posters/riverpod/poster_index_provider.dart';
 import 'package:bodymood/gui/constants/color.dart';
+import 'package:bodymood/gui/posters/util/image_to_hero_tag.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -27,23 +29,45 @@ class PostersGridView extends ConsumerWidget {
         if (image == null) {
           return const SizedBox.shrink();
         } else {
-          return GestureDetector(
-            onTap: () {
-              ref.read(posterViewIndexProvider).state = index;
-            },
-            child: Image.network(
-              image.imageUrl,
-              fit: BoxFit.cover,
-              loadingBuilder: (context, child, _) {
-                return Container(
-                  color: (((index + 1) ~/ 2) % 2) == 0 ? clGray200 : clGray100,
-                  child: child,
-                );
-              },
-            ),
+          return _PosterThumbnail(
+            image: image,
+            index: index,
           );
         }
       },
+    );
+  }
+}
+
+class _PosterThumbnail extends ConsumerWidget {
+  const _PosterThumbnail({
+    Key? key,
+    required this.image,
+    required this.index,
+  }) : super(key: key);
+
+  final PosterImage image;
+  final int index;
+
+  @override
+  Widget build(BuildContext context, ref) {
+    return GestureDetector(
+      onTap: () {
+        ref.read(posterViewIndexProvider).state = index;
+      },
+      child: Hero(
+        tag: imageToHeroTage(image),
+        child: Image.network(
+          image.imageUrl,
+          fit: BoxFit.cover,
+          loadingBuilder: (context, child, _) {
+            return Container(
+              color: (((index + 1) ~/ 2) % 2) == 0 ? clGray200 : clGray100,
+              child: child,
+            );
+          },
+        ),
+      ),
     );
   }
 }

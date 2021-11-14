@@ -15,9 +15,8 @@ Future<NetworkToFileImage> posterToNetworkFile(PosterImage image) async {
 
 Future<String> getImageTempFilePath(PosterImage image) async {
   final tempdir = await getTemporaryDirectory();
-  final filename = getImageDateString(image).replaceAll(' ', '-');
-  final ext = image.imageUrl.split('.').last;
-  return tempdir.path + '/' + filename + '.' + ext;
+  final filename = image.imageUrl;
+  return tempdir.path + '/' + filename;
 }
 
 String getImageDateString(PosterImage image) {
