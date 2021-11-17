@@ -32,7 +32,7 @@ class EmotionalBackground extends ConsumerWidget {
     );
 
     return AnimatedContainer(
-      duration: const Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 1500),
       decoration: BoxDecoration(
         gradient: gradient,
       ),
