@@ -107,10 +107,11 @@ workflows:
         flutter pub run build_runner build
         flutter pub run spider:main build
         LATEST_BUILD_NUMBER=$(google-play get-latest-build-number --verbose --package-name 'com.depromeet.bodymood')
-        NEXT_BUILD_NUMBER=$(($LATEST_BUILD_NUMBER + 1))
         echo $LATEST_BUILD_NUMBER
+        NEXT_BUILD_NUMBER=$(($LATEST_BUILD_NUMBER + 1))
         echo $NEXT_BUILD_NUMBER
-      - flutter build appbundle --release --build-number=$NEXT_BUILD_NUMBER
+      - |
+        flutter build appbundle --release --build-number=$NEXT_BUILD_NUMBER
     artifacts:
       - build/**/outputs/apk/**/*.apk
       - build/**/outputs/bundle/**/*.aab
