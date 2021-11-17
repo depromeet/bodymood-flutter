@@ -10,14 +10,16 @@ class KakaoAuthProvider extends SocialAuthProviderBase {
     KakaoContext.clientId = '1f1d9175f9c1e2682cf32d234475f94a';
     OAuthToken? result;
     try {
-      final isKakaoInstalled = await isKakaoTalkInstalled();
+      bool isKakaoInstalled = await isKakaoTalkInstalled();
       if (isKakaoInstalled) {
         result = await UserApi.instance.loginWithKakaoTalk();
-      } else {
+      }
+      if (!isKakaoInstalled) {
         result = await UserApi.instance.loginWithKakaoAccount();
       }
     } catch (e) {
       debugPrint('error on kakao login: $e');
+      result = await UserApi.instance.loginWithKakaoAccount();
     }
     if (result != null) {
       return SocialAuthToken.kakao(
