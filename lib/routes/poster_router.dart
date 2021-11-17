@@ -1,5 +1,7 @@
+import 'package:bodymood/bloc/preferences/preferences_state_manager.dart';
 import 'package:bodymood/gui/editor/preview/preview_page.dart';
 import 'package:bodymood/gui/posters/poster_view_page.dart';
+import 'package:bodymood/gui/preferences/preferences_router_root.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -16,12 +18,14 @@ class BodymoodPosterRouter extends RouterDelegate
   BodymoodPosterRouter({
     required this.posterEditorStateManager,
     required this.posterViewIndex,
+    required this.preferencesStateManager,
     GlobalKey<NavigatorState>? navigatorKey,
   }) : navigatorKey = navigatorKey ?? GlobalKey<NavigatorState>();
 
   @override
   final GlobalKey<NavigatorState> navigatorKey;
   final PosterEditorStateManager posterEditorStateManager;
+  final PreferencesStateManager preferencesStateManager;
   final StateController<int> posterViewIndex;
 
   @override
@@ -50,6 +54,9 @@ class BodymoodPosterRouter extends RouterDelegate
             EmotionSelectorPage.page(),
           ],
         ],
+        if (preferencesStateManager.showPreferences) ...[
+          PreferencesPageRouter.page(),
+        ],
       ],
     );
   }
@@ -75,6 +82,10 @@ class BodymoodPosterRouter extends RouterDelegate
 
     if (path == BodymoodPath.posterView) {
       posterViewIndex.state = -1;
+    }
+
+    if (path == BodymoodPath.preferences) {
+      preferencesStateManager.closePreferences();
     }
 
     return true;

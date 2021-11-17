@@ -11,4 +11,7 @@ class BodymoodPath {
   static const selectExercises = editor + '/exercises';
   static const selectEmotion = editor + '/emotion';
   static const editorPreview = editor + '/preview';
+
+  static const preferences = '/preferencse';
+  static const preferencesAgreement = preferences + '/agreement';
 }
