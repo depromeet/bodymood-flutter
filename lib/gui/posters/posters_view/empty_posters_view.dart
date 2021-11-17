@@ -8,28 +8,35 @@ class EmptyPostersView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
+    return Stack(
+      fit: StackFit.expand,
       children: [
-        const Spacer(
-          flex: 284,
-        ),
-        Expanded(
-          flex: 55,
-          child: FittedBox(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                _buildEnglishTitle(),
-                const SizedBox(height: 16),
-                _buildKoreanTitle(),
-              ],
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            const Spacer(
+              flex: 284,
             ),
-          ),
+            Expanded(
+              flex: 55,
+              child: FittedBox(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    _buildEnglishTitle(),
+                    const SizedBox(height: 16),
+                    _buildKoreanTitle(),
+                  ],
+                ),
+              ),
+            ),
+            const Spacer(
+              flex: 379,
+            ),
+          ],
         ),
-        const Spacer(
-          flex: 379,
-        ),
+        const SingleChildScrollView(physics: AlwaysScrollableScrollPhysics()),
       ],
     );
   }

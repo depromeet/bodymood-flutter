@@ -66,6 +66,7 @@ class _PostersListView extends ConsumerWidget {
       },
       backgroundColor: clPrimaryWhite,
       color: clPrimaryBlack,
+      triggerMode: RefreshIndicatorTriggerMode.anywhere,
       child:
           posters.isEmpty ? const EmptyPostersView() : const PostersGridView(),
     );
