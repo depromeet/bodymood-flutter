@@ -20,6 +20,17 @@ void main() {
   );
 }
 
+class VysorSupportedScrollBehavior extends MaterialScrollBehavior {
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+        PointerDeviceKind.invertedStylus,
+        PointerDeviceKind.stylus,
+        PointerDeviceKind.unknown,
+      };
+}
+
 class BodymoodApp extends ConsumerWidget {
   BodymoodApp({Key? key}) : super(key: key);
 
@@ -36,6 +47,7 @@ class BodymoodApp extends ConsumerWidget {
     return MaterialApp(
       navigatorKey: _navKey,
       color: Colors.white,
+      scrollBehavior: VysorSupportedScrollBehavior(),
       theme: ThemeData(
         fontFamily: 'Pretendard Variable',
         colorScheme: Theme.of(context).colorScheme.copyWith(

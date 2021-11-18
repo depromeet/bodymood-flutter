@@ -4,6 +4,7 @@ import 'package:bodymood/bloc/posters/riverpod/poster_album_provider.dart';
 import 'package:bodymood/bloc/posters/riverpod/poster_index_provider.dart';
 import 'package:bodymood/gui/constants/color.dart';
 import 'package:bodymood/gui/editor/preview/preview_bottom_sheet.dart';
+import 'package:bodymood/gui/posters/util/image_to_hero_tag.dart';
 import 'package:bodymood/gui/posters/util/image_to_network_file.dart';
 import 'package:bodymood/gui/widgets/appbar/appbar.dart';
 import 'package:bodymood/gui/widgets/appbar/back_button.dart';
@@ -42,18 +43,21 @@ class PosterViewPage extends ConsumerWidget {
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: AspectRatio(
-                    aspectRatio: 327 / 581,
-                    child: Image.network(
-                      poster.imageUrl,
-                      fit: BoxFit.cover,
-                      loadingBuilder: (_, child, __) {
-                        return Container(
-                          color: clGray200,
-                          child: child,
-                        );
-                      },
-                    )),
+                child: Hero(
+                  tag: imageToHeroTage(poster),
+                  child: AspectRatio(
+                      aspectRatio: 327 / 581,
+                      child: Image.network(
+                        poster.imageUrl,
+                        fit: BoxFit.cover,
+                        loadingBuilder: (_, child, __) {
+                          return Container(
+                            color: clGray200,
+                            child: child,
+                          );
+                        },
+                      )),
+                ),
               ),
             ),
             const SizedBox(height: 57),
@@ -72,7 +76,7 @@ class PosterViewPage extends ConsumerWidget {
                     },
                     progressCallback: (current, total) {},
                   );
-                  final core = await Flowder.download(poster.imageUrl, utils);
+                  await Flowder.download(poster.imageUrl, utils);
                 }
               },
               child: Container(

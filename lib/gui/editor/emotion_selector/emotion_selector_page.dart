@@ -46,9 +46,10 @@ class EmotionSelectorPage extends StatelessWidget {
   Consumer _buildReactiveBackButton() {
     return Consumer(
       builder: (context, ref, _) {
-        final isSelected = ref.watch(selectedEmotionProvider).selected;
+        final emotion = ref.watch(selectedEmotionProvider);
+        final color = emotion.fontColor;
         return BodymoodBackButton(
-          color: isSelected ? clPrimaryWhite : clPrimaryBlack,
+          color: color,
         );
       },
     );

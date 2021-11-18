@@ -1,7 +1,11 @@
 import 'package:bodymood/bloc/posters/riverpod/poster_album_provider.dart';
+import 'package:bodymood/bloc/preferences/riverpod/preferences_manager_provider.dart';
+import 'package:bodymood/bloc/preferences/riverpod/preferences_state_provider.dart';
 import 'package:bodymood/gui/constants/color.dart';
+import 'package:bodymood/resources/resources.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../routes/path.dart';
 import '../widgets/appbar/appbar.dart';
@@ -29,9 +33,19 @@ class PostersPage extends ConsumerWidget {
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: const [
-                BodymoodAppbar(),
-                Expanded(
+              children: [
+                BodymoodAppbar(
+                  tail: GestureDetector(
+                    onTap: () {
+                      ref.read(showPreferencesProvider).state = true;
+                    },
+                    child: SvgPicture.asset(
+                      PostersImages.iconPerson,
+                      height: 24,
+                    ),
+                  ),
+                ),
+                const Expanded(
                   child: _PostersListView(),
                 ),
               ],
@@ -66,6 +80,7 @@ class _PostersListView extends ConsumerWidget {
       },
       backgroundColor: clPrimaryWhite,
       color: clPrimaryBlack,
+      triggerMode: RefreshIndicatorTriggerMode.anywhere,
       child:
           posters.isEmpty ? const EmptyPostersView() : const PostersGridView(),
     );

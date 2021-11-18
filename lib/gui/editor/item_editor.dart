@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'item_selector/area.dart';
 import 'item_selector/emotion.dart';
 import 'item_selector/exercise.dart';
-import 'item_selector/photo.dart';
+import 'item_selector/image.dart';
 
 class ItemSelector extends StatelessWidget {
   const ItemSelector({

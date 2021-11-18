@@ -29,7 +29,7 @@ class AppStateManager {
   void initialize() async {
     final authTokenManager = _read(authTokenManagerProvider);
     await authTokenManager.updateAuthToken(KakaoAuthRefresher());
-    authTokenManager.authToken.when(
+    await authTokenManager.authToken.when(
       authorizedToken: (_, __) async {
         final posters = _read(posterAlbumProvider.notifier);
         await posters.refresh();

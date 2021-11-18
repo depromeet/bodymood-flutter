@@ -1,4 +1,5 @@
 import 'package:bodymood/bloc/posters/riverpod/poster_index_provider.dart';
+import 'package:bodymood/bloc/preferences/riverpod/preferences_manager_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -24,9 +25,11 @@ class PostersPageRouter extends ConsumerWidget {
     final posterEditorStateManager =
         ref.watch(posterEditorStateManagerProvider);
     final posterViewIndex = ref.watch(posterViewIndexProvider);
+    final preferencesStateManager = ref.watch(preferencesManageProvider);
     final routerDelegate = BodymoodPosterRouter(
       posterEditorStateManager: posterEditorStateManager,
       posterViewIndex: posterViewIndex,
+      preferencesStateManager: preferencesStateManager,
     );
     return Router(
       routerDelegate: routerDelegate,

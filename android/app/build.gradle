@@ -73,11 +73,13 @@ android {
 
     buildTypes {
         debug {
+            resValue "string", "app_name", "Bodymood Debug"
+            //  TODO: enable kakao login even when add suffix to the package name
+            // applicationIdSuffix ".debug"
             signingConfig signingConfigs.debug
         }
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
+            resValue "string", "app_name", "Bodymood"
             signingConfig signingConfigs.release
         }
     }

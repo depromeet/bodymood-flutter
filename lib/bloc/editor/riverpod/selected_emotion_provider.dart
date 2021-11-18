@@ -1,3 +1,6 @@
+import 'package:bodymood/gui/constants/color.dart';
+import 'package:bodymood/gui/editor/emotion_selector/util/hex_to_color.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../bloc/editor/model/emotion.dart';
@@ -16,7 +19,12 @@ class EmotionNotifier extends PosterItemsNotifier {
   SelectedEmotion get emotion => _emotion;
 
   updateEmotion(BodymoodEmotion emotion) {
-    _emotion = EmotionSelected(emotion);
+    _emotion = _emotion.map(
+      selected: (current) => current.emotion == emotion
+          ? EmotionNotSelected()
+          : EmotionSelected(emotion),
+      empty: (_) => EmotionSelected(emotion),
+    );
     notifyListeners();
   }
 
@@ -30,4 +38,8 @@ class EmotionNotifier extends PosterItemsNotifier {
 
   @override
   bool get selected => emotion.map(empty: (_) => false, selected: (_) => true);
+  Color get fontColor => emotion.map(
+        empty: (_) => clPrimaryWhite,
+        selected: (em) => stringHexToColor(em.emotion.fontColor),
+      );
 }
