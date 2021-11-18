@@ -9,7 +9,7 @@ import 'ds/auth_response.dart';
 
 class BodymoodAuthServer extends ServerAuthProviderBase {
   final _dio = Dio();
-  final _authEndpoint = '${bodymoodEndpoint}/api/v1/auth/';
+  final _authEndpoint = '$bodymoodEndpoint/api/v1/auth/';
   @override
   Future<ServerAuthToken> login(SocialAuthToken socialToken) async {
     final response = await socialToken.maybeMap(

@@ -40,12 +40,12 @@ class BodymoodAuthTokenManager {
     );
   }
 
-  Future<bool> resetAuthToken() async {
-    final didReset = await _server.logout();
-    if (didReset) {
-      _authToken = const ServerAuthToken.unauthorizedToken();
-    }
-    return didReset;
+  Future resetAuthToken(
+    SocialAuthProviderBase socialProvider,
+  ) async {
+    await socialProvider.reset();
+    await _server.logout();
+    _authToken = const ServerAuthToken.unauthorizedToken();
   }
 
   Future<ServerAuthToken> refreshAuthToken(

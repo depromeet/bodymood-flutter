@@ -6,13 +6,17 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class PreferencesStateManager {
   PreferencesStateManager({
     required Reader read,
-    required this.showPreferences,
+    required this.shouldShowPreferences,
     required this.subMenu,
   }) : _read = read;
 
   final Reader _read;
-  final bool showPreferences;
+  final bool shouldShowPreferences;
   final PreferencesMenu subMenu;
+
+  void showPreferences() {
+    _read(showPreferencesProvider).state = true;
+  }
 
   void closePreferences() {
     _read(showPreferencesProvider).state = false;

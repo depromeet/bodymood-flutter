@@ -54,7 +54,7 @@ class BodymoodPosterRouter extends RouterDelegate
             EmotionSelectorPage.page(),
           ],
         ],
-        if (preferencesStateManager.showPreferences) ...[
+        if (preferencesStateManager.shouldShowPreferences) ...[
           PreferencesPageRouter.page(),
         ],
       ],

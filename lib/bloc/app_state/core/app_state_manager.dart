@@ -1,4 +1,8 @@
+import 'package:bodymood/bloc/auth/core/auth_state_manager.dart';
+import 'package:bodymood/bloc/auth/social/kakao/kakao_auth_provider.dart';
 import 'package:bodymood/bloc/posters/riverpod/poster_album_provider.dart';
+import 'package:bodymood/bloc/posters/riverpod/poster_index_provider.dart';
+import 'package:bodymood/bloc/preferences/riverpod/preferences_manager_provider.dart';
 
 import '../../auth/controller/auth_token_manager_provider.dart';
 import '../../auth/social/kakao/kakao_auth_refresher.dart';
@@ -28,22 +32,29 @@ class AppStateManager {
 
   void initialize() async {
     final authTokenManager = _read(authTokenManagerProvider);
-    await authTokenManager.updateAuthToken(KakaoAuthRefresher());
-    await authTokenManager.authToken.when(
+    final authToken =
+        await authTokenManager.updateAuthToken(KakaoAuthRefresher());
+    authToken.when(
       authorizedToken: (_, __) async {
         final posters = _read(posterAlbumProvider.notifier);
         await posters.refresh();
       },
       unauthorizedToken: () {},
     );
-    _initialized();
-  }
-
-  void _initialized() {
     _setAppState(AppState.initialized());
   }
 
-  void resetApp() {
+  resetApp() async {
+    final authManager = _read(authTokenManagerProvider);
+    final authStateManager = _read(authStateManagerProvider);
+    final preferencesManager = _read(preferencesManageProvider);
+    final posterIndexManager = _read(posterViewIndexProvider);
+
+    preferencesManager.closePreferences();
+    posterIndexManager.state = -1;
+    await authManager.resetAuthToken(KakaoAuthProvider());
+    authStateManager.loggedOut();
+
     _setAppState(AppState.none());
   }
 

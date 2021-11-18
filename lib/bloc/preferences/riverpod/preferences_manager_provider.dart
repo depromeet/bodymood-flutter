@@ -5,12 +5,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final preferencesManageProvider = Provider(
   (ref) {
-    final showPreferences = ref.watch(showPreferencesProvider).state;
+    final shouldShowPreferences = ref.watch(showPreferencesProvider).state;
     final prefMenu = ref.watch(preferencseMenuProvider).state;
     return PreferencesStateManager(
       read: ref.read,
       subMenu: prefMenu,
-      showPreferences: showPreferences,
+      shouldShowPreferences: shouldShowPreferences,
     );
   },
 );
