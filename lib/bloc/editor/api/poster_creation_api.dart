@@ -25,8 +25,6 @@ class BodymoodPosterCreationApi {
     final originalMimee =
         mime(originalImagePath)?.split('/') ?? ['image', 'png'];
     final posterMimee = mime(posterImagepath)?.split('/') ?? ['image', 'png'];
-    debugPrint('originalMimmeee: ${originalMimee}');
-    debugPrint('poster Mime: ${posterMimee}');
     final formData = FormData.fromMap(
       {
         'emotion': emotion,
@@ -41,7 +39,6 @@ class BodymoodPosterCreationApi {
         ),
       },
     );
-    debugPrint('accessToken: ${token.accessToken}');
     final options = Options(
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -58,7 +55,6 @@ class BodymoodPosterCreationApi {
         options: options,
         data: formData,
       );
-      debugPrint('post poster result: ${result.data}');
     } catch (e) {
       debugPrint('dio error: $e');
     }

@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:bodymood/bloc/posters/riverpod/poster_album_provider.dart';
 import 'package:bodymood/bloc/posters/riverpod/poster_index_provider.dart';
 import 'package:bodymood/gui/constants/color.dart';
-import 'package:bodymood/gui/editor/preview/preview_bottom_sheet.dart';
 import 'package:bodymood/gui/posters/util/image_to_hero_tag.dart';
 import 'package:bodymood/gui/posters/util/image_to_network_file.dart';
 import 'package:bodymood/gui/widgets/appbar/appbar.dart';
@@ -14,8 +13,6 @@ import 'package:flowder/flowder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:intl/intl.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
 class PosterViewPage extends ConsumerWidget {

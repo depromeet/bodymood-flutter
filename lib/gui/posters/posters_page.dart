@@ -1,5 +1,4 @@
 import 'package:bodymood/bloc/posters/riverpod/poster_album_provider.dart';
-import 'package:bodymood/bloc/preferences/riverpod/preferences_manager_provider.dart';
 import 'package:bodymood/bloc/preferences/riverpod/preferences_state_provider.dart';
 import 'package:bodymood/gui/constants/color.dart';
 import 'package:bodymood/resources/resources.dart';

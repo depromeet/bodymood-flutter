@@ -1,5 +1,4 @@
 import 'package:bodymood/bloc/editor/riverpod/selected_emotion_provider.dart';
-import 'package:bodymood/gui/constants/color.dart';
 import 'package:bodymood/gui/editor/emotion_selector/emotion_grid_view.dart';
 import 'package:bodymood/gui/editor/emotion_selector/finish_emotion_selection_button.dart';
 import 'package:flutter/material.dart';

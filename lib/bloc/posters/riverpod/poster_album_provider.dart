@@ -33,7 +33,6 @@ class PosterAlbumState extends StateNotifier<List<PosterImage>> {
   int get length => state.length;
 
   refresh() async {
-    debugPrint('refresh posters');
     final data = (await _api.refresh());
     state = [
       ...data,
@@ -41,7 +40,6 @@ class PosterAlbumState extends StateNotifier<List<PosterImage>> {
   }
 
   fetchNextPage() async {
-    debugPrint('refresh posters');
     final data = await _api.getNext();
     if (data.isNotEmpty) {
       state = [
