@@ -13,25 +13,26 @@ class BodymoodPosterCreationApi {
   BodymoodPosterCreationApi(this.tokenManager);
   final BodymoodAuthTokenManager tokenManager;
   final _dio = Dio();
-  final _endpoint = '${bodymoodEndpoint}/api/v1/posters';
+  final _endpoint = '$bodymoodEndpoint/api/v1/posters';
 
   Future<bool> create(PosterDetail detail) async {
     final originalImagePath = detail.originalImagePath;
-    final posterImagepath = detail.posterImagePath;
+    final posterImagePath = detail.posterImagePath;
     final categories = detail.exercises.map((e) => e.detailId).toList();
     final emotion = detail.emotion.englishTitle.toUpperCase();
 
     final token = tokenManager.authToken as ServerAuthTokenAuthorized;
     final originalMimee =
         mime(originalImagePath)?.split('/') ?? ['image', 'png'];
-    final posterMimee = mime(posterImagepath)?.split('/') ?? ['image', 'png'];
+    final posterMimee = mime(posterImagePath)?.split('/') ?? ['image', 'png'];
+
     final formData = FormData.fromMap(
       {
         'emotion': emotion,
         'categories': categories,
         'posterImage': await MultipartFile.fromFile(
-          posterImagepath,
-          contentType: MediaType(posterImagepath[0], posterImagepath[1]),
+          posterImagePath,
+          contentType: MediaType(posterMimee[0], posterMimee[1]),
         ),
         'originImage': await MultipartFile.fromFile(
           originalImagePath,
@@ -50,7 +51,7 @@ class BodymoodPosterCreationApi {
           return (status ?? 200) < 500;
         });
     try {
-      final result = await _dio.post(
+      await _dio.post(
         _endpoint,
         options: options,
         data: formData,

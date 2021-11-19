@@ -3,6 +3,7 @@ import 'package:bodymood/bloc/posters/riverpod/poster_album_provider.dart';
 import 'package:bodymood/bloc/posters/riverpod/poster_index_provider.dart';
 import 'package:bodymood/gui/constants/color.dart';
 import 'package:bodymood/gui/posters/util/image_to_hero_tag.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -57,13 +58,12 @@ class _PosterThumbnail extends ConsumerWidget {
       },
       child: Hero(
         tag: imageToHeroTage(image),
-        child: Image.network(
-          image.imageUrl,
+        child: CachedNetworkImage(
+          imageUrl: image.imageUrl,
           fit: BoxFit.cover,
-          loadingBuilder: (context, child, _) {
+          placeholder: (context, _) {
             return Container(
               color: (((index + 1) ~/ 2) % 2) == 0 ? clGray200 : clGray100,
-              child: child,
             );
           },
         ),

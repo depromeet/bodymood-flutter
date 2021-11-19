@@ -9,6 +9,7 @@ import 'package:bodymood/gui/widgets/appbar/appbar.dart';
 import 'package:bodymood/gui/widgets/appbar/back_button.dart';
 import 'package:bodymood/resources/resources.dart';
 import 'package:bodymood/routes/path.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flowder/flowder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -43,17 +44,17 @@ class PosterViewPage extends ConsumerWidget {
                 child: Hero(
                   tag: imageToHeroTage(poster),
                   child: AspectRatio(
-                      aspectRatio: 327 / 581,
-                      child: Image.network(
-                        poster.imageUrl,
-                        fit: BoxFit.cover,
-                        loadingBuilder: (_, child, __) {
-                          return Container(
-                            color: clGray200,
-                            child: child,
-                          );
-                        },
-                      )),
+                    aspectRatio: 327 / 581,
+                    child: CachedNetworkImage(
+                      imageUrl: poster.imageUrl,
+                      fit: BoxFit.cover,
+                      placeholder: (context, _) {
+                        return Container(
+                          color: clGray200,
+                        );
+                      },
+                    ),
+                  ),
                 ),
               ),
             ),
