@@ -1,8 +1,8 @@
-import 'package:bodymood/bloc/posters/riverpod/poster_album_provider.dart';
-import 'package:bodymood/bloc/preferences/riverpod/preferences_manager_provider.dart';
-import 'package:bodymood/bloc/preferences/riverpod/preferences_state_provider.dart';
-import 'package:bodymood/gui/constants/color.dart';
-import 'package:bodymood/resources/resources.dart';
+import '../../bloc/posters/riverpod/poster_album_provider.dart';
+import '../../bloc/preferences/riverpod/preferences_manager_provider.dart';
+import '../../bloc/preferences/riverpod/preferences_state_provider.dart';
+import '../constants/color.dart';
+import '../../resources/resources.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
@@ -13,14 +13,14 @@ import 'button/create_poster_button.dart';
 import 'posters_view/empty_posters_view.dart';
 import 'posters_view/grid_view.dart';
 
-class PostersPage extends ConsumerWidget {
-  const PostersPage({Key? key}) : super(key: key);
+class AlbumPage extends ConsumerWidget {
+  const AlbumPage({Key? key}) : super(key: key);
 
   static Page page() {
     return const MaterialPage(
       name: BodymoodPath.posters,
       key: ValueKey(BodymoodPath.posters),
-      child: PostersPage(),
+      child: AlbumPage(),
     );
   }
 

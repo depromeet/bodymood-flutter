@@ -1,10 +1,9 @@
-import 'package:bodymood/bloc/posters/riverpod/poster_album_provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../auth/controller/auth_token_manager_provider.dart';
 import '../../auth/social/kakao/kakao_auth_refresher.dart';
-
+import '../../posters/riverpod/poster_album_provider.dart';
 import 'model/app_state.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final _appStateProvider = StateProvider((_) => AppState.initializing());
 

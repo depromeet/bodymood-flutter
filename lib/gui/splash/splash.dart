@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../bloc/app_state/core/app_state_manager.dart';
+import '../../encloser/app_view/app_view_interactor_encloser.dart';
 import '../../routes/path.dart';
 import '../constants/color.dart';
 
@@ -62,8 +62,8 @@ class _TitleOverlayState extends ConsumerState<_TitleOverlay> {
       Timer(
         Duration(milliseconds: _splashDurationInMilliseconds),
         () {
-          final appStateManager = ref.read(appStateManagerProvider);
-          appStateManager.initialize();
+          final viewInteractor = ref.read(appViewInteractorEncloser);
+          viewInteractor.showAlbumView();
         },
       );
     }

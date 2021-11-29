@@ -1,4 +1,4 @@
-import 'package:bodymood/gui/editor/emotion_selector/emotional_background.dart';
+import '../emotion_selector/emotional_background.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -9,14 +9,14 @@ import '../../widgets/appbar/text_title.dart';
 import 'return_button.dart';
 import 'tabs/selector_body.dart';
 
-class ExerciseSelectorPage extends StatelessWidget {
-  const ExerciseSelectorPage({Key? key}) : super(key: key);
+class ExerciseSelectionPage extends StatelessWidget {
+  const ExerciseSelectionPage({Key? key}) : super(key: key);
 
   static Page page() {
     return const MaterialPage(
       name: BodymoodPath.selectExercises,
       key: ValueKey(BodymoodPath.selectExercises),
-      child: ExerciseSelectorPage(),
+      child: ExerciseSelectionPage(),
     );
   }
 

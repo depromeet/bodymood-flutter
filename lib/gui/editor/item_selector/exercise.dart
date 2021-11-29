@@ -1,13 +1,12 @@
-import '../../../bloc/editor/riverpod/selected_exercise_provider.dart';
-import '../../constants/color.dart';
-import 'package:flutter/painting.dart';
-
-import '../../../bloc/editor/poster_editor_state_manager.dart';
-
-import 'title.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../bloc/editor/riverpod/selected_exercise_provider.dart';
+import '../../../encloser/editor_view/editor_view_page_encloser.dart';
+import '../../constants/color.dart';
+import 'title.dart';
 
 class PosterExerciseSelector extends ConsumerWidget {
   const PosterExerciseSelector({Key? key}) : super(key: key);
@@ -22,7 +21,7 @@ class PosterExerciseSelector extends ConsumerWidget {
     );
     return TextButton(
       onPressed: () {
-        ref.read(posterEditorStateManagerProvider).selectExercises();
+        ref.read(editorViewPageEncloser).showExercisePage();
       },
       child: selectedExercises.selected
           ? _buildSelectedExerciseText(
