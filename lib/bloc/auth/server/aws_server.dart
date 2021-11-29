@@ -58,4 +58,18 @@ class BodymoodAuthServer extends ServerAuthProviderBase {
   Future<ServerAuthToken> refresh(ServerAuthToken token) {
     throw UnimplementedError();
   }
+
+  @override
+  Future<bool> signout(ServerAuthToken token) async {
+    final _authEndpoint = '$bodymoodEndpoint/api/v1/user/me';
+    final accessToken = (token as ServerAuthTokenAuthorized).accessToken;
+    await _dio.delete(
+      _authEndpoint,
+      options: Options(
+        headers: {'Authrization': accessToken},
+      ),
+    );
+
+    return true;
+  }
 }

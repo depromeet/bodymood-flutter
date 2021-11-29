@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../routes/path.dart';
 import '../constants/color.dart';
@@ -37,34 +36,7 @@ class PreferencesPage extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            Column(
-              children: [
-                preferencesAppBar,
-                Expanded(
-                  child: ListView(
-                    children: [
-                      ClickablePreferenceItem(
-                        onClick: () async {
-                          const _url =
-                              'https://suzy8347.notion.site/Bodymood-f3974a2477e74e36a678bf8d19b4dbaa';
-                          await canLaunch(_url)
-                              ? await launch(_url)
-                              : throw 'Could not launch $_url';
-                        },
-                        leading: const Text(
-                          '개인정보 처리방침',
-                          style: TextStyle(
-                            fontSize: 16,
-                            height: 19 / 16,
-                            color: clPrimaryBlack,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ],
-            ),
+            _buildItems(preferencesAppBar),
             const Positioned(
               left: 24,
               right: 24,
@@ -74,6 +46,22 @@ class PreferencesPage extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Column _buildItems(BodymoodAppbar preferencesAppBar) {
+    return Column(
+      children: [
+        preferencesAppBar,
+        Expanded(
+          child: ListView(
+            children: const [
+              BodymoodAgreement(),
+              BodymoodSignout(),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
