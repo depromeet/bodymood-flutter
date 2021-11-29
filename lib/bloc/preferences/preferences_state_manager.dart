@@ -1,6 +1,6 @@
-import 'package:bodymood/bloc/preferences/model/preferences_menu.dart';
-import 'package:bodymood/bloc/preferences/riverpod/preferences_menu_provider.dart';
-import 'package:bodymood/bloc/preferences/riverpod/preferences_state_provider.dart';
+import 'model/preferences_menu.dart';
+import 'riverpod/preferences_menu_provider.dart';
+import 'riverpod/preferences_state_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class PreferencesStateManager {

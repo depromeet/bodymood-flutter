@@ -1,5 +1,5 @@
-import 'package:bodymood/bloc/editor/model/item_being_selected.dart';
-import 'package:bodymood/bloc/editor/model/poster_editor_mode.dart';
+import 'item_being_selected.dart';
+import 'poster_editor_mode.dart';
 
 class PosterEditorState {
   final PosterEditorMode mode;

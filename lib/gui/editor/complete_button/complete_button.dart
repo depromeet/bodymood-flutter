@@ -1,4 +1,4 @@
-import 'package:bodymood/bloc/editor/poster_editor_state_manager.dart';
+import '../../../bloc/editor/poster_editor_state_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';

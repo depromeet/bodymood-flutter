@@ -1,8 +1,8 @@
-import 'package:bodymood/bloc/editor/model/selected_emotion.dart';
-import 'package:bodymood/bloc/editor/riverpod/selected_emotion_provider.dart';
-import 'package:bodymood/bloc/editor/riverpod/selected_photo_provider.dart';
-import 'package:bodymood/gui/constants/color.dart';
-import 'package:bodymood/gui/editor/emotion_selector/emotion_color_circle.dart';
+import '../../../bloc/editor/model/selected_emotion.dart';
+import '../../../bloc/editor/riverpod/selected_emotion_provider.dart';
+import '../../../bloc/editor/riverpod/selected_photo_provider.dart';
+import '../../constants/color.dart';
+import '../emotion_selector/emotion_color_circle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';

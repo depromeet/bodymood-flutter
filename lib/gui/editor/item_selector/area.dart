@@ -1,4 +1,4 @@
-import 'package:bodymood/bloc/editor/base/seletable_item_notifier.dart';
+import '../../../bloc/editor/base/seletable_item_notifier.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

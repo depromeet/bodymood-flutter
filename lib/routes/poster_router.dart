@@ -1,16 +1,16 @@
-import 'package:bodymood/bloc/preferences/preferences_state_manager.dart';
-import 'package:bodymood/gui/editor/preview/preview_page.dart';
-import 'package:bodymood/gui/posters/poster_view_page.dart';
-import 'package:bodymood/gui/preferences/preferences_router_root.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../bloc/editor/poster_editor_state_manager.dart';
+import '../bloc/preferences/preferences_state_manager.dart';
 import '../gui/create/create_poster_page.dart';
-import '../gui/editor/poster_editor_page.dart';
 import '../gui/editor/emotion_selector/emotion_selector_page.dart';
 import '../gui/editor/exercise_selector/exercise_selector.dart';
+import '../gui/editor/poster_editor_page.dart';
+import '../gui/editor/preview/preview_page.dart';
+import '../gui/posters/poster_view_page.dart';
 import '../gui/posters/posters_page.dart';
+import '../gui/preferences/preferences_router_root.dart';
 import 'path.dart';
 
 class BodymoodPosterRouter extends RouterDelegate
@@ -34,7 +34,7 @@ class BodymoodPosterRouter extends RouterDelegate
       key: navigatorKey,
       onPopPage: _onPopPage,
       pages: [
-        PostersPage.page(),
+        AlbumPage.page(),
         if (posterViewIndex.state != -1) ...[
           PosterViewPage.page(),
         ] else ...[
@@ -46,12 +46,12 @@ class BodymoodPosterRouter extends RouterDelegate
             PosterEditorPage.page(),
           ],
           if (posterEditorStateManager.isPreviewMode) ...[
-            PosterPreviewPage.page(),
+            SharePosterPage.page(),
           ],
           if (posterEditorStateManager.isSelectingExercises) ...[
-            ExerciseSelectorPage.page(),
+            ExerciseSelectionPage.page(),
           ] else if (posterEditorStateManager.isSelectingEmotion) ...[
-            EmotionSelectorPage.page(),
+            MoodSelectionPage.page(),
           ],
         ],
         if (preferencesStateManager.showPreferences) ...[

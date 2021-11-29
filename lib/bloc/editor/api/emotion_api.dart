@@ -1,7 +1,7 @@
-import 'package:bodymood/bloc/editor/api/model/emotion_api/emotion_data.dart';
-import 'package:bodymood/bloc/editor/api/model/emotion_api/emotion_response.dart';
-import 'package:bodymood/bloc/editor/model/emotion.dart';
-import 'package:bodymood/common/api_server.dart';
+import 'model/emotion_api/emotion_data.dart';
+import 'model/emotion_api/emotion_response.dart';
+import '../model/emotion.dart';
+import '../../../common/api_server.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 

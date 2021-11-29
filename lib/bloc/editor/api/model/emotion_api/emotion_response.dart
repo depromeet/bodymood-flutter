@@ -1,4 +1,4 @@
-import 'package:bodymood/bloc/editor/api/model/emotion_api/emotion_data.dart';
+import 'emotion_data.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'emotion_response.g.dart';

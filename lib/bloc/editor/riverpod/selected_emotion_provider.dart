@@ -1,5 +1,5 @@
-import 'package:bodymood/gui/constants/color.dart';
-import 'package:bodymood/gui/editor/emotion_selector/util/hex_to_color.dart';
+import '../../../gui/constants/color.dart';
+import '../../../gui/editor/emotion_selector/util/hex_to_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

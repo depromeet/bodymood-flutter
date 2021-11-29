@@ -1,6 +1,6 @@
-import 'package:bodymood/common/carousel_controller_group/carousel_controller_group.dart';
-import 'package:bodymood/gui/editor/exercise_selector/tabs/riverpod/selected_tab_provider.dart';
-import 'package:bodymood/gui/editor/exercise_selector/util/get_font_color.dart';
+import '../../../../common/carousel_controller_group/carousel_controller_group.dart';
+import 'riverpod/selected_tab_provider.dart';
+import '../util/get_font_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';

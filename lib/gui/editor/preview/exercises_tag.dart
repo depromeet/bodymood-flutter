@@ -1,5 +1,5 @@
-import 'package:bodymood/bloc/editor/riverpod/selected_exercise_provider.dart';
-import 'package:bodymood/gui/constants/color.dart';
+import '../../../bloc/editor/riverpod/selected_exercise_provider.dart';
+import '../../constants/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';

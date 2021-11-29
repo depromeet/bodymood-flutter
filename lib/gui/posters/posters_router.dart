@@ -1,5 +1,5 @@
-import 'package:bodymood/bloc/posters/riverpod/poster_index_provider.dart';
-import 'package:bodymood/bloc/preferences/riverpod/preferences_manager_provider.dart';
+import '../../bloc/posters/riverpod/poster_index_provider.dart';
+import '../../bloc/preferences/riverpod/preferences_manager_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

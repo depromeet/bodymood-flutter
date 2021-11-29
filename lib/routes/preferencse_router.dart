@@ -1,5 +1,5 @@
-import 'package:bodymood/bloc/preferences/preferences_state_manager.dart';
-import 'package:bodymood/gui/preferences/preferences_page.dart';
+import '../bloc/preferences/preferences_state_manager.dart';
+import '../gui/preferences/preferences_page.dart';
 import 'package:flutter/material.dart';
 
 import 'path.dart';

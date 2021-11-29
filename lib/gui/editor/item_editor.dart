@@ -1,6 +1,6 @@
-import 'package:bodymood/bloc/editor/riverpod/selected_emotion_provider.dart';
-import 'package:bodymood/bloc/editor/riverpod/selected_exercise_provider.dart';
-import 'package:bodymood/bloc/editor/riverpod/selected_photo_provider.dart';
+import '../../bloc/editor/riverpod/selected_emotion_provider.dart';
+import '../../bloc/editor/riverpod/selected_exercise_provider.dart';
+import '../../bloc/editor/riverpod/selected_photo_provider.dart';
 import 'package:flutter/material.dart';
 
 import 'item_selector/area.dart';

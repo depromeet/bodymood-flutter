@@ -1,7 +1,7 @@
-import 'package:bodymood/bloc/editor/model/selected_emotion.dart';
-import 'package:bodymood/bloc/editor/riverpod/selected_emotion_provider.dart';
-import 'package:bodymood/gui/constants/color.dart';
-import 'package:bodymood/gui/editor/emotion_selector/util/emotion_to_gradient.dart';
+import '../../../bloc/editor/model/selected_emotion.dart';
+import '../../../bloc/editor/riverpod/selected_emotion_provider.dart';
+import '../../constants/color.dart';
+import 'util/emotion_to_gradient.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 

@@ -1,8 +1,8 @@
-import 'package:bodymood/bloc/posters/model/poster_image.dart';
-import 'package:bodymood/bloc/posters/riverpod/poster_album_provider.dart';
-import 'package:bodymood/bloc/posters/riverpod/poster_index_provider.dart';
-import 'package:bodymood/gui/constants/color.dart';
-import 'package:bodymood/gui/posters/util/image_to_hero_tag.dart';
+import '../../../bloc/posters/model/poster_image.dart';
+import '../../../bloc/posters/riverpod/poster_album_provider.dart';
+import '../../../bloc/posters/riverpod/poster_index_provider.dart';
+import '../../constants/color.dart';
+import '../util/image_to_hero_tag.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

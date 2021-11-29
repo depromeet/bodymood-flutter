@@ -1,9 +1,9 @@
-import 'package:bodymood/bloc/editor/model/poster_editor_state.dart';
-import 'package:bodymood/bloc/editor/riverpod/editor_state_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'model/item_being_selected.dart';
 import 'model/poster_editor_mode.dart';
+import 'model/poster_editor_state.dart';
+import 'riverpod/editor_state_provider.dart';
 
 final posterEditorStateManagerProvider = Provider((ref) {
   final editorState = ref.watch(editorStateProvider).state;

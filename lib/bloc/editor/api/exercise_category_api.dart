@@ -1,4 +1,4 @@
-import 'package:bodymood/common/api_server.dart';
+import '../../../common/api_server.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 

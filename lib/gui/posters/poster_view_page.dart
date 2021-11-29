@@ -1,15 +1,15 @@
 import 'dart:io';
 
-import 'package:bodymood/bloc/posters/riverpod/poster_album_provider.dart';
-import 'package:bodymood/bloc/posters/riverpod/poster_index_provider.dart';
-import 'package:bodymood/gui/constants/color.dart';
-import 'package:bodymood/gui/editor/preview/preview_bottom_sheet.dart';
-import 'package:bodymood/gui/posters/util/image_to_hero_tag.dart';
-import 'package:bodymood/gui/posters/util/image_to_network_file.dart';
-import 'package:bodymood/gui/widgets/appbar/appbar.dart';
-import 'package:bodymood/gui/widgets/appbar/back_button.dart';
-import 'package:bodymood/resources/resources.dart';
-import 'package:bodymood/routes/path.dart';
+import '../../bloc/posters/riverpod/poster_album_provider.dart';
+import '../../bloc/posters/riverpod/poster_index_provider.dart';
+import '../constants/color.dart';
+import '../editor/preview/preview_bottom_sheet.dart';
+import 'util/image_to_hero_tag.dart';
+import 'util/image_to_network_file.dart';
+import '../widgets/appbar/appbar.dart';
+import '../widgets/appbar/back_button.dart';
+import '../../resources/resources.dart';
+import '../../routes/path.dart';
 import 'package:flowder/flowder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

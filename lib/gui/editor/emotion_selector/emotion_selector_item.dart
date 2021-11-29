@@ -1,7 +1,7 @@
-import 'package:bodymood/bloc/editor/model/emotion.dart';
-import 'package:bodymood/bloc/editor/riverpod/selected_emotion_provider.dart';
-import 'package:bodymood/gui/constants/color.dart';
-import 'package:bodymood/gui/editor/emotion_selector/util/hex_to_color.dart';
+import '../../../bloc/editor/model/emotion.dart';
+import '../../../bloc/editor/riverpod/selected_emotion_provider.dart';
+import '../../constants/color.dart';
+import 'util/hex_to_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';

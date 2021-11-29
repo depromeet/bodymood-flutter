@@ -1,9 +1,9 @@
-import 'package:bodymood/bloc/editor/model/emotion.dart';
-import 'package:bodymood/bloc/editor/riverpod/emotions_provider.dart';
-import 'package:bodymood/bloc/editor/riverpod/selected_emotion_provider.dart';
-import 'package:bodymood/gui/constants/color.dart';
-import 'package:bodymood/gui/editor/emotion_selector/emotion_selector_item.dart';
-import 'package:bodymood/gui/editor/emotion_selector/emotional_background.dart';
+import '../../../bloc/editor/model/emotion.dart';
+import '../../../bloc/editor/riverpod/emotions_provider.dart';
+import '../../../bloc/editor/riverpod/selected_emotion_provider.dart';
+import '../../constants/color.dart';
+import 'emotion_selector_item.dart';
+import 'emotional_background.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
