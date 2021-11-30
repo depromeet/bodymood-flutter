@@ -1,12 +1,12 @@
-import '../../../bloc/editor/poster_editor_state_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../encloser/editor_view/editor_view_page_encloser.dart';
+import '../../../encloser/editor_view/editor_view_poster_state.dart';
 import '../../constants/color.dart';
-import '../riverpod/all_provider.dart';
 
 class CompletePosterEditingButton extends ConsumerWidget {
   const CompletePosterEditingButton({
@@ -15,11 +15,11 @@ class CompletePosterEditingButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final completed = ref.watch(posterItemsProvider.notifier).selectedAll;
+    final completed = ref.watch(editorViewPosterEncloser).isCompleted;
     return TextButton(
       onPressed: completed
           ? () {
-              ref.read(posterEditorStateManagerProvider).showPreview();
+              ref.read(editorViewPageEncloser).showSharePage();
             }
           : null,
       child: Text(

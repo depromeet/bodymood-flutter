@@ -1,13 +1,13 @@
-import '../../../bloc/editor/riverpod/selected_emotion_provider.dart';
-import '../../constants/color.dart';
-import 'emotion_grid_view.dart';
-import 'finish_emotion_selection_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../encloser/editor_view/editor_view_poster_state.dart';
 import '../../../routes/path.dart';
 import '../../widgets/appbar/appbar.dart';
 import '../../widgets/appbar/back_button.dart';
+import 'emotion_grid_view.dart';
+import 'finish_emotion_selection_button.dart';
+import 'util/hex_to_color.dart';
 
 class MoodSelectionPage extends StatelessWidget {
   const MoodSelectionPage({Key? key}) : super(key: key);
@@ -46,8 +46,11 @@ class MoodSelectionPage extends StatelessWidget {
   Consumer _buildReactiveBackButton() {
     return Consumer(
       builder: (context, ref, _) {
-        final emotion = ref.watch(selectedEmotionProvider);
-        final color = emotion.fontColor;
+        final emotion = ref.watch(editorViewPosterEncloser).mood;
+        final color = emotion.map(
+          empty: (_) => Colors.black,
+          selected: (selected) => stringHexToColor(selected.emotion.fontColor),
+        );
         return BodymoodBackButton(
           color: color,
         );

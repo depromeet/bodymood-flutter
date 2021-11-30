@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../state/editor_view/editor_page_state.dart';
+import '../../state/editor_view/editor_view_page_state.dart';
 import '../app_view/app_view_interactor.dart';
 
 class EditorViewPageInteractor extends ChangeNotifier {
@@ -10,6 +10,7 @@ class EditorViewPageInteractor extends ChangeNotifier {
 
   final AppViewInteractor appViewInteractor;
   EditorViewPageState state = EditorViewPageState.template();
+  int template = 0;
 
   void closeEditor() {
     state = EditorViewPageState.template();
@@ -20,23 +21,40 @@ class EditorViewPageInteractor extends ChangeNotifier {
     _showPage(EditorViewPageState.template());
   }
 
-  void showEditorPage() {
+  void showEditorPage([int _template = 0]) {
+    template = _template;
     _showPage(EditorViewPageState.editor());
   }
 
   void showImagePage() {
+    assert(state.maybeMap(
+      editor: (_) => true,
+      orElse: () => false,
+    ));
     _showPage(EditorViewPageState.image());
   }
 
   void showExercisePage() {
+    assert(state.maybeMap(
+      editor: (_) => true,
+      orElse: () => false,
+    ));
     _showPage(EditorViewPageState.exercise());
   }
 
   void showMoodPage() {
+    assert(state.maybeMap(
+      editor: (_) => true,
+      orElse: () => false,
+    ));
     _showPage(EditorViewPageState.mood());
   }
 
   void showSharePage() {
+    assert(state.maybeMap(
+      editor: (_) => true,
+      orElse: () => false,
+    ));
     _showPage(EditorViewPageState.share());
   }
 

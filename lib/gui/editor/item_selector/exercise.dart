@@ -3,8 +3,8 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../bloc/editor/riverpod/selected_exercise_provider.dart';
 import '../../../encloser/editor_view/editor_view_page_encloser.dart';
+import '../../../encloser/editor_view/editor_view_poster_state.dart';
 import '../../constants/color.dart';
 import 'title.dart';
 
@@ -13,7 +13,7 @@ class PosterExerciseSelector extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final selectedExercises = ref.watch(selectedExerciseProvider);
+    final posterState = ref.watch(editorViewPosterEncloser);
     const unselectedBody = Center(
       child: ItemSelectorTitle(
         itemTitle: '운동을 선택하세요',
@@ -23,13 +23,10 @@ class PosterExerciseSelector extends ConsumerWidget {
       onPressed: () {
         ref.read(editorViewPageEncloser).showExercisePage();
       },
-      child: selectedExercises.selected
+      child: posterState.isExerciseSelected
           ? _buildSelectedExerciseText(
-              selectedExercises.exercises
-                  .map(
-                    (e) => e.detail.englishName,
-                  )
-                  .toList(),
+              posterState.exercises.map((e) => e.englishName).toList(),
+              posterState,
             )
           : unselectedBody,
       style: TextButton.styleFrom(
@@ -38,7 +35,10 @@ class PosterExerciseSelector extends ConsumerWidget {
     );
   }
 
-  Widget _buildSelectedExerciseText(List<String> names) {
+  Widget _buildSelectedExerciseText(
+      List<String> names, EditorViewPosterEncloser posterState) {
+    final backgroundFilled =
+        posterState.isImageSelected || posterState.isMoodSelected;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       child: Align(
@@ -46,13 +46,13 @@ class PosterExerciseSelector extends ConsumerWidget {
         child: Text(
           names.fold(
             '',
-            (longName, exercise) => longName + '\n' + exercise,
+            (aggregated, exercise) => aggregated + '\n' + exercise,
           ),
-          style: const TextStyle(
+          style: TextStyle(
             fontWeight: FontWeight.w600,
             fontSize: 16,
             height: 1.3,
-            color: clPrimaryWhite,
+            color: backgroundFilled ? clPrimaryWhite : clPrimaryBlack,
           ),
         ),
       ),

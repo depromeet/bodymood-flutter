@@ -5,8 +5,11 @@ import 'package:flutter_svg/svg.dart';
 import '../../../resources/resources.dart';
 
 class BodymoodBackButton extends ConsumerWidget {
-  const BodymoodBackButton({Key? key, this.onTap, this.color = Colors.black})
-      : super(key: key);
+  const BodymoodBackButton({
+    Key? key,
+    this.onTap,
+    this.color = Colors.black,
+  }) : super(key: key);
 
   final Function? onTap;
   final Color color;
@@ -16,8 +19,8 @@ class BodymoodBackButton extends ConsumerWidget {
     return InkWell(
       customBorder: const CircleBorder(),
       onTap: () {
-        Navigator.pop(context);
         onTap?.call();
+        Navigator.pop(context);
       },
       child: SvgPicture.asset(
         BodymoodImages.arrowBackIcon,

@@ -1,8 +1,7 @@
-import '../../../bloc/editor/riverpod/selected_emotion_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../bloc/editor/riverpod/selected_photo_provider.dart';
+import '../../../encloser/editor_view/editor_view_poster_state.dart';
 
 class ItemSelectorTitle extends ConsumerWidget {
   const ItemSelectorTitle({
@@ -14,8 +13,8 @@ class ItemSelectorTitle extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final selected = ref.watch(selectedImageProvider).selected ||
-        ref.watch(selectedEmotionProvider).selected;
+    final posterState = ref.watch(editorViewPosterEncloser);
+    final selected = posterState.isImageSelected || posterState.isMoodSelected;
     return Text(
       itemTitle,
       style: TextStyle(

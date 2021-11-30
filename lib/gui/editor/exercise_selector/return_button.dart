@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../bloc/editor/riverpod/selected_exercise_provider.dart';
+import '../../../encloser/editor_view/editor_view_poster_state.dart';
 import '../../constants/color.dart';
 
 class ReturnExerciseButton extends ConsumerWidget {
@@ -11,10 +11,8 @@ class ReturnExerciseButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final selectedExercisesNotifier =
-        ref.watch(selectedExerciseProvider.notifier);
-    final selectedExercises = ref.watch(selectedExerciseProvider);
-    final isSelected = selectedExercisesNotifier.selected;
+    final selectedExercises = ref.watch(editorViewPosterEncloser).exercises;
+    final isSelected = selectedExercises.isNotEmpty;
     final buttonColor = isSelected ? clPrimaryBlack : clGray400;
 
     return MaterialButton(
@@ -28,7 +26,7 @@ class ReturnExerciseButton extends ConsumerWidget {
         color: buttonColor,
         child: Center(
           child: Text(
-            '운동 선택 (${selectedExercises.exercises.length}/3)',
+            '운동 선택 (${selectedExercises.length}/3)',
             style: const TextStyle(
               fontSize: 16,
               height: 19 / 16,

@@ -6,10 +6,10 @@ part 'selected_emotion.freezed.dart';
 part 'selected_emotion.g.dart';
 
 @freezed
-class SelectedEmotion with _$SelectedEmotion {
-  factory SelectedEmotion.empty() = EmotionNotSelected;
-  factory SelectedEmotion.selected(BodymoodEmotion emotion) = EmotionSelected;
+class SelectedMood with _$SelectedMood {
+  const factory SelectedMood.empty() = EmotionNotSelected;
+  factory SelectedMood.selected(BodymoodEmotion emotion) = EmotionSelected;
 
-  factory SelectedEmotion.fromJson(Map<String, dynamic> json) =>
-      _$SelectedEmotionFromJson(json);
+  factory SelectedMood.fromJson(Map<String, dynamic> json) =>
+      _$SelectedMoodFromJson(json);
 }

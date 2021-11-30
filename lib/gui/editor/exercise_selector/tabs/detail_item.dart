@@ -1,42 +1,40 @@
-import '../../../../bloc/editor/riverpod/selected_emotion_provider.dart';
-import '../util/get_font_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../bloc/editor/model/exercise_detail.dart';
-import '../../../../bloc/editor/model/selected_exercises.dart';
-import '../../../../bloc/editor/riverpod/selected_exercise_provider.dart';
+import '../../../../encloser/editor_view/editor_view_poster_state.dart';
 import '../../../constants/color.dart';
+import '../util/get_font_color.dart';
 
 class ExerciseDetailItem extends ConsumerWidget {
   ExerciseDetailItem({
     Key? key,
     required ExerciseDetail detail,
   }) : super(key: key) {
-    _thisItem = SelectedExercise(
-      detail: detail,
-    );
+    _thisItem = detail;
   }
 
-  late final SelectedExercise _thisItem;
+  late final ExerciseDetail _thisItem;
 
   @override
   Widget build(BuildContext context, ref) {
-    final selectedItems = ref.watch(selectedExerciseProvider);
     final isSelected =
-        selectedItems.exercises.any((selected) => selected == _thisItem);
+        ref.watch(editorViewPosterEncloser).containsExercise(_thisItem);
     final backgroundColor =
         isSelected ? clPrimaryBlack.withOpacity(0.1) : Colors.transparent;
     final padding =
         isSelected ? const EdgeInsets.only(left: 24) : EdgeInsets.zero;
-    final fontColor = getFontColor(ref.read);
+    final fontColor = getFontColorFromMood(ref.read);
 
     return GestureDetector(
       onTap: () {
-        final selectedItemNotifier =
-            ref.read(selectedExerciseProvider.notifier);
-        selectedItemNotifier.updateList(_thisItem);
+        final posterState = ref.read(editorViewPosterEncloser);
+        if (!isSelected) {
+          posterState.addExercise(_thisItem);
+        } else {
+          posterState.removeExercise(_thisItem);
+        }
       },
       child: Container(
         color: backgroundColor,
@@ -47,7 +45,7 @@ class ExerciseDetailItem extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              _thisItem.detail.englishName,
+              _thisItem.englishName,
               style: GoogleFonts.playfairDisplay(
                 fontSize: 14,
                 height: 1.4,
@@ -57,7 +55,7 @@ class ExerciseDetailItem extends ConsumerWidget {
             ),
             const SizedBox(height: 2),
             Text(
-              _thisItem.detail.koreanName,
+              _thisItem.koreanName,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 12,

@@ -1,7 +1,8 @@
-import '../../../bloc/editor/riverpod/selected_emotion_provider.dart';
-import '../../constants/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../encloser/editor_view/editor_view_poster_state.dart';
+import '../../constants/color.dart';
 
 class FinishEmotionSelectionButton extends ConsumerWidget {
   const FinishEmotionSelectionButton({
@@ -10,7 +11,8 @@ class FinishEmotionSelectionButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final isEmotionSelected = ref.watch(selectedEmotionProvider).selected;
+    final isEmotionSelected =
+        ref.watch(editorViewPosterEncloser).isMoodSelected;
     return GestureDetector(
       onTap: () {
         Navigator.pop(context);

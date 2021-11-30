@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'editor_page_state.freezed.dart';
+part 'editor_view_page_state.freezed.dart';
 
 @freezed
 class EditorViewPageState with _$EditorViewPageState {

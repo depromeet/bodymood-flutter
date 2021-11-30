@@ -1,8 +1,9 @@
-import '../../../bloc/editor/riverpod/selected_exercise_provider.dart';
-import '../../constants/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../../encloser/editor_view/editor_view_poster_state.dart';
+import '../../constants/color.dart';
 
 class ExercisesTag extends ConsumerWidget {
   const ExercisesTag({
@@ -11,15 +12,17 @@ class ExercisesTag extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final exercises = ref.read(selectedExerciseProvider).exercises.fold<String>(
-        '',
-        (previousValue, element) =>
-            previousValue + '\n' + element.detail.englishName);
+    final exercisesText =
+        ref.read(editorViewPosterEncloser).exercises.fold<String>(
+              '',
+              (previousValue, exercise) =>
+                  previousValue + '\n' + exercise.englishName,
+            );
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12),
       child: FittedBox(
         child: Text(
-          exercises,
+          exercisesText,
           style: GoogleFonts.playfairDisplay(
             fontWeight: FontWeight.bold,
             fontSize: 36,
