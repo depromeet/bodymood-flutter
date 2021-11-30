@@ -1,33 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../bloc/editor/riverpod/selected_emotion_provider.dart';
-import '../../../bloc/editor/riverpod/selected_exercise_provider.dart';
-import '../../../bloc/editor/riverpod/selected_photo_provider.dart';
+import '../../../encloser/editor_view/editor_view_poster_state.dart';
 import 'checker.dart';
 
-class EditProgressCheckerBar extends StatelessWidget {
+class EditProgressCheckerBar extends ConsumerWidget {
   const EditProgressCheckerBar({
     Key? key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    final posterState = ref.watch(editorViewPosterEncloser);
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
         EditProgressChecker(
           title: '사진',
-          provider: selectedImageProvider,
+          selected: posterState.isImageSelected,
         ),
         const SizedBox(width: 16),
         EditProgressChecker(
           title: '운동',
-          provider: selectedExerciseProvider,
+          selected: posterState.isExerciseSelected,
         ),
         const SizedBox(width: 16),
         EditProgressChecker(
           title: '감정',
-          provider: selectedEmotionProvider,
+          selected: posterState.isMoodSelected,
         ),
       ],
     );

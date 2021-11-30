@@ -1,5 +1,5 @@
-import 'package:bodymood/bloc/auth/controller/auth_token_manager_provider.dart';
-import 'package:bodymood/bloc/editor/api/emotion_api.dart';
+import '../../auth/controller/auth_token_manager_provider.dart';
+import '../api/emotion_api.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../model/emotion.dart';

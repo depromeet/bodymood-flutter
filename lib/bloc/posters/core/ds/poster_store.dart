@@ -5,9 +5,9 @@ part 'poster_store.g.dart';
 
 @freezed
 class ImageStore with _$ImageStore {
-  factory ImageStore.local(String path) = LocalImageStore;
-  factory ImageStore.remote(String path) = RemoteImageStore;
-  factory ImageStore.empty() = EmptyImageStore;
+  const factory ImageStore.local(String path) = LocalImageStore;
+  const factory ImageStore.remote(String path) = RemoteImageStore;
+  const factory ImageStore.empty() = EmptyImageStore;
   factory ImageStore.fromJson(Map<String, dynamic> json) =>
       _$ImageStoreFromJson(json);
 }

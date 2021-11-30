@@ -1,4 +1,4 @@
-import 'package:bodymood/bloc/editor/model/emotion.dart';
+import 'emotion.dart';
 
 import 'exercise_detail.dart';
 

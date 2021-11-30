@@ -1,4 +1,4 @@
-import 'package:bodymood/bloc/posters/api/model/fetched_image.dart';
+import 'fetched_image.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'fetch_result.g.dart';

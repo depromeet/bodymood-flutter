@@ -1,6 +1,6 @@
-import 'package:bodymood/bloc/posters/api/poster_fetch_api.dart';
-import 'package:bodymood/bloc/posters/model/poster_image.dart';
-import 'package:bodymood/bloc/posters/riverpod/poster_fetcher_provider.dart';
+import '../api/poster_fetch_api.dart';
+import '../model/poster_image.dart';
+import 'poster_fetcher_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

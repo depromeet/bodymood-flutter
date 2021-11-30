@@ -1,9 +1,9 @@
 import 'dart:io';
 
-import 'package:bodymood/bloc/auth/controller/auth_token_manager.dart';
-import 'package:bodymood/bloc/auth/controller/ds/auth_token.dart';
-import 'package:bodymood/bloc/editor/model/poster_detail.dart';
-import 'package:bodymood/common/api_server.dart';
+import '../../auth/controller/auth_token_manager.dart';
+import '../../auth/controller/ds/auth_token.dart';
+import '../model/poster_detail.dart';
+import '../../../common/api_server.dart';
 import 'package:flutter/material.dart';
 import 'package:mime_type/mime_type.dart';
 import 'package:http_parser/http_parser.dart';

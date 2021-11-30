@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../routes/path.dart';
 import '../widgets/appbar/appbar.dart';
@@ -8,9 +7,8 @@ import '../widgets/appbar/text_title.dart';
 import 'complete_button/complete_button.dart';
 import 'edit_progress/checker_bar.dart';
 import 'editable_poster.dart';
-import 'riverpod/all_provider.dart';
 
-class PosterEditorPage extends ConsumerWidget {
+class PosterEditorPage extends StatelessWidget {
   const PosterEditorPage({Key? key}) : super(key: key);
 
   static Page page() {
@@ -22,26 +20,21 @@ class PosterEditorPage extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, ref) {
-    final posterItems = ref.watch(posterItemsProvider.notifier);
+  Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
+          children: const [
             BodymoodAppbar(
-              leading: BodymoodBackButton(
-                onTap: () {
-                  posterItems.reset();
-                },
-              ),
-              title: const AppbarTextTitle(title: '포스터 편집'),
-              tail: const CompletePosterEditingButton(),
+              leading: BodymoodBackButton(),
+              title: AppbarTextTitle(title: '포스터 편집'),
+              tail: CompletePosterEditingButton(),
             ),
-            const SizedBox(height: 8),
-            const EditProgressCheckerBar(),
-            const SizedBox(height: 24),
-            const Expanded(
+            SizedBox(height: 8),
+            EditProgressCheckerBar(),
+            SizedBox(height: 24),
+            Expanded(
               child: EditablePosterArea(),
             ),
           ],

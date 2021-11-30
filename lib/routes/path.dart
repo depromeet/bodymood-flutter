@@ -14,4 +14,6 @@ class BodymoodPath {
 
   static const preferences = '/preferencse';
   static const preferencesAgreement = preferences + '/agreement';
+  static const preferencesLogout = preferences + '/logout';
+  static const preferencesSignout = preferences + '/signout';
 }

@@ -1,20 +1,21 @@
-import 'package:bodymood/gui/constants/color.dart';
-import 'package:bodymood/gui/editor/emotion_selector/emotional_background.dart';
-import 'package:bodymood/gui/editor/preview/poster_preview.dart';
-import 'package:bodymood/gui/editor/preview/preview_bottom_sheet.dart';
-import 'package:bodymood/routes/path.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart' as intl;
 
-class PosterPreviewPage extends ConsumerWidget {
-  const PosterPreviewPage({Key? key}) : super(key: key);
+import '../../../routes/path.dart';
+import '../../constants/color.dart';
+import '../emotion_selector/emotional_background.dart';
+import 'poster_preview.dart';
+import 'preview_bottom_sheet.dart';
+
+class SharePosterPage extends ConsumerWidget {
+  const SharePosterPage({Key? key}) : super(key: key);
 
   static Page page() {
     return const MaterialPage(
       name: BodymoodPath.editorPreview,
       key: ValueKey(BodymoodPath.editorPreview),
-      child: PosterPreviewPage(),
+      child: SharePosterPage(),
     );
   }
 

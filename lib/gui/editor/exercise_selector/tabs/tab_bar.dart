@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:bodymood/gui/editor/exercise_selector/tabs/tab_bar_item.dart';
+import 'tab_bar_item.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';

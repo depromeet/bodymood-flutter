@@ -1,9 +1,8 @@
-import 'package:bodymood/gui/constants/color.dart';
-import 'package:bodymood/gui/preferences/clickable_item/clickable_item.dart';
-import 'package:bodymood/gui/preferences/logout_button/logout_button.dart';
-import 'package:bodymood/gui/widgets/appbar/appbar.dart';
-import 'package:bodymood/gui/widgets/appbar/back_button.dart';
-import 'package:bodymood/routes/path.dart';
+import '../constants/color.dart';
+import 'clickable_item/clickable_item.dart';
+import '../widgets/appbar/appbar.dart';
+import '../widgets/appbar/back_button.dart';
+import '../../routes/path.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 

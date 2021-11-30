@@ -3,9 +3,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'bloc/app_state/core/app_state_manager.dart';
-import 'bloc/auth/core/auth_state_manager.dart';
-import 'routes/auth_router.dart';
+import 'encloser/app_view/app_view_interactor_encloser.dart';
+import 'routes/app_main_router.dart';
 
 void main() {
   runApp(
@@ -20,7 +19,42 @@ void main() {
   );
 }
 
-class VysorSupportedScrollBehavior extends MaterialScrollBehavior {
+class BodymoodApp extends ConsumerWidget {
+  BodymoodApp({Key? key}) : super(key: key);
+
+  final _navKey = GlobalKey<NavigatorState>();
+  @override
+  Widget build(BuildContext context, ref) {
+    final appViewInteractor = ref.watch(appViewPageEncloser.notifier);
+    final mainBackButtonDispatcher = RootBackButtonDispatcher();
+
+    var themeData = ThemeData(
+      fontFamily: 'Pretendard Variable',
+      colorScheme: Theme.of(context).colorScheme.copyWith(
+            primary: const Color(0xff18192b),
+            onPrimary: Colors.white,
+          ),
+      brightness: Brightness.light,
+      scaffoldBackgroundColor: Colors.white,
+    );
+
+    return MaterialApp(
+      navigatorKey: _navKey,
+      color: Colors.white,
+      scrollBehavior: _VysorSupportedScrollBehavior(),
+      theme: themeData,
+      title: 'Bodymood',
+      home: Router(
+        routerDelegate: AppMainRouter(
+          appViewInteractor: appViewInteractor,
+        ),
+        backButtonDispatcher: mainBackButtonDispatcher,
+      ),
+    );
+  }
+}
+
+class _VysorSupportedScrollBehavior extends MaterialScrollBehavior {
   @override
   Set<PointerDeviceKind> get dragDevices => {
         PointerDeviceKind.touch,
@@ -29,39 +63,4 @@ class VysorSupportedScrollBehavior extends MaterialScrollBehavior {
         PointerDeviceKind.stylus,
         PointerDeviceKind.unknown,
       };
-}
-
-class BodymoodApp extends ConsumerWidget {
-  BodymoodApp({Key? key}) : super(key: key);
-
-  final _navKey = GlobalKey<NavigatorState>();
-  @override
-  Widget build(BuildContext context, ref) {
-    final authStateManager = ref.watch(authStateManagerProvider);
-    final appStateManager = ref.watch(appStateManagerProvider);
-    final authStateRouter = BodymoodAuthRouter(
-      authManager: authStateManager,
-      appStateManager: appStateManager,
-    );
-
-    return MaterialApp(
-      navigatorKey: _navKey,
-      color: Colors.white,
-      scrollBehavior: VysorSupportedScrollBehavior(),
-      theme: ThemeData(
-        fontFamily: 'Pretendard Variable',
-        colorScheme: Theme.of(context).colorScheme.copyWith(
-              primary: const Color(0xff18192b),
-              onPrimary: Colors.white,
-            ),
-        brightness: Brightness.light,
-        scaffoldBackgroundColor: Colors.white,
-      ),
-      title: 'Bodymood',
-      home: Router(
-        routerDelegate: authStateRouter,
-        backButtonDispatcher: RootBackButtonDispatcher(),
-      ),
-    );
-  }
 }
