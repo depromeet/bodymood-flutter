@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../encloser/editor_view/editor_view_page_encloser.dart';
 import '../gui/login/login_page.dart';
 import '../gui/posters/posters_page.dart';
-import '../gui/preferences/preferences_page.dart';
 import '../gui/splash/splash.dart';
 import '../interactor/app_view/app_view_interactor.dart';
-import '../interactor/editor_view/editor_page_interactor.dart';
 import 'editor_router.dart';
 import 'path.dart';
+import 'preferencse_router.dart';
 
 class AppMainRouter extends RouterDelegate
     with ChangeNotifier, PopNavigatorRouterDelegateMixin {
@@ -33,9 +31,6 @@ class AppMainRouter extends RouterDelegate
   Widget build(BuildContext context) {
     return Consumer(
       builder: (context, ref, child) {
-        final editorPageInteractor = ref.watch(editorViewPageEncloser.notifier);
-        final editorView = _buildEditorView(editorPageInteractor, context);
-
         return Navigator(
           key: navigatorKey,
           onPopPage: _onPopPage,
@@ -43,8 +38,9 @@ class AppMainRouter extends RouterDelegate
             if (appViewInteractor.onSplashView) BodyMoodSplashPage.page(),
             if (appViewInteractor.onLoginView) LoginPage.page(),
             if (appViewInteractor.onAlbumView) AlbumPage.page(),
-            if (appViewInteractor.onEditorView) editorView,
-            if (appViewInteractor.onPreferencesView) PreferencesPage.page(),
+            if (appViewInteractor.onEditorView) _buildEditorView(context),
+            if (appViewInteractor.onPreferencesView)
+              _buildPreferencesView(context),
           ],
         );
       },
@@ -52,13 +48,29 @@ class AppMainRouter extends RouterDelegate
   }
 
   MaterialPage<dynamic> _buildEditorView(
-      EditorViewPageInteractor editorPageInteractor, BuildContext context) {
+    BuildContext context,
+  ) {
     return MaterialPage(
       name: BodymoodPath.create,
       key: const ValueKey(BodymoodPath.create),
       child: Router(
-        routerDelegate:
-            PosterEditorRouter(editorPageInteractor: editorPageInteractor),
+        routerDelegate: PosterEditorRouter(),
+        backButtonDispatcher: Router.of(context)
+            .backButtonDispatcher
+            ?.createChildBackButtonDispatcher()
+          ?..takePriority(),
+      ),
+    );
+  }
+
+  MaterialPage<dynamic> _buildPreferencesView(
+    BuildContext context,
+  ) {
+    return MaterialPage(
+      name: BodymoodPath.create,
+      key: const ValueKey(BodymoodPath.create),
+      child: Router(
+        routerDelegate: PreferencesRouter(),
         backButtonDispatcher: Router.of(context)
             .backButtonDispatcher
             ?.createChildBackButtonDispatcher()
@@ -79,6 +91,9 @@ class AppMainRouter extends RouterDelegate
       appViewInteractor.showAlbumView();
     }
     if (path == BodymoodPath.create) {
+      appViewInteractor.showAlbumView();
+    }
+    if (path == BodymoodPath.preferences) {
       appViewInteractor.showAlbumView();
     }
     return true;

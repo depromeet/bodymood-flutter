@@ -21,17 +21,17 @@ class AppViewInteractor extends ChangeNotifier {
         splash: (_) => true,
         orElse: () => false,
       );
-  bool get onAlbumView => _state.maybeMap(
-        album: (_) => true,
-        editor: (_) => true,
+  bool get onLoginView => _state.maybeMap(
+        login: (_) => true,
         orElse: () => false,
+      );
+  bool get onAlbumView => _state.maybeMap(
+        splash: (_) => false,
+        login: (_) => false,
+        orElse: () => true,
       );
   bool get onEditorView => _state.maybeMap(
         editor: (_) => true,
-        orElse: () => false,
-      );
-  bool get onLoginView => _state.maybeMap(
-        login: (_) => true,
         orElse: () => false,
       );
   bool get onPreferencesView => _state.maybeMap(

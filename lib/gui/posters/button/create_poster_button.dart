@@ -35,7 +35,7 @@ class CreatePosterButton extends ConsumerWidget {
         decoration: buttonBoxDecoration,
         child: TextButton(
           onPressed: () {
-            ref.read(appViewInteractorEncloser).showEditorView();
+            ref.read(appViewPageEncloser).showEditorView();
           },
           style: TextButton.styleFrom(
             shape: const CircleBorder(),

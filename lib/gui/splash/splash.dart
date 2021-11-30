@@ -62,7 +62,7 @@ class _TitleOverlayState extends ConsumerState<_TitleOverlay> {
       Timer(
         Duration(milliseconds: _splashDurationInMilliseconds),
         () {
-          final viewInteractor = ref.read(appViewInteractorEncloser);
+          final viewInteractor = ref.read(appViewPageEncloser);
           viewInteractor.showAlbumView();
         },
       );

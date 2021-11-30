@@ -1,41 +1,53 @@
-import '../bloc/preferences/preferences_state_manager.dart';
-import '../gui/preferences/preferences_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../encloser/app_view/app_view_interactor_encloser.dart';
+import '../encloser/preferences_view/preferences_page_encloser.dart';
+import '../gui/preferences/preferences_page.dart';
 import 'path.dart';
 
 class PreferencesRouter extends RouterDelegate
     with ChangeNotifier, PopNavigatorRouterDelegateMixin {
-  PreferencesRouter({
-    required this.prefManager,
-  }) : navigatorKey = GlobalKey<NavigatorState>();
+  PreferencesRouter();
 
   @override
-  final GlobalKey<NavigatorState> navigatorKey;
-  final PreferencesStateManager prefManager;
-
+  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
   @override
   Widget build(BuildContext context) {
-    return Navigator(
-      key: navigatorKey,
-      onPopPage: _onPopPage,
-      pages: [
-        PreferencesPage.page(),
-        if (prefManager.agreementOpen) ...[],
-      ],
-    );
+    return Consumer(builder: (context, ref, child) {
+      final pageEncloser = ref.watch(preferencesViewPageEncloser);
+      return Navigator(
+        key: navigatorKey,
+        onPopPage: (route, result) =>
+            _onPopPage(route, result, pageEncloser, ref.read),
+        pages: [
+          if (pageEncloser.onMain) PreferencesPage.page(),
+        ],
+      );
+    });
   }
 
-  bool _onPopPage(Route<dynamic> route, result) {
+  bool _onPopPage(
+    Route<dynamic> route,
+    result,
+    PreferencesPageEncloser pageEncloser,
+    Reader read,
+  ) {
     if (!route.didPop(result)) {
       return false;
     }
     final path = route.settings.name;
     if (path == BodymoodPath.preferences) {
-      prefManager.closePreferences();
+      read(appViewPageEncloser).showAlbumView();
     }
     if (path == BodymoodPath.preferencesAgreement) {
-      prefManager.closeMenu();
+      pageEncloser.showMain();
+    }
+    if (path == BodymoodPath.preferencesLogout) {
+      pageEncloser.showMain();
+    }
+    if (path == BodymoodPath.preferencesSignout) {
+      pageEncloser.showMain();
     }
     return true;
   }

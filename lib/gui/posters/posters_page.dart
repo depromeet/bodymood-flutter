@@ -1,13 +1,12 @@
-import '../../bloc/posters/riverpod/poster_album_provider.dart';
-import '../../bloc/preferences/riverpod/preferences_manager_provider.dart';
-import '../../bloc/preferences/riverpod/preferences_state_provider.dart';
-import '../constants/color.dart';
-import '../../resources/resources.dart';
+import '../../encloser/app_view/app_view_interactor_encloser.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../bloc/posters/riverpod/poster_album_provider.dart';
+import '../../resources/resources.dart';
 import '../../routes/path.dart';
+import '../constants/color.dart';
 import '../widgets/appbar/appbar.dart';
 import 'button/create_poster_button.dart';
 import 'posters_view/empty_posters_view.dart';
@@ -37,7 +36,7 @@ class AlbumPage extends ConsumerWidget {
                 BodymoodAppbar(
                   tail: GestureDetector(
                     onTap: () {
-                      ref.read(showPreferencesProvider).state = true;
+                      ref.read(appViewPageEncloser).showPreferencesView();
                     },
                     child: SvgPicture.asset(
                       PostersImages.iconPerson,

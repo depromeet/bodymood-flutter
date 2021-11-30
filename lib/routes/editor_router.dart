@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../encloser/editor_view/editor_view_page_encloser.dart';
 import '../gui/create/create_poster_page.dart';
 import '../gui/editor/emotion_selector/emotion_selector_page.dart';
 import '../gui/editor/exercise_selector/exercise_selector.dart';
@@ -10,56 +12,51 @@ import 'path.dart';
 
 class PosterEditorRouter extends RouterDelegate
     with ChangeNotifier, PopNavigatorRouterDelegateMixin {
-  PosterEditorRouter({
-    required this.editorPageInteractor,
-  }) {
-    editorPageInteractor.addListener(notifyListeners);
-  }
+  PosterEditorRouter();
 
   @override
   final GlobalKey<NavigatorState> navigatorKey =
       GlobalKey<NavigatorState>(debugLabel: 'editor-router');
-  final EditorViewPageInteractor editorPageInteractor;
-
-  @override
-  void dispose() {
-    editorPageInteractor.removeListener(notifyListeners);
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
-    return Navigator(
-      key: navigatorKey,
-      onPopPage: _onPopPage,
-      pages: [
-        if (editorPageInteractor.onTemplatePage) CreatePosterPage.page(),
-        if (editorPageInteractor.onEditorPage) PosterEditorPage.page(),
-        if (editorPageInteractor.onExercisePage) ExerciseSelectionPage.page(),
-        if (editorPageInteractor.onMoodPage) MoodSelectionPage.page(),
-        if (editorPageInteractor.onSharePage) SharePosterPage.page(),
-      ],
-    );
+    return Consumer(builder: (context, ref, child) {
+      final editorViewPageInteractor = ref.watch(editorViewPageEncloser);
+      return Navigator(
+        key: navigatorKey,
+        onPopPage: (route, result) =>
+            _onPopPage(route, result, editorViewPageInteractor),
+        pages: [
+          if (editorViewPageInteractor.onTemplatePage) CreatePosterPage.page(),
+          if (editorViewPageInteractor.onEditorPage) PosterEditorPage.page(),
+          if (editorViewPageInteractor.onExercisePage)
+            ExerciseSelectionPage.page(),
+          if (editorViewPageInteractor.onMoodPage) MoodSelectionPage.page(),
+          if (editorViewPageInteractor.onSharePage) SharePosterPage.page(),
+        ],
+      );
+    });
   }
 
-  bool _onPopPage(Route<dynamic> route, result) {
+  bool _onPopPage(
+      Route<dynamic> route, result, EditorViewPageInteractor interactor) {
     if (!route.didPop(result)) {
       return false;
     }
     final path = route.settings.name;
     if (path == BodymoodPath.create) {
-      editorPageInteractor.closeEditor();
+      interactor.closeEditor();
     }
     if (path == BodymoodPath.editor) {
-      editorPageInteractor.showTemplatePage();
+      interactor.showTemplatePage();
     }
     if (path == BodymoodPath.editorPreview) {
-      editorPageInteractor.closeEditor();
+      interactor.closeEditor();
     }
     if (path == BodymoodPath.selectExercises ||
         path == BodymoodPath.selectEmotion ||
         path == BodymoodPath.selectImage) {
-      editorPageInteractor.showEditorPage();
+      interactor.showEditorPage();
     }
 
     return true;

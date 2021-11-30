@@ -25,7 +25,7 @@ class BodymoodApp extends ConsumerWidget {
   final _navKey = GlobalKey<NavigatorState>();
   @override
   Widget build(BuildContext context, ref) {
-    final appViewInteractor = ref.watch(appViewInteractorEncloser.notifier);
+    final appViewInteractor = ref.watch(appViewPageEncloser.notifier);
     final mainBackButtonDispatcher = RootBackButtonDispatcher();
 
     var themeData = ThemeData(
