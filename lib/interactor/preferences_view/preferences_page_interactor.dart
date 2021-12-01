@@ -4,7 +4,7 @@ import '../../state/preferences_view/preferences_view_page_state.dart';
 import '../../state/util/boolean_mapper.dart';
 
 class PreferencesViewPageInteractor extends ChangeNotifier {
-  PreferencesViewPageState state = PreferencesViewPageState.main();
+  PreferencesViewPageState state = const PreferencesViewPageState.main();
 
   bool get onMain => true;
   bool get onLogout => state.maybeMap(

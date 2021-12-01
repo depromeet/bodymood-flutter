@@ -1,10 +1,12 @@
-import '../constants/color.dart';
-import 'clickable_item/clickable_item.dart';
-import '../widgets/appbar/appbar.dart';
-import '../widgets/appbar/back_button.dart';
-import '../../routes/path.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../routes/path.dart';
+import '../constants/color.dart';
+import '../widgets/appbar/appbar.dart';
+import '../widgets/appbar/back_button.dart';
+import 'clickable_item/clickable_item.dart';
+import 'logout_button/logout_button.dart';
 
 class PreferencesPage extends StatelessWidget {
   const PreferencesPage({Key? key}) : super(key: key);

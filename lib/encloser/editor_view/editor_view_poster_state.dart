@@ -6,7 +6,7 @@ import '../../bloc/editor/model/emotion.dart';
 import '../../bloc/editor/model/exercise_detail.dart';
 import '../../bloc/editor/model/selected_emotion.dart';
 import '../../bloc/posters/core/ds/poster_store.dart';
-import '../../interactor/app_view/editor_view_poster_interactor.dart';
+import '../../interactor/editor_view/editor_view_poster_interactor.dart';
 
 final editorViewPosterEncloser =
     ChangeNotifierProvider.autoDispose((ref) => EditorViewPosterEncloser());

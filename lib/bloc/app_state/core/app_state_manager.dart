@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../auth/controller/auth_token_manager_provider.dart';
+import '../../auth/social/kakao/kakao_auth_provider.dart';
 import '../../auth/social/kakao/kakao_auth_refresher.dart';
 import '../../posters/riverpod/poster_album_provider.dart';
 import 'model/app_state.dart';
@@ -41,15 +42,8 @@ class AppStateManager {
 
   resetApp() async {
     final authManager = _read(authTokenManagerProvider);
-    final authStateManager = _read(authStateManagerProvider);
-    final preferencesManager = _read(preferencesManageProvider);
-    final posterIndexManager = _read(posterViewIndexProvider);
 
-    preferencesManager.closePreferences();
-    posterIndexManager.state = -1;
     await authManager.resetAuthToken(KakaoAuthProvider());
-    authStateManager.loggedOut();
-
     _setAppState(AppState.none());
   }
 

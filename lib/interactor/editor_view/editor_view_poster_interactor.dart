@@ -31,7 +31,10 @@ class EditorViewPosterInteractor extends ChangeNotifier {
         final isInList = filled.exercises.contains(exercise);
         assert(!isInList);
         if (filled.exercises.length < 3) {
-          filled.exercises.add(exercise);
+          filled = filled.copyWith(exercises: [
+            ...filled.exercises,
+            exercise,
+          ]);
         }
         return filled;
       },

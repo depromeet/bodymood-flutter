@@ -1,10 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../../../bloc/posters/model/poster_image.dart';
 import '../../../bloc/posters/riverpod/poster_album_provider.dart';
 import '../../../bloc/posters/riverpod/poster_index_provider.dart';
 import '../../constants/color.dart';
 import '../util/image_to_hero_tag.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class PostersGridView extends ConsumerWidget {
   const PostersGridView({

@@ -10,17 +10,21 @@ final preferencesViewPageEncloser = ChangeNotifierProvider.autoDispose((ref) {
 class PreferencesPageEncloser extends PreferencesViewPageInteractor {
   void showMain() {
     state = const PreferencesViewPageState.main();
+    notifyListeners();
   }
 
   void showLogout() {
     state = const PreferencesViewPageState.logout();
+    notifyListeners();
   }
 
   void showSingOut() {
     state = const PreferencesViewPageState.signout();
+    notifyListeners();
   }
 
   void showAgreement() {
     state = const PreferencesViewPageState.agreement();
+    notifyListeners();
   }
 }
