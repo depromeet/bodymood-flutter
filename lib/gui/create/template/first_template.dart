@@ -16,13 +16,15 @@ class FirstPosterTemplate extends ConsumerWidget {
   Widget build(BuildContext context, ref) {
     return AspectRatio(
       aspectRatio: 310 / 550,
-      child: GestureDetector(
-        onTap: () {
-          ref.read(editorViewPageEncloser).showEditorPage();
-        },
-        child: Image.asset(
+      child: Ink.image(
+        image: const AssetImage(
           CreatePosterImages.firstTemplate,
-          fit: BoxFit.cover,
+        ),
+        fit: BoxFit.cover,
+        child: InkWell(
+          onTap: () {
+            ref.read(editorViewPageEncloser).showEditorPage();
+          },
         ),
       ),
     );

@@ -57,15 +57,15 @@ class _TitleOverlayState extends ConsumerState<_TitleOverlay> {
   void finishSplash() {
     if (mounted && !_visible) {
       setState(() {
+        Timer(
+          Duration(milliseconds: _splashDurationInMilliseconds),
+          () {
+            final viewInteractor = ref.read(appViewPageEncloser);
+            viewInteractor.showAlbumView();
+          },
+        );
         _visible = true;
       });
-      Timer(
-        Duration(milliseconds: _splashDurationInMilliseconds),
-        () {
-          final viewInteractor = ref.read(appViewPageEncloser);
-          viewInteractor.showAlbumView();
-        },
-      );
     }
   }
 

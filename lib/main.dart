@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'encloser/app_view/app_view_interactor_encloser.dart';
@@ -27,7 +28,6 @@ class BodymoodApp extends ConsumerWidget {
   Widget build(BuildContext context, ref) {
     final appViewInteractor = ref.watch(appViewPageEncloser.notifier);
     final mainBackButtonDispatcher = RootBackButtonDispatcher();
-
     var themeData = ThemeData(
       fontFamily: 'Pretendard Variable',
       colorScheme: Theme.of(context).colorScheme.copyWith(

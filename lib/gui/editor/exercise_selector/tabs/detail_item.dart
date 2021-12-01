@@ -27,8 +27,8 @@ class ExerciseDetailItem extends ConsumerWidget {
         isSelected ? const EdgeInsets.only(left: 24) : EdgeInsets.zero;
     final fontColor = getFontColorFromMood(ref.read);
 
-    return GestureDetector(
-      onTap: () {
+    return TextButton(
+      onPressed: () {
         final posterState = ref.read(editorViewPosterEncloser);
         if (!isSelected) {
           posterState.addExercise(_thisItem);

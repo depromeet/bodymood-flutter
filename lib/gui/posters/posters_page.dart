@@ -1,9 +1,9 @@
-import '../../encloser/app_view/app_view_interactor_encloser.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../bloc/posters/riverpod/poster_album_provider.dart';
+import '../../encloser/app_view/app_view_interactor_encloser.dart';
 import '../../resources/resources.dart';
 import '../../routes/path.dart';
 import '../constants/color.dart';
@@ -34,13 +34,19 @@ class AlbumPage extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 BodymoodAppbar(
-                  tail: GestureDetector(
-                    onTap: () {
-                      ref.read(appViewPageEncloser).showPreferencesView();
-                    },
-                    child: SvgPicture.asset(
-                      PostersImages.iconPerson,
-                      height: 24,
+                  tail: SizedBox(
+                    width: 24,
+                    child: TextButton(
+                      onPressed: () {
+                        ref.read(appViewPageEncloser).showPreferencesView();
+                      },
+                      child: SvgPicture.asset(
+                        PostersImages.iconPerson,
+                        height: 24,
+                      ),
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                      ),
                     ),
                   ),
                 ),

@@ -13,34 +13,28 @@ class CreatePosterButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final buttonBoxDecoration = BoxDecoration(
-      shape: BoxShape.circle,
-      color: clPrimaryBlack,
-      boxShadow: [
-        BoxShadow(
-          blurRadius: 8,
-          offset: const Offset(0, 4),
-          color: const Color(0xff000000).withOpacity(0.3),
-        ),
-      ],
-    );
     final buttonIcon = SvgPicture.asset(
       BodymoodImages.plusIcon,
       height: 24,
+      color: clPrimaryWhite,
     );
     return Center(
-      child: Container(
-        width: 56,
-        height: 56,
-        decoration: buttonBoxDecoration,
-        child: TextButton(
-          onPressed: () {
-            ref.read(appViewPageEncloser).showEditorView();
-          },
-          style: TextButton.styleFrom(
-            shape: const CircleBorder(),
-          ),
-          child: buttonIcon,
+      child: TextButton(
+        onPressed: () {
+          ref.read(appViewPageEncloser).showEditorView();
+        },
+        style: TextButton.styleFrom(
+          primary: clPrimaryWhite,
+          backgroundColor: clPrimaryBlack,
+          shape: const CircleBorder(),
+          padding: EdgeInsets.zero,
+          elevation: 8,
+          shadowColor: const Color(0xff000000).withOpacity(0.3),
+        ),
+        child: SizedBox(
+          width: 56,
+          height: 56,
+          child: Center(child: buttonIcon),
         ),
       ),
     );
