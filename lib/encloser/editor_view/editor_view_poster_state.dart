@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -33,7 +35,7 @@ class EditorViewPosterEncloser extends EditorViewPosterInteractor {
         empty: (_) => null,
         filled: (filled) {
           return filled.image.map(
-            local: (image) => AssetImage(image.path),
+            local: (image) => FileImage(File(image.path)),
             remote: (image) => CachedNetworkImageProvider(image.path),
             empty: (_) => null,
           );
