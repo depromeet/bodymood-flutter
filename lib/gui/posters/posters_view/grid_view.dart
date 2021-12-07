@@ -15,7 +15,8 @@ class PostersGridView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final posters = ref.read(posterAlbumProvider.notifier);
+    final posters = ref.watch(posterAlbumProvider);
+    print('rebuild album gridview, len: ${posters.length}');
     return GridView.builder(
       padding: const EdgeInsets.fromLTRB(24, 24, 24, 24),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -29,9 +30,12 @@ class PostersGridView extends ConsumerWidget {
       itemBuilder: (BuildContext context, int index) {
         final image = posters[index];
         if (image == null) {
-          return const SizedBox.shrink();
+          return const SizedBox.shrink(
+            key: ValueKey('empty poster'),
+          );
         } else {
           return _PosterThumbnail(
+            key: ValueKey(image.imageUrl),
             image: image,
             index: index,
           );

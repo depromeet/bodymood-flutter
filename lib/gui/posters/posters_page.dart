@@ -88,9 +88,16 @@ class _PostersListViewState extends ConsumerState<_PostersListView> {
   }
 
   @override
+  void didUpdateWidget(covariant _PostersListView oldWidget) {
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
   Widget build(BuildContext context) {
     final posters = ref.watch(posterAlbumProvider);
+    print('rebuild the album page');
     return RefreshIndicator(
+      key: const ValueKey('album view pull to refresh module'),
       onRefresh: () async {
         final album = ref.read(posterAlbumProvider.notifier);
         await album.refresh();

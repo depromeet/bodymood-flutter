@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../bloc/posters/riverpod/poster_album_provider.dart';
 import '../gui/login/login_page.dart';
 import '../gui/posters/posters_page.dart';
 import '../gui/splash/splash.dart';
@@ -33,7 +34,7 @@ class AppMainRouter extends RouterDelegate
       builder: (context, ref, child) {
         return Navigator(
           key: navigatorKey,
-          onPopPage: _onPopPage,
+          onPopPage: (routes, results) => _onPopPage(routes, results, ref),
           pages: [
             if (appViewInteractor.onSplashView) BodyMoodSplashPage.page(),
             if (appViewInteractor.onLoginView) LoginPage.page(),
@@ -79,7 +80,7 @@ class AppMainRouter extends RouterDelegate
     );
   }
 
-  bool _onPopPage(Route<dynamic> route, result) {
+  bool _onPopPage(Route<dynamic> route, result, WidgetRef ref) {
     if (!route.didPop(result)) {
       return false;
     }
@@ -89,9 +90,11 @@ class AppMainRouter extends RouterDelegate
     }
     if (path == BodymoodPath.editor) {
       appViewInteractor.showAlbumView();
+      ref.read(posterAlbumProvider.notifier).refresh();
     }
     if (path == BodymoodPath.create) {
       appViewInteractor.showAlbumView();
+      ref.read(posterAlbumProvider.notifier).refresh();
     }
     if (path == BodymoodPath.preferences) {
       appViewInteractor.showAlbumView();
