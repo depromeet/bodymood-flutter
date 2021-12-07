@@ -1,8 +1,8 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../api/poster_fetch_api.dart';
 import '../model/poster_image.dart';
 import 'poster_fetcher_provider.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final posterAlbumProvider =
     StateNotifierProvider<PosterAlbumState, List<PosterImage>>(
@@ -22,7 +22,7 @@ class PosterAlbumState extends StateNotifier<List<PosterImage>> {
   final BodymoodPosterFetchApi _api;
 
   PosterImage? operator [](int index) {
-    if (state.length <= index) {
+    if (length <= index) {
       fetchNextPage();
       return null;
     } else {

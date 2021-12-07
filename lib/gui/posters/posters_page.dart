@@ -72,11 +72,23 @@ class AlbumPage extends ConsumerWidget {
   }
 }
 
-class _PostersListView extends ConsumerWidget {
+class _PostersListView extends ConsumerStatefulWidget {
   const _PostersListView({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _PostersListViewState();
+}
+
+class _PostersListViewState extends ConsumerState<_PostersListView> {
+  @override
+  void initState() {
+    super.initState();
+    ref.read(posterAlbumProvider.notifier).refresh();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final posters = ref.watch(posterAlbumProvider);
     return RefreshIndicator(
       onRefresh: () async {

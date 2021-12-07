@@ -12,6 +12,7 @@ import '../../../bloc/editor/model/poster_detail.dart';
 import '../../../bloc/editor/model/selected_emotion.dart';
 import '../../../bloc/editor/riverpod/poster_path_provider.dart';
 import '../../../bloc/posters/core/ds/poster_store.dart';
+import '../../../bloc/posters/riverpod/poster_album_provider.dart';
 import '../../../encloser/editor_view/editor_view_poster_state.dart';
 import '../../constants/color.dart';
 import '../emotion_selector/emotional_background.dart';
@@ -118,5 +119,6 @@ class _PosterPreviewState extends ConsumerState<PosterPreview>
         exercises: exercises,
       ),
     );
+    await ref.read(posterAlbumProvider.notifier).refresh();
   }
 }

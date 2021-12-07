@@ -1,9 +1,10 @@
+import 'package:dio/dio.dart';
+
+import '../../../common/api_server.dart';
 import '../../auth/controller/auth_token_manager.dart';
 import '../../auth/controller/ds/auth_token.dart';
-import 'model/fetch_result.dart';
 import '../model/poster_image.dart';
-import '../../../common/api_server.dart';
-import 'package:dio/dio.dart';
+import 'model/fetch_result.dart';
 
 class BodymoodPosterFetchApi {
   BodymoodPosterFetchApi({
@@ -14,7 +15,7 @@ class BodymoodPosterFetchApi {
   final int fetchCount;
   int currentPage = 0;
 
-  final _endpoint = '${bodymoodEndpoint}/api/v1/posters';
+  final _endpoint = '$bodymoodEndpoint/api/v1/posters';
   final _dio = Dio();
 
   Future<List<PosterImage>> refresh() async {

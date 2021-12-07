@@ -8,6 +8,7 @@ import '../../bloc/auth/controller/ds/social_type.dart';
 import '../../bloc/auth/controller/inteface/social_auth_provider.dart';
 import '../../bloc/auth/social/apple/apple_auth_provider.dart';
 import '../../bloc/auth/social/kakao/kakao_auth_provider.dart';
+import '../../encloser/app_view/app_view_interactor_encloser.dart';
 import '../../resources/resources.dart';
 import '../constants/color.dart';
 
@@ -81,7 +82,9 @@ class LoginButton extends ConsumerWidget {
 
     final token = await authManager.updateAuthToken(socialAuthProvider);
     token.maybeWhen(
-      authorizedToken: (_, __) {},
+      authorizedToken: (_, __) {
+        ref.read(appViewPageEncloser).showAlbumView();
+      },
       orElse: () {},
     );
   }
