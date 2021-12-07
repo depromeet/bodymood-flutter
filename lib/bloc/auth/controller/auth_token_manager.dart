@@ -1,6 +1,3 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../core/auth_state_manager.dart';
 import 'ds/auth_token.dart';
 import 'inteface/server_auth_provider.dart';
 import 'inteface/social_auth_provider.dart';
@@ -8,15 +5,17 @@ import 'inteface/social_auth_provider.dart';
 class BodymoodAuthTokenManager {
   BodymoodAuthTokenManager({
     required ServerAuthProviderBase server,
-    required Reader reader,
-  })  : _server = server,
-        _read = reader;
+  }) : _server = server;
 
   final ServerAuthProviderBase _server;
-  final Reader _read;
 
   ServerAuthToken get authToken => _authToken;
   ServerAuthToken _authToken = const ServerAuthToken.unauthorizedToken();
+
+  bool get isLoggedIn => authToken.maybeMap(
+        orElse: () => false,
+        authorizedToken: (_) => true,
+      );
 
   Future<ServerAuthToken> updateAuthToken(
     SocialAuthProviderBase provider,
@@ -29,12 +28,6 @@ class BodymoodAuthTokenManager {
       },
       orElse: () async {
         _authToken = await _server.login(socialToken);
-        _authToken.when(
-          authorizedToken: (accessToken, refreshToken) {
-            _read(authStateManagerProvider).loggedIn();
-          },
-          unauthorizedToken: () {},
-        );
         return _authToken;
       },
     );
@@ -43,8 +36,8 @@ class BodymoodAuthTokenManager {
   Future resetAuthToken(
     SocialAuthProviderBase socialProvider,
   ) async {
-    await socialProvider.reset();
     await _server.logout();
+    await socialProvider.reset();
     _authToken = const ServerAuthToken.unauthorizedToken();
   }
 

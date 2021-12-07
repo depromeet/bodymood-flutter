@@ -1,7 +1,8 @@
-import 'package:bodymood/bloc/app_state/core/app_state_manager.dart';
-import 'package:bodymood/gui/constants/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../bloc/app_state/core/app_state_manager.dart';
+import '../../constants/color.dart';
 
 class BodymoodLogoutButton extends ConsumerWidget {
   const BodymoodLogoutButton({Key? key}) : super(key: key);
