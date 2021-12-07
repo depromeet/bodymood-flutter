@@ -16,7 +16,6 @@ class PostersGridView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     final posters = ref.watch(posterAlbumProvider);
-    print('rebuild album gridview, len: ${posters.length}');
     return GridView.builder(
       padding: const EdgeInsets.fromLTRB(24, 24, 24, 24),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

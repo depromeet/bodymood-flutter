@@ -31,7 +31,7 @@ class PosterViewPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     final index = ref.read(posterViewIndexProvider).state;
-    final poster = ref.read(posterAlbumProvider)[index];
+    final poster = ref.read(posterAlbumProvider)[index]!;
     final date = getImageDateString(poster);
     return Scaffold(
       body: SafeArea(
