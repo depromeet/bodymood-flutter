@@ -8,9 +8,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../bloc/posters/riverpod/poster_album_provider.dart';
-import '../../bloc/posters/riverpod/poster_index_provider.dart';
 import '../../resources/resources.dart';
-import '../../routes/path.dart';
 import '../constants/color.dart';
 import '../widgets/appbar/appbar.dart';
 import '../widgets/appbar/back_button.dart';
@@ -18,19 +16,12 @@ import 'util/image_to_hero_tag.dart';
 import 'util/image_to_network_file.dart';
 
 class PosterViewPage extends ConsumerWidget {
-  const PosterViewPage({Key? key}) : super(key: key);
+  const PosterViewPage({Key? key, required this.index}) : super(key: key);
 
-  static Page page() {
-    return const MaterialPage(
-      name: BodymoodPath.posterView,
-      key: ValueKey(BodymoodPath.posterView),
-      child: PosterViewPage(),
-    );
-  }
+  final int index;
 
   @override
   Widget build(BuildContext context, ref) {
-    final index = ref.read(posterViewIndexProvider).state;
     final poster = ref.read(posterAlbumProvider)[index]!;
     final date = getImageDateString(poster);
     return Scaffold(

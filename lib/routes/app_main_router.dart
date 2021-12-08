@@ -38,7 +38,9 @@ class AppMainRouter extends RouterDelegate
           pages: [
             if (appViewInteractor.onSplashView) BodyMoodSplashPage.page(),
             if (appViewInteractor.onLoginView) LoginPage.page(),
-            if (appViewInteractor.onAlbumView) AlbumPage.page(),
+            if (appViewInteractor.onAlbumView) ...[
+              AlbumPage.page(),
+            ],
             if (appViewInteractor.onEditorView) _buildEditorView(context),
             if (appViewInteractor.onPreferencesView)
               _buildPreferencesView(context),
