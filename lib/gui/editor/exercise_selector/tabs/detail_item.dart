@@ -28,6 +28,9 @@ class ExerciseDetailItem extends ConsumerWidget {
     final fontColor = getFontColorFromMood(ref.read);
 
     return TextButton(
+      style: TextButton.styleFrom(
+        padding: EdgeInsets.zero,
+      ),
       onPressed: () {
         final posterState = ref.read(editorViewPosterEncloser);
         if (!isSelected) {
