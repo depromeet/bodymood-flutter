@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../encloser/app_view/app_view_interactor_encloser.dart';
 import '../../auth/controller/auth_token_manager_provider.dart';
 import '../../auth/social/kakao/kakao_auth_provider.dart';
 import '../../auth/social/kakao/kakao_auth_refresher.dart';
@@ -33,6 +34,7 @@ class AppStateManager extends StateNotifier<AppState> {
     final authManager = _read(authTokenManagerProvider);
     await authManager.resetAuthToken(KakaoAuthProvider());
     _setAppState(AppState.none());
+    _read(appViewPageEncloser).showSplashView();
   }
 
   void _setAppState(AppState appState) {

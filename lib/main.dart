@@ -1,6 +1,8 @@
 import 'dart:ui';
 
+import 'package:bodymood/gui/constants/color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -36,6 +38,16 @@ class BodymoodApp extends ConsumerWidget {
           ),
       brightness: Brightness.light,
       scaffoldBackgroundColor: Colors.white,
+      snackBarTheme: const SnackBarThemeData(
+        backgroundColor: Colors.white,
+        contentTextStyle: TextStyle(
+          fontSize: 16,
+          height: 19 / 16,
+          color: clPrimaryBlack,
+          fontWeight: FontWeight.w600,
+        ),
+        elevation: 4,
+      ),
     );
 
     return MaterialApp(

@@ -1,7 +1,8 @@
-import 'package:bodymood/gui/constants/color.dart';
-import 'package:bodymood/gui/preferences/clickable_item/clickable_item.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../constants/color.dart';
+import '../clickable_item/clickable_item.dart';
 
 class BodymoodAgreement extends StatelessWidget {
   const BodymoodAgreement({

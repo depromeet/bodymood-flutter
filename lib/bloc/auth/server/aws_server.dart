@@ -66,7 +66,7 @@ class BodymoodAuthServer extends ServerAuthProviderBase {
     await _dio.delete(
       _authEndpoint,
       options: Options(
-        headers: {'Authrization': accessToken},
+        headers: {'Authorization': 'Bearer $accessToken'},
       ),
     );
 
