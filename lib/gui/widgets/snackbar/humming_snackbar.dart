@@ -4,10 +4,11 @@ class HummingSnackbar extends SnackBar {
   HummingSnackbar({
     Key? key,
     required String message,
+    double bottom = 96,
   }) : super(
           key: key,
           content: IntrinsicHeight(child: Center(child: Text(message))),
-          margin: const EdgeInsets.fromLTRB(24, 0, 24, 96),
+          margin: EdgeInsets.fromLTRB(24, 0, 24, bottom),
           padding: const EdgeInsets.symmetric(vertical: 16),
           elevation: 4,
           behavior: SnackBarBehavior.floating,

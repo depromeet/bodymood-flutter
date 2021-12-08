@@ -102,14 +102,13 @@ class SignoutPage extends ConsumerWidget {
     final authServer = BodymoodAuthServer();
     final authToken = ref.read(authTokenManagerProvider).authToken;
     await authServer.signout(authToken);
-    final controller = ScaffoldMessenger.of(context).showSnackBar(
+    await ref.read(appStateManagerProvider.notifier).resetApp();
+    Navigator.of(context).pop();
+    ScaffoldMessenger.of(context).showSnackBar(
       HummingSnackbar(
         message: '계정이 삭제되었습니다.',
       ),
     );
-    await controller.closed;
-    Navigator.of(context).pop();
-    ref.read(appStateManagerProvider.notifier).resetApp();
   }
 
   Padding _buildBody() {
