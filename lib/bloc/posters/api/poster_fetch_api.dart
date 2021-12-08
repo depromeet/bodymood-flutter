@@ -46,6 +46,7 @@ class BodymoodPosterFetchApi {
     return response.data.posters
         .map(
           (e) => PosterImage(
+            id: e.photoId,
             imageUrl: e.imageUrl,
             createdAt: DateTime.parse(e.createdAt),
           ),

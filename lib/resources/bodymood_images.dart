@@ -7,4 +7,5 @@ class BodymoodImages {
   static const String bodymoodTitle = 'assets/images/common/bodymood-title.svg';
   static const String arrowBackIcon =
       'assets/images/common/arrow-back-icon.svg';
+  static const String deleteIcon = 'assets/images/common/delete-icon.svg';
 }

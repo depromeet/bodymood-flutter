@@ -8,5 +8,6 @@ void main() {
     expect(true, File(BodymoodImages.plusIcon).existsSync());
     expect(true, File(BodymoodImages.bodymoodTitle).existsSync());
     expect(true, File(BodymoodImages.arrowBackIcon).existsSync());
+    expect(true, File(BodymoodImages.deleteIcon).existsSync());
   });
 }
