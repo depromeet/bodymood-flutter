@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:bodymood/bloc/posters/model/poster_image.dart';
+import '../../../bloc/posters/model/poster_image.dart';
 import 'package:intl/intl.dart';
 import 'package:network_to_file_image/network_to_file_image.dart';
 import 'package:path_provider/path_provider.dart';

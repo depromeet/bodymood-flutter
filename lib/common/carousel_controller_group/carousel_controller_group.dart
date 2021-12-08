@@ -170,7 +170,6 @@ class CarouselControllerGroup implements CarouselControllerImpl {
     CarouselPageChangedReason reason = CarouselPageChangedReason.manual,
   ]) async {
     if (reason == CarouselPageChangedReason.manual) {
-      // TODO: Exclude event sender from animation
       animateToPage(index);
       for (final handler in _pageChangedHandlers) {
         handler(index, reason);

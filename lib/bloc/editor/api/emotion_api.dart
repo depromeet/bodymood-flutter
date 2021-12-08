@@ -1,12 +1,12 @@
-import 'package:bodymood/bloc/editor/api/model/emotion_api/emotion_data.dart';
-import 'package:bodymood/bloc/editor/api/model/emotion_api/emotion_response.dart';
-import 'package:bodymood/bloc/editor/model/emotion.dart';
-import 'package:bodymood/common/api_server.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
+import '../../../common/api_server.dart';
 import '../../auth/controller/auth_token_manager.dart';
 import '../base/remote_data_getter.dart';
+import '../model/emotion.dart';
+import 'model/emotion_api/emotion_data.dart';
+import 'model/emotion_api/emotion_response.dart';
 
 class BodymoodEmotionCategoryApi
     extends RemoteDataGetter<List<BodymoodEmotion>> {
@@ -14,7 +14,7 @@ class BodymoodEmotionCategoryApi
     required this.tokenManager,
   });
   final BodymoodAuthTokenManager tokenManager;
-  static const _endpoint = '${bodymoodEndpoint}/api/v1/emotions/categories';
+  static const _endpoint = '$bodymoodEndpoint/api/v1/emotions/categories';
   final Dio _dio = Dio();
 
   @override

@@ -1,10 +1,11 @@
-import 'package:bodymood/common/carousel_controller_group/carousel_controller_group.dart';
-import 'package:bodymood/gui/editor/exercise_selector/tabs/riverpod/selected_tab_provider.dart';
-import 'package:bodymood/gui/editor/exercise_selector/util/get_font_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 import '../../../../bloc/editor/model/exercise_category.dart';
+import '../../../../common/carousel_controller_group/carousel_controller_group.dart';
+import '../util/get_font_color.dart';
+import 'riverpod/selected_tab_provider.dart';
 
 class ExerciseTabBarItem extends ConsumerWidget {
   const ExerciseTabBarItem({
@@ -28,7 +29,7 @@ class ExerciseTabBarItem extends ConsumerWidget {
     final englishFontSize = isSelected ? 22.0 : 18.0;
     final koreanFontSize = isSelected ? 14.0 : 12.0;
     const animationDuration = Duration(milliseconds: 300);
-    final fontColor = getFontColor(ref.read);
+    final fontColor = getFontColorFromMood(ref.read);
 
     return FittedBox(
       child: GestureDetector(

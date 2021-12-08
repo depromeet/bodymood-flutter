@@ -1,4 +1,4 @@
-import 'package:bodymood/gui/editor/emotion_selector/emotional_background.dart';
+import 'emotion_selector/emotional_background.dart';
 import 'package:flutter/material.dart';
 
 import 'item_editor.dart';

@@ -1,13 +1,13 @@
-import '../../../routes/path.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../../bloc/editor/riverpod/selected_photo_provider.dart';
 import '../../../bloc/posters/core/ds/poster_store.dart';
+import '../../../encloser/editor_view/editor_view_poster_state.dart';
 import '../../../resources/resources.dart';
+import '../../../routes/path.dart';
 import 'title.dart';
 
 class PosterImageSelector extends ConsumerWidget {
@@ -76,9 +76,9 @@ class PosterImageSelector extends ConsumerWidget {
       source: source,
       maxWidth: 800,
     );
-    final photoProvider = ref.read(selectedImageProvider.notifier);
-    photoProvider.updatePhoto(
-      image?.path == null ? EmptyImageStore() : LocalImageStore(image!.path),
+    final posterState = ref.read(editorViewPosterEncloser);
+    posterState.updateImage(
+      image == null ? const EmptyImageStore() : LocalImageStore(image.path),
     );
   }
 }

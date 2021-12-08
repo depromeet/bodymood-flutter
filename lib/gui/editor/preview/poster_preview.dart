@@ -1,23 +1,23 @@
 import 'package:after_layout/after_layout.dart';
-import 'package:bodymood/bloc/auth/controller/auth_token_manager_provider.dart';
-import 'package:bodymood/bloc/editor/api/poster_creation_api.dart';
-import 'package:bodymood/bloc/editor/model/poster_detail.dart';
-import 'package:bodymood/bloc/editor/model/selected_emotion.dart';
-import 'package:bodymood/bloc/editor/riverpod/poster_path_provider.dart';
-import 'package:bodymood/bloc/editor/riverpod/selected_emotion_provider.dart';
-import 'package:bodymood/bloc/editor/riverpod/selected_exercise_provider.dart';
-import 'package:bodymood/bloc/editor/riverpod/selected_photo_provider.dart';
-import 'package:bodymood/bloc/posters/core/ds/poster_store.dart';
-import 'package:bodymood/gui/constants/color.dart';
-import 'package:bodymood/gui/editor/emotion_selector/emotional_background.dart';
-import 'package:bodymood/gui/editor/preview/emotion_tag.dart';
-import 'package:bodymood/gui/editor/preview/exercises_tag.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
+
+import '../../../bloc/auth/controller/auth_token_manager_provider.dart';
+import '../../../bloc/editor/api/poster_creation_api.dart';
+import '../../../bloc/editor/model/poster_detail.dart';
+import '../../../bloc/editor/model/selected_emotion.dart';
+import '../../../bloc/editor/riverpod/poster_path_provider.dart';
+import '../../../bloc/posters/core/ds/poster_store.dart';
+import '../../../bloc/posters/riverpod/poster_album_provider.dart';
+import '../../../encloser/editor_view/editor_view_poster_state.dart';
+import '../../constants/color.dart';
+import '../emotion_selector/emotional_background.dart';
+import 'emotion_tag.dart';
+import 'exercises_tag.dart';
 
 class PosterPreview extends ConsumerStatefulWidget {
   const PosterPreview({Key? key}) : super(key: key);
@@ -33,7 +33,7 @@ class _PosterPreviewState extends ConsumerState<PosterPreview>
 
   @override
   Widget build(BuildContext context) {
-    final imageProvider = (ref.read(selectedImageProvider).imageProvider)!;
+    final imageProvider = (ref.read(editorViewPosterEncloser).imageProvider)!;
     const boxShadow = [
       BoxShadow(
         blurRadius: 12,
@@ -104,14 +104,10 @@ class _PosterPreviewState extends ConsumerState<PosterPreview>
     ref.read(posterPathProvider).state = posterPath;
 
     final originalImagePath =
-        (ref.read(selectedImageProvider).image as LocalImageStore).path;
+        (ref.read(editorViewPosterEncloser).image as LocalImageStore).path;
     final emotion =
-        (ref.read(selectedEmotionProvider).emotion as EmotionSelected).emotion;
-    final exercises = ref
-        .read(selectedExerciseProvider)
-        .exercises
-        .map((e) => e.detail)
-        .toList();
+        (ref.read(editorViewPosterEncloser).mood as EmotionSelected).emotion;
+    final exercises = ref.read(editorViewPosterEncloser).exercises;
 
     final tokenManager = ref.read(authTokenManagerProvider);
     final api = BodymoodPosterCreationApi(tokenManager);
@@ -123,5 +119,6 @@ class _PosterPreviewState extends ConsumerState<PosterPreview>
         exercises: exercises,
       ),
     );
+    await ref.read(posterAlbumProvider.notifier).refresh();
   }
 }

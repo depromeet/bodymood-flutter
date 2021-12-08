@@ -1,4 +1,4 @@
-import 'package:bodymood/gui/editor/exercise_selector/tabs/riverpod/selected_tab_provider.dart';
+import 'riverpod/selected_tab_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

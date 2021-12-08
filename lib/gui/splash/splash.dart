@@ -5,6 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../bloc/app_state/core/app_state_manager.dart';
+import '../../bloc/auth/controller/auth_token_manager_provider.dart';
+import '../../encloser/app_view/app_view_interactor_encloser.dart';
 import '../../routes/path.dart';
 import '../constants/color.dart';
 
@@ -54,16 +56,23 @@ class _TitleOverlayState extends ConsumerState<_TitleOverlay> {
     });
   }
 
-  void finishSplash() {
+  void finishSplash() async {
     if (mounted && !_visible) {
       setState(() {
         _visible = true;
       });
+      final appStateManager = ref.read(appStateManagerProvider.notifier);
+      await appStateManager.initialize();
+      final authTokenManager = ref.read(authTokenManagerProvider);
       Timer(
         Duration(milliseconds: _splashDurationInMilliseconds),
         () {
-          final appStateManager = ref.read(appStateManagerProvider);
-          appStateManager.initialize();
+          final viewInteractor = ref.read(appViewPageEncloser);
+          if (authTokenManager.isLoggedIn) {
+            viewInteractor.showAlbumView();
+          } else {
+            viewInteractor.showLoginView();
+          }
         },
       );
     }

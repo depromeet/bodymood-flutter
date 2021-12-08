@@ -1,10 +1,8 @@
-import 'package:bodymood/bloc/posters/model/poster_image.dart';
-import 'package:bodymood/bloc/posters/riverpod/poster_album_provider.dart';
-import 'package:bodymood/bloc/posters/riverpod/poster_index_provider.dart';
-import 'package:bodymood/gui/constants/color.dart';
-import 'package:bodymood/gui/posters/util/image_to_hero_tag.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../bloc/posters/riverpod/poster_album_provider.dart';
+import 'poster_thumbnail.dart';
 
 class PostersGridView extends ConsumerWidget {
   const PostersGridView({
@@ -13,7 +11,7 @@ class PostersGridView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final posters = ref.read(posterAlbumProvider.notifier);
+    final posters = ref.watch(posterAlbumProvider);
     return GridView.builder(
       padding: const EdgeInsets.fromLTRB(24, 24, 24, 24),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -27,47 +25,17 @@ class PostersGridView extends ConsumerWidget {
       itemBuilder: (BuildContext context, int index) {
         final image = posters[index];
         if (image == null) {
-          return const SizedBox.shrink();
+          return const SizedBox.shrink(
+            key: ValueKey('empty poster'),
+          );
         } else {
-          return _PosterThumbnail(
+          return PosterThumbnail(
+            key: ValueKey(image.imageUrl),
             image: image,
             index: index,
           );
         }
       },
-    );
-  }
-}
-
-class _PosterThumbnail extends ConsumerWidget {
-  const _PosterThumbnail({
-    Key? key,
-    required this.image,
-    required this.index,
-  }) : super(key: key);
-
-  final PosterImage image;
-  final int index;
-
-  @override
-  Widget build(BuildContext context, ref) {
-    return GestureDetector(
-      onTap: () {
-        ref.read(posterViewIndexProvider).state = index;
-      },
-      child: Hero(
-        tag: imageToHeroTage(image),
-        child: Image.network(
-          image.imageUrl,
-          fit: BoxFit.cover,
-          loadingBuilder: (context, child, _) {
-            return Container(
-              color: (((index + 1) ~/ 2) % 2) == 0 ? clGray200 : clGray100,
-              child: child,
-            );
-          },
-        ),
-      ),
     );
   }
 }

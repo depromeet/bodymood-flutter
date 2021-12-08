@@ -1,10 +1,11 @@
-import 'package:bodymood/bloc/editor/model/emotion.dart';
-import 'package:bodymood/bloc/editor/riverpod/selected_emotion_provider.dart';
-import 'package:bodymood/gui/constants/color.dart';
-import 'package:bodymood/gui/editor/emotion_selector/util/hex_to_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../../bloc/editor/model/emotion.dart';
+import '../../../encloser/editor_view/editor_view_poster_state.dart';
+import '../../constants/color.dart';
+import 'util/hex_to_color.dart';
 
 class EmotionSelectorItem extends ConsumerWidget {
   const EmotionSelectorItem({
@@ -16,14 +17,9 @@ class EmotionSelectorItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final emotionNotifier = ref.watch(selectedEmotionProvider);
-    final selectedEmotion = emotionNotifier.emotion;
-    final isSelected = selectedEmotion.maybeMap(
-      selected: (selected) {
-        return selected.emotion == emotion;
-      },
-      orElse: () => false,
-    );
+    final posterState = ref.watch(editorViewPosterEncloser);
+    final selectedEmotion = posterState.mood;
+    final isSelected = posterState.containsMood(emotion);
     final fontColor = selectedEmotion.map(
       empty: (_) => clPrimaryWhite,
       selected: (selected) => stringHexToColor(selected.emotion.fontColor),
@@ -32,10 +28,10 @@ class EmotionSelectorItem extends ConsumerWidget {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
-        ref.read(selectedEmotionProvider).updateEmotion(emotion);
+        ref.read(editorViewPosterEncloser).updateMood(emotion);
       },
       child: Opacity(
-        opacity: isSelected | !emotionNotifier.selected ? 1.0 : 0.5,
+        opacity: isSelected || !posterState.isMoodSelected ? 1.0 : 0.5,
         child: SizedBox(
           height: 94,
           child: Column(

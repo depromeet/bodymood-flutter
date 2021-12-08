@@ -1,19 +1,20 @@
-import 'package:bodymood/bloc/editor/model/emotion.dart';
-import 'package:bodymood/bloc/editor/riverpod/emotions_provider.dart';
-import 'package:bodymood/bloc/editor/riverpod/selected_emotion_provider.dart';
-import 'package:bodymood/gui/constants/color.dart';
-import 'package:bodymood/gui/editor/emotion_selector/emotion_selector_item.dart';
-import 'package:bodymood/gui/editor/emotion_selector/emotional_background.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../bloc/editor/model/emotion.dart';
+import '../../../bloc/editor/riverpod/emotions_provider.dart';
+import '../../../encloser/editor_view/editor_view_poster_state.dart';
+import '../../constants/color.dart';
+import 'emotion_selector_item.dart';
+import 'emotional_background.dart';
 
 class EmotionGridView extends ConsumerWidget {
   const EmotionGridView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, ref) {
-    final selectedEmotion = ref.watch(selectedEmotionProvider).emotion;
+    final selectedEmotion = ref.watch(editorViewPosterEncloser).mood;
     final emotions = ref.watch(emotionsProvider);
     final isEmotionSelected =
         selectedEmotion.map(empty: (_) => false, selected: (_) => true);

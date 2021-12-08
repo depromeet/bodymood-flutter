@@ -1,6 +1,6 @@
-import 'package:bodymood/bloc/editor/riverpod/poster_path_provider.dart';
-import 'package:bodymood/gui/constants/color.dart';
-import 'package:bodymood/resources/resources.dart';
+import '../../../bloc/editor/riverpod/poster_path_provider.dart';
+import '../../constants/color.dart';
+import '../../../resources/resources.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';

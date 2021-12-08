@@ -1,13 +1,12 @@
-import 'package:bodymood/bloc/editor/model/selected_emotion.dart';
-import 'package:bodymood/bloc/editor/riverpod/selected_emotion_provider.dart';
-import 'package:bodymood/bloc/editor/riverpod/selected_photo_provider.dart';
-import 'package:bodymood/gui/constants/color.dart';
-import 'package:bodymood/gui/editor/emotion_selector/emotion_color_circle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../bloc/editor/poster_editor_state_manager.dart';
+import '../../../bloc/editor/model/selected_emotion.dart';
+import '../../../encloser/editor_view/editor_view_page_encloser.dart';
+import '../../../encloser/editor_view/editor_view_poster_state.dart';
+import '../../constants/color.dart';
+import '../emotion_selector/emotion_color_circle.dart';
 import 'title.dart';
 
 class PosterEmotionSelector extends ConsumerWidget {
@@ -15,20 +14,19 @@ class PosterEmotionSelector extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final imageSelected = ref.watch(selectedImageProvider).selected;
-    final selectedEmotion = ref.watch(selectedEmotionProvider);
-    final isEmotionSelected = selectedEmotion.selected;
-    final fontColor = imageSelected || selectedEmotion.selected
+    final posterState = ref.watch(editorViewPosterEncloser);
+    final isEmotionSelected = posterState.isMoodSelected;
+    final fontColor = posterState.isImageSelected || posterState.isMoodSelected
         ? clPrimaryWhite
         : const Color.fromRGBO(80, 80, 80, 0.7);
     final title = isEmotionSelected
-        ? _buildEmotionTitle(selectedEmotion.emotion, fontColor)
+        ? _buildEmotionTitle(posterState.mood, fontColor)
         : const ItemSelectorTitle(
             itemTitle: '감정을 선택하세요',
           );
     return MaterialButton(
       onPressed: () {
-        ref.read(posterEditorStateManagerProvider).selectEmotion();
+        ref.read(editorViewPageEncloser).showMoodPage();
       },
       child: Center(
         child: Column(
@@ -39,7 +37,7 @@ class PosterEmotionSelector extends ConsumerWidget {
             const SizedBox(height: 16),
             EmotionColorCircle(
               isEmotionSelected: isEmotionSelected,
-              selectedEmotion: selectedEmotion,
+              mood: posterState.mood,
             ),
           ],
         ),
@@ -47,7 +45,7 @@ class PosterEmotionSelector extends ConsumerWidget {
     );
   }
 
-  Column _buildEmotionTitle(SelectedEmotion selectedEmotion, Color fontColor) {
+  Column _buildEmotionTitle(SelectedMood selectedEmotion, Color fontColor) {
     final emotion = (selectedEmotion as EmotionSelected).emotion;
     var englishTitle = Text(
       emotion.englishTitle,

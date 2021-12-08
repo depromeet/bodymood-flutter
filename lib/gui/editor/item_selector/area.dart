@@ -1,21 +1,18 @@
-import 'package:bodymood/bloc/editor/base/seletable_item_notifier.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class PosterItemSelectorArea extends ConsumerWidget {
+class PosterItemSelectorArea extends StatelessWidget {
   const PosterItemSelectorArea({
     Key? key,
     this.child,
-    required this.provider,
+    this.selected = false,
   }) : super(key: key);
 
   final Widget? child;
-  final ChangeNotifierProvider<PosterItemsNotifier> provider;
+  final bool selected;
 
   @override
-  Widget build(BuildContext context, ref) {
-    final selected = ref.watch(provider).selected;
+  Widget build(BuildContext context) {
     return AspectRatio(
       aspectRatio: 250 / 140,
       child: DottedBorder(

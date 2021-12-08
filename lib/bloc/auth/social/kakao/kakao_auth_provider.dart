@@ -34,4 +34,14 @@ class KakaoAuthProvider extends SocialAuthProviderBase {
   Future<SocialAuthToken> refreshToken() {
     throw UnimplementedError();
   }
+
+  @override
+  Future reset() async {
+    KakaoContext.clientId = '1f1d9175f9c1e2682cf32d234475f94a';
+    try {
+      await TokenManager.instance.clear();
+    } catch (e) {
+      debugPrint('error on kakao refresher: $e');
+    }
+  }
 }

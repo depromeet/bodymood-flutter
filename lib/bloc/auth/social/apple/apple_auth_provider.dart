@@ -11,4 +11,9 @@ class AppleAuthProvider extends SocialAuthProviderBase {
   Future<SocialAuthToken> refreshToken() {
     throw UnimplementedError();
   }
+
+  @override
+  Future reset() {
+    throw UnimplementedError();
+  }
 }

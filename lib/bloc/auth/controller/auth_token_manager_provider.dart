@@ -7,7 +7,6 @@ final authTokenManagerProvider = Provider(
   (ref) {
     return BodymoodAuthTokenManager(
       server: BodymoodAuthServer(),
-      reader: ref.read,
     );
   },
 );

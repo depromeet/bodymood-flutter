@@ -1,15 +1,16 @@
 import 'dart:math';
 
-import 'package:bodymood/gui/editor/exercise_selector/tabs/tab_bar_item.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../../../../bloc/editor/riverpod/exercises_provider.dart';
 import '../../../../common/carousel_controller_group/carousel_controller_group.dart';
 import '../../../../common/carousel_controller_group/carousel_options.dart';
 import '../../../constants/color.dart';
+import 'tab_bar_item.dart';
 
 class ExerciseTabBar extends ConsumerWidget {
   const ExerciseTabBar({
@@ -26,7 +27,7 @@ class ExerciseTabBar extends ConsumerWidget {
     double tabWidth = 140.0,
     double leftPadding = 24.0,
   ]) {
-    // TODO: this formula is approximate.
+    // WARNING: this formula is approximate.
     final a = deviceWidth;
     final b = 2 * (leftPadding - deviceWidth);
     final c = tabWidth;

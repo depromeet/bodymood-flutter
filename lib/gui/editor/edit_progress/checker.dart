@@ -4,7 +4,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../bloc/editor/base/seletable_item_notifier.dart';
 import '../../../resources/resources.dart';
 import '../../constants/color.dart';
 
@@ -12,15 +11,14 @@ class EditProgressChecker extends ConsumerWidget {
   const EditProgressChecker({
     Key? key,
     required this.title,
-    required this.provider,
+    required this.selected,
   }) : super(key: key);
 
   final String title;
-  final ChangeNotifierProvider<PosterItemsNotifier> provider;
+  final bool selected;
 
   @override
   Widget build(BuildContext context, ref) {
-    final selected = ref.watch(provider).selected;
     return Row(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.center,

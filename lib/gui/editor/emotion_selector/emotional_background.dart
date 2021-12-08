@@ -1,7 +1,8 @@
-import 'package:bodymood/bloc/editor/riverpod/selected_emotion_provider.dart';
-import 'package:bodymood/gui/editor/emotion_selector/util/emotion_to_gradient.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../encloser/editor_view/editor_view_poster_state.dart';
+import 'util/emotion_to_gradient.dart';
 
 class EmotionalBackground extends ConsumerWidget {
   const EmotionalBackground({
@@ -17,7 +18,7 @@ class EmotionalBackground extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final selectedEmotion = ref.watch(selectedEmotionProvider).emotion;
+    final selectedEmotion = ref.watch(editorViewPosterEncloser).mood;
     final gradient = selectedEmotion.map<Gradient>(
       empty: (_) => LinearGradient(
         colors: [
