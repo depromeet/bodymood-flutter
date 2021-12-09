@@ -1,15 +1,21 @@
 import 'dart:ui';
 
-import 'package:bodymood/gui/constants/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'encloser/app_view/app_view_interactor_encloser.dart';
+import 'gui/constants/color.dart';
 import 'routes/app_main_router.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   runApp(
     ProviderScope(
       child: DefaultTextStyle(
