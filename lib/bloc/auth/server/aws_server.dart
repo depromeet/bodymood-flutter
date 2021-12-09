@@ -61,7 +61,7 @@ class BodymoodAuthServer extends ServerAuthProviderBase {
 
   @override
   Future<bool> signout(ServerAuthToken token) async {
-    final _authEndpoint = '$bodymoodEndpoint/api/v1/user/me';
+    const _authEndpoint = '$bodymoodEndpoint/api/v1/user/me';
     final accessToken = (token as ServerAuthTokenAuthorized).accessToken;
     await _dio.delete(
       _authEndpoint,
