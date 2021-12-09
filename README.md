@@ -2,6 +2,9 @@
 
 디프만 10기 5조, 바디무드 프로젝트
 
+애플 앱스토어: https://apps.apple.com/kr/app/bodymood/id1588818384
+구글 플레이스토어: https://play.google.com/store/apps/details?id=com.depromeet.bodymood
+
 # 이미지 에셋 관리
 
 ## Pre-requisite
