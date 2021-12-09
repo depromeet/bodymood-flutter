@@ -34,18 +34,23 @@ class AlbumPage extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 BodymoodAppbar(
-                  tail: SizedBox(
-                    width: 24,
-                    child: TextButton(
-                      onPressed: () {
-                        ref.read(appViewPageEncloser).showPreferencesView();
-                      },
-                      child: SvgPicture.asset(
-                        PostersImages.iconPerson,
-                        height: 24,
-                      ),
-                      style: TextButton.styleFrom(
-                        padding: EdgeInsets.zero,
+                  tail: Transform.translate(
+                    offset: const Offset(4, 0),
+                    child: SizedBox(
+                      width: 44,
+                      height: 44,
+                      child: TextButton(
+                        onPressed: () {
+                          ref.read(appViewPageEncloser).showPreferencesView();
+                        },
+                        child: SvgPicture.asset(
+                          PostersImages.iconPerson,
+                          height: 24,
+                        ),
+                        style: TextButton.styleFrom(
+                          padding: EdgeInsets.zero,
+                          shape: const CircleBorder(),
+                        ),
                       ),
                     ),
                   ),
@@ -55,14 +60,14 @@ class AlbumPage extends ConsumerWidget {
                 ),
               ],
             ),
-            _buildCreatePosterButton(),
+            _buildFloatingCreatePosterButton(),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildCreatePosterButton() {
+  Widget _buildFloatingCreatePosterButton() {
     return const Positioned(
       left: 0,
       right: 0,

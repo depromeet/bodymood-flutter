@@ -16,25 +16,30 @@ class CompletePosterEditingButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     final completed = ref.watch(editorViewPosterEncloser).isCompleted;
-    return TextButton(
-      onPressed: completed
-          ? () {
-              ref.read(editorViewPageEncloser).showSharePage();
-            }
-          : null,
-      child: Text(
-        '완료',
-        style: TextStyle(
-          fontSize: 16,
-          fontWeight: completed ? FontWeight.bold : FontWeight.normal,
-          height: 19 / 16,
-          letterSpacing: -1,
-          color: completed ? clPrimaryBlack : clGray400,
+    return SizedBox(
+      height: 44,
+      width: 44,
+      child: TextButton(
+        onPressed: completed
+            ? () {
+                ref.read(editorViewPageEncloser).showSharePage();
+              }
+            : null,
+        child: Text(
+          '완료',
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: completed ? FontWeight.bold : FontWeight.normal,
+            height: 19 / 16,
+            letterSpacing: -1,
+            color: completed ? clPrimaryBlack : clGray400,
+          ),
         ),
-      ),
-      style: TextButton.styleFrom(
-        padding: EdgeInsets.zero,
-        minimumSize: const Size(0, 0),
+        style: TextButton.styleFrom(
+          padding: EdgeInsets.zero,
+          minimumSize: const Size(0, 0),
+          shape: const CircleBorder(),
+        ),
       ),
     );
   }

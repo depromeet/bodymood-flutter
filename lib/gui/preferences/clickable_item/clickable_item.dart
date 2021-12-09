@@ -14,22 +14,24 @@ class ClickablePreferenceItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: () {
-        onClick?.call();
-      },
-      child: Container(
-        height: 54,
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              leading,
-              tail,
-            ],
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: () {
+          onClick?.call();
+        },
+        child: Container(
+          height: 54,
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                leading,
+                tail,
+              ],
+            ),
           ),
         ),
       ),

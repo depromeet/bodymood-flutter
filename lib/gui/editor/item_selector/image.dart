@@ -95,12 +95,25 @@ class _ChoosePhotoButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: SizedBox(
-        width: 40,
-        height: 40,
-        child: child,
+    return SizedBox(
+      width: 40,
+      height: 40,
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          Container(
+            color: const Color.fromRGBO(80, 80, 90, 0.3),
+            child: Center(
+              child: child,
+            ),
+          ),
+          Material(
+            color: Colors.transparent,
+            child: InkWell(
+              onTap: onTap,
+            ),
+          ),
+        ],
       ),
     );
   }

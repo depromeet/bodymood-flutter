@@ -14,8 +14,8 @@ class BodymoodLogoutButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    return GestureDetector(
-      onTap: () async {
+    return _BottomSheetButton(
+      onClick: () async {
         showModalBottomSheet(
           context: context,
           builder: (context) {
@@ -28,24 +28,10 @@ class BodymoodLogoutButton extends ConsumerWidget {
           ),
         );
       },
-      child: Container(
-        height: 56,
-        decoration: BoxDecoration(
-          color: clPrimaryBlack,
-          borderRadius: BorderRadius.circular(2),
-        ),
-        child: const Center(
-          child: Text(
-            '로그아웃',
-            style: TextStyle(
-              fontWeight: FontWeight.w800,
-              fontSize: 18,
-              height: 1.5,
-              color: clPrimaryWhite,
-            ),
-          ),
-        ),
-      ),
+      buttonBackgroundColor: clPrimaryBlack,
+      buttonTextColor: clPrimaryWhite,
+      buttonTitle: '로그아웃',
+      popAfterCall: false,
     );
   }
 }
@@ -119,6 +105,7 @@ class _BottomSheetButton extends StatelessWidget {
   const _BottomSheetButton({
     Key? key,
     this.onClick,
+    this.popAfterCall = true,
     required this.buttonBackgroundColor,
     required this.buttonTitle,
     required this.buttonTextColor,
@@ -128,6 +115,7 @@ class _BottomSheetButton extends StatelessWidget {
   final Color buttonBackgroundColor;
   final String buttonTitle;
   final Color buttonTextColor;
+  final bool popAfterCall;
 
   @override
   Widget build(BuildContext context) {
@@ -139,13 +127,15 @@ class _BottomSheetButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(2),
           border: Border.all(
             color: clPrimaryBlack,
-            width: 2,
+            width: buttonBackgroundColor == clPrimaryBlack ? 0 : 2,
           ),
         ),
         child: InkWell(
           onTap: () async {
             await onClick?.call();
-            Navigator.pop(context);
+            if (popAfterCall) {
+              Navigator.pop(context);
+            }
           },
           child: Center(
             child: Text(

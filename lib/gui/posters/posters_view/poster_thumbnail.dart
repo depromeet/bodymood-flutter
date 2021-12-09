@@ -19,27 +19,35 @@ class PosterThumbnail extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    return GestureDetector(
-      onTap: () {
-        showDialog(
-          context: context,
-          builder: (context) {
-            return PosterViewPage(index: index);
-          },
-        );
-      },
-      child: Hero(
-        tag: imageToHeroTage(image),
-        child: CachedNetworkImage(
-          imageUrl: image.imageUrl,
-          fit: BoxFit.cover,
-          placeholder: (context, _) {
-            return Container(
-              color: (((index + 1) ~/ 2) % 2) == 0 ? clGray200 : clGray100,
-            );
-          },
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        Hero(
+          tag: imageToHeroTage(image),
+          child: CachedNetworkImage(
+            imageUrl: image.imageUrl,
+            fit: BoxFit.cover,
+            placeholder: (context, _) {
+              return Container(
+                color: (((index + 1) ~/ 2) % 2) == 0 ? clGray200 : clGray100,
+              );
+            },
+          ),
         ),
-      ),
+        Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return PosterViewPage(index: index);
+                },
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 }

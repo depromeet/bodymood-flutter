@@ -16,16 +16,26 @@ class BodymoodBackButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    return InkWell(
-      customBorder: const CircleBorder(),
-      onTap: () {
-        onTap?.call();
-        Navigator.pop(context);
-      },
-      child: SvgPicture.asset(
-        BodymoodImages.arrowBackIcon,
-        fit: BoxFit.contain,
-        color: color,
+    return Transform.translate(
+      offset: const Offset(-10, 0),
+      child: SizedBox(
+        width: 44,
+        height: 44,
+        child: InkWell(
+          customBorder: const CircleBorder(),
+          onTap: () {
+            onTap?.call();
+            Navigator.pop(context);
+          },
+          child: Center(
+            child: SvgPicture.asset(
+              BodymoodImages.arrowBackIcon,
+              fit: BoxFit.contain,
+              color: color,
+              height: 24,
+            ),
+          ),
+        ),
       ),
     );
   }
