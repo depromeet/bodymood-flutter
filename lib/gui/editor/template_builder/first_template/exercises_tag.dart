@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../encloser/editor_view/editor_view_poster_state.dart';
-import '../../constants/color.dart';
+import '../../../../encloser/editor_view/editor_view_poster_state.dart';
+import '../../../constants/color.dart';
 
-class ExercisesTag extends ConsumerWidget {
-  const ExercisesTag({
+class FirstTemplateExercisesTag extends ConsumerWidget {
+  const FirstTemplateExercisesTag({
     Key? key,
   }) : super(key: key);
 

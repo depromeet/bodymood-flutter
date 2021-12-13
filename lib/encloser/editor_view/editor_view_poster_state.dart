@@ -10,8 +10,11 @@ import '../../bloc/editor/model/selected_emotion.dart';
 import '../../bloc/posters/core/ds/poster_store.dart';
 import '../../interactor/editor_view/editor_view_poster_interactor.dart';
 
-final editorViewPosterEncloser =
-    ChangeNotifierProvider.autoDispose((ref) => EditorViewPosterEncloser());
+final editorViewPosterEncloser = ChangeNotifierProvider.autoDispose(
+  (ref) {
+    return EditorViewPosterEncloser();
+  },
+);
 
 class EditorViewPosterEncloser extends EditorViewPosterInteractor {
   bool containsExercise(ExerciseDetail exercise) {
@@ -54,5 +57,10 @@ class EditorViewPosterEncloser extends EditorViewPosterInteractor {
   SelectedMood get mood => state.map(
         empty: (_) => const SelectedMood.empty(),
         filled: (filled) => filled.mood,
+      );
+
+  int get maxNumOfEx => state.map(
+        empty: (_) => 0,
+        filled: (filled) => filled.maxNumOfExercises,
       );
 }

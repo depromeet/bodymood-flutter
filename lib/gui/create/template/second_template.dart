@@ -6,15 +6,15 @@ import '../../../encloser/editor_view/editor_view_poster_state.dart';
 import '../../../resources/resources.dart';
 import 'template_base.dart';
 
-class FirstPosterTemplate extends ConsumerWidget with TemplateBase {
-  const FirstPosterTemplate({
+class SecondPosterTemplate extends ConsumerWidget with TemplateBase {
+  const SecondPosterTemplate({
     Key? key,
   }) : super(key: key);
 
   @override
-  String get engTitle => 'Serif';
+  String get engTitle => 'Shoulder Day';
   @override
-  String get korTitle => '세리프';
+  String get korTitle => '숄더데이';
 
   @override
   Widget build(BuildContext context, ref) {
@@ -30,14 +30,14 @@ class FirstPosterTemplate extends ConsumerWidget with TemplateBase {
           ],
           image: DecorationImage(
             image: AssetImage(
-              CreatePosterImages.firstTemplate,
+              CreatePosterImages.secondTemplate,
             ),
             fit: BoxFit.cover,
           ),
         ),
         child: InkWell(
           onTap: () {
-            ref.read(editorViewPosterEncloser).setTemplate(0);
+            ref.read(editorViewPosterEncloser).setTemplate(1);
             ref.read(editorViewPageEncloser).showEditorPage();
           },
         ),
@@ -46,5 +46,5 @@ class FirstPosterTemplate extends ConsumerWidget with TemplateBase {
   }
 
   @override
-  int get maxNumOfExercises => 3;
+  int get maxNumOfExercises => 6;
 }

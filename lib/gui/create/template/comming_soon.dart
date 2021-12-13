@@ -24,5 +24,5 @@ class CommingSoonTemplate extends StatelessWidget with TemplateBase {
   String get korTitle => '준비중';
 
   @override
-  int get index => -1;
+  int get maxNumOfExercises => 0;
 }

@@ -11,7 +11,9 @@ class ReturnExerciseButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final selectedExercises = ref.watch(editorViewPosterEncloser).exercises;
+    final posterState = ref.watch(editorViewPosterEncloser);
+    final maxExercises = posterState.maxNumOfEx;
+    final selectedExercises = posterState.exercises;
     final isSelected = selectedExercises.isNotEmpty;
     final buttonColor = isSelected ? clPrimaryBlack : clGray400;
 
@@ -26,7 +28,7 @@ class ReturnExerciseButton extends ConsumerWidget {
         color: buttonColor,
         child: Center(
           child: Text(
-            '운동 선택 (${selectedExercises.length}/3)',
+            '운동 선택 (${selectedExercises.length}/$maxExercises)',
             style: const TextStyle(
               fontSize: 16,
               height: 19 / 16,

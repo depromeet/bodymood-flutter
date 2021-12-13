@@ -7,5 +7,6 @@ void main() {
   test('create_poster_images assets test', () {
     expect(true, File(CreatePosterImages.commingSoon).existsSync());
     expect(true, File(CreatePosterImages.firstTemplate).existsSync());
+    expect(true, File(CreatePosterImages.secondTemplate).existsSync());
   });
 }

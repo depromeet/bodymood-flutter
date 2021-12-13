@@ -4,6 +4,7 @@ import '../../bloc/editor/model/emotion.dart';
 import '../../bloc/editor/model/exercise_detail.dart';
 import '../../bloc/editor/model/selected_emotion.dart';
 import '../../bloc/posters/core/ds/poster_store.dart';
+import '../../gui/create/model/predefined_template.dart';
 import '../../state/editor_view/editor_view_poster_state.dart';
 
 class EditorViewPosterInteractor extends ChangeNotifier {
@@ -30,7 +31,7 @@ class EditorViewPosterInteractor extends ChangeNotifier {
       filled: (filled) {
         final isInList = filled.exercises.contains(exercise);
         assert(!isInList);
-        if (filled.exercises.length < 3) {
+        if (filled.exercises.length < filled.maxNumOfExercises) {
           filled = filled.copyWith(exercises: [
             ...filled.exercises,
             exercise,
@@ -76,11 +77,13 @@ class EditorViewPosterInteractor extends ChangeNotifier {
       empty: (empty) {
         return EditorViewPosterState.filled(
           templateIndex: index,
+          maxNumOfExercises: predefinedTemplate[index].maxNumOfExercises,
         );
       },
       filled: (filled) {
         return filled.copyWith(
           templateIndex: index,
+          maxNumOfExercises: predefinedTemplate[index].maxNumOfExercises,
         );
       },
     );

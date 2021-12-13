@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../bloc/editor/model/selected_emotion.dart';
-import '../../../encloser/editor_view/editor_view_poster_state.dart';
-import '../../constants/color.dart';
+import '../../../../bloc/editor/model/selected_emotion.dart';
+import '../../../../encloser/editor_view/editor_view_poster_state.dart';
+import '../../../constants/color.dart';
 
-class EmotionTag extends ConsumerWidget {
-  const EmotionTag({
+class FirstTemplateEmotionTag extends ConsumerWidget {
+  const FirstTemplateEmotionTag({
     Key? key,
   }) : super(key: key);
 

@@ -15,5 +15,6 @@ class EditorViewPosterState with _$EditorViewPosterState {
     @Default([]) List<ExerciseDetail> exercises,
     @Default(ImageStore.empty()) ImageStore image,
     @Default(0) int templateIndex,
+    @Default(3) int maxNumOfExercises,
   }) = _FilledPoster;
 }

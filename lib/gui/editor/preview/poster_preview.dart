@@ -1,6 +1,5 @@
 import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path_provider/path_provider.dart';
@@ -15,9 +14,7 @@ import '../../../bloc/posters/core/ds/poster_store.dart';
 import '../../../bloc/posters/riverpod/poster_album_provider.dart';
 import '../../../encloser/editor_view/editor_view_poster_state.dart';
 import '../../constants/color.dart';
-import '../emotion_selector/emotional_background.dart';
-import 'emotion_tag.dart';
-import 'exercises_tag.dart';
+import '../template_builder/builders.dart';
 
 class PosterPreview extends ConsumerStatefulWidget {
   const PosterPreview({Key? key}) : super(key: key);
@@ -33,7 +30,7 @@ class _PosterPreviewState extends ConsumerState<PosterPreview>
 
   @override
   Widget build(BuildContext context) {
-    final imageProvider = (ref.read(editorViewPosterEncloser).imageProvider)!;
+    final templateIndex = ref.read(editorViewPosterEncloser).templateIndex;
     const boxShadow = [
       BoxShadow(
         blurRadius: 12,
@@ -58,33 +55,10 @@ class _PosterPreviewState extends ConsumerState<PosterPreview>
           aspectRatio: 327 / 580,
           child: Stack(
             fit: StackFit.expand,
-            children: [
-              Image(
-                image: imageProvider,
-                fit: BoxFit.cover,
-              ),
-              const EmotionalBackground(opacity: 0.4),
-              _buildExercisesTag(),
-              const Positioned(
-                bottom: 30,
-                left: 26,
-                child: EmotionTag(),
-              ),
-            ],
+            children: templateBuilders[templateIndex](ref).buildStackChild(),
           ),
         ),
       ),
-    );
-  }
-
-  Column _buildExercisesTag() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
-        Spacer(flex: 209),
-        ExercisesTag(),
-        Spacer(flex: 230),
-      ],
     );
   }
 
