@@ -7,6 +7,7 @@ import '../widgets/appbar/back_button.dart';
 import 'logout_button/logout_button.dart';
 import 'widget/bodymood_agreement.dart';
 import 'widget/bodymood_signout.dart';
+import 'widget/bodymood_user_info.dart';
 
 class PreferencesPage extends StatelessWidget {
   const PreferencesPage({Key? key}) : super(key: key);
@@ -57,6 +58,7 @@ class PreferencesPage extends StatelessWidget {
         Expanded(
           child: ListView(
             children: const [
+              BodymoodUserInfo(),
               BodymoodAgreement(),
               BodymoodSignout(),
             ],
