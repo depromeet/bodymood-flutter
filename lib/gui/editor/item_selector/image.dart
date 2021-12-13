@@ -56,6 +56,7 @@ class PosterImageSelector extends ConsumerWidget {
       child: SvgPicture.asset(
         EditPosterImages.fromAlbumIcon,
         fit: BoxFit.contain,
+        color: Colors.white,
       ),
     );
   }
@@ -66,6 +67,7 @@ class PosterImageSelector extends ConsumerWidget {
       child: SvgPicture.asset(
         EditPosterImages.fromCameraIcon,
         fit: BoxFit.contain,
+        color: Colors.white,
       ),
     );
   }
