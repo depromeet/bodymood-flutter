@@ -1,10 +1,10 @@
-import 'riverpod/selected_tab_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../common/carousel_controller_group/carousel_controller_group.dart';
 import 'indicator.dart';
 import 'page.dart';
+import 'riverpod/selected_tab_provider.dart';
 import 'tab_bar.dart';
 
 class ExerciseSelectorBody extends ConsumerStatefulWidget {
@@ -51,9 +51,7 @@ class _ExerciseSelectorBodyState extends ConsumerState<ExerciseSelectorBody> {
           ),
         ),
         const SizedBox(height: 18),
-        ExerciseTabIndicator(
-          controller: _controller,
-        ),
+        const ExerciseTabIndicator(),
         const SizedBox(height: 50),
         Expanded(
           child: ExerciseTabPage(

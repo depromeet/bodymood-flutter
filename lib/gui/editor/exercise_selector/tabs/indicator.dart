@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../common/carousel_controller_group/carousel_controller_group.dart';
 import '../../../constants/color.dart';
 import 'riverpod/selected_tab_provider.dart';
 
 class ExerciseTabIndicator extends StatelessWidget {
   const ExerciseTabIndicator({
     Key? key,
-    required this.controller,
   }) : super(key: key);
-  final CarouselControllerGroup controller;
 
   @override
   Widget build(BuildContext context) {

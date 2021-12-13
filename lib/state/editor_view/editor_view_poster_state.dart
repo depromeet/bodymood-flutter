@@ -14,5 +14,6 @@ class EditorViewPosterState with _$EditorViewPosterState {
     @Default(SelectedMood.empty()) SelectedMood mood,
     @Default([]) List<ExerciseDetail> exercises,
     @Default(ImageStore.empty()) ImageStore image,
+    @Default(0) int templateIndex,
   }) = _FilledPoster;
 }

@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import '../../routes/path.dart';
 import '../widgets/appbar/appbar.dart';
 import '../widgets/appbar/back_button.dart';
 import '../widgets/appbar/text_title.dart';
-import 'template/comming_soon.dart';
-import 'template/first_template.dart';
-
-final List<Widget> _templates = [
-  const FirstPosterTemplate(),
-];
+import 'carousel/holder_carousel.dart';
+import 'carousel/template_carousel.dart';
 
 class CreatePosterPage extends StatelessWidget {
   const CreatePosterPage({Key? key}) : super(key: key);
@@ -28,27 +23,20 @@ class CreatePosterPage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             _buildAppbar(),
-            Expanded(
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                physics: const PageScrollPhysics(),
-                padding: const EdgeInsets.fromLTRB(24, 48, 24, 0),
-                itemBuilder: (context, index) {
-                  if (index == _templates.length) {
-                    return const CommingSoonTemplate();
-                  } else {
-                    return _templates[index];
-                  }
-                },
-                itemCount: _templates.length + 1,
-                separatorBuilder: (BuildContext context, int index) {
-                  return const SizedBox(width: 16);
-                },
-              ),
+            const Spacer(flex: 65),
+            const Expanded(
+              flex: 437,
+              child: TemplateCarousel(),
             ),
-            const SizedBox(height: 120),
+            const Spacer(flex: 41),
+            const Expanded(
+              flex: 49,
+              child: TemplateHolderCarousel(),
+            ),
+            const Spacer(flex: 126),
           ],
         ),
       ),

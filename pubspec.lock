@@ -132,10 +132,10 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "4eb95874ad52e9c201ef27ea6e3ef1ce148effc0"
+      resolved-ref: c81577716d268ddd017b78cd78d0d22349593646
       url: "https://github.com/wurikiji/flutter_carousel_slider_group"
     source: git
-    version: "4.0.0"
+    version: "4.0.1"
   characters:
     dependency: transitive
     description:

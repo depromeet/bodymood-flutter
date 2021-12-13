@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../../resources/resources.dart';
+import 'template_base.dart';
 
-class CommingSoonTemplate extends StatelessWidget {
+class CommingSoonTemplate extends StatelessWidget with TemplateBase {
   const CommingSoonTemplate({Key? key}) : super(key: key);
 
   @override
@@ -15,4 +16,13 @@ class CommingSoonTemplate extends StatelessWidget {
       ),
     );
   }
+
+  @override
+  String get engTitle => 'Comming';
+
+  @override
+  String get korTitle => '준비중';
+
+  @override
+  int get index => -1;
 }

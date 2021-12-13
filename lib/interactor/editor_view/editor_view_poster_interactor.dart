@@ -71,6 +71,22 @@ class EditorViewPosterInteractor extends ChangeNotifier {
     notifyListeners();
   }
 
+  void setTemplate(int index) {
+    state = state.map(
+      empty: (empty) {
+        return EditorViewPosterState.filled(
+          templateIndex: index,
+        );
+      },
+      filled: (filled) {
+        return filled.copyWith(
+          templateIndex: index,
+        );
+      },
+    );
+    notifyListeners();
+  }
+
   bool get isImageSelected => state.maybeMap(
         filled: (filled) => filled.image.maybeMap(
           empty: (_) => false,
@@ -91,4 +107,9 @@ class EditorViewPosterInteractor extends ChangeNotifier {
       );
   bool get isCompleted =>
       isImageSelected && isExerciseSelected && isMoodSelected;
+
+  int get templateIndex => state.maybeMap(
+        filled: (_state) => _state.templateIndex,
+        orElse: () => 0,
+      );
 }
