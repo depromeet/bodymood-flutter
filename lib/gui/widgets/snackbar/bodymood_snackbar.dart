@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class HummingSnackbar extends SnackBar {
-  HummingSnackbar({
+class BodymoodSnackbar extends SnackBar {
+  BodymoodSnackbar({
     Key? key,
     required String message,
     double bottom = 96,

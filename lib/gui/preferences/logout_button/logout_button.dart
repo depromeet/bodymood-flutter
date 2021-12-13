@@ -7,7 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../bloc/app_state/core/app_state_manager.dart';
 import '../../constants/color.dart';
-import '../../widgets/snackbar/humming_snackbar.dart';
+import '../../widgets/snackbar/bodymood_snackbar.dart';
 
 class BodymoodLogoutButton extends ConsumerWidget {
   const BodymoodLogoutButton({Key? key}) : super(key: key);
@@ -74,7 +74,7 @@ class _BottomSheetBody extends ConsumerWidget {
               // Navigator.pop(context);
               await ref.read(appStateManagerProvider.notifier).resetApp();
               ScaffoldMessenger.of(context).showSnackBar(
-                HummingSnackbar(
+                BodymoodSnackbar(
                   message: '로그아웃 되었습니다.',
                 ),
               );

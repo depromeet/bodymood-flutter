@@ -8,7 +8,7 @@ import '../../../bloc/posters/api/poster_delete_api.dart';
 import '../../../bloc/posters/riverpod/poster_album_provider.dart';
 import '../../../resources/resources.dart';
 import '../../constants/color.dart';
-import '../../widgets/snackbar/humming_snackbar.dart';
+import '../../widgets/snackbar/bodymood_snackbar.dart';
 
 class PosterDeleteButton extends ConsumerWidget {
   const PosterDeleteButton({
@@ -34,7 +34,7 @@ class PosterDeleteButton extends ConsumerWidget {
                 .accessToken;
             await BodymoodPosterDeleteApi(accessToken: token).delete(posterId);
             ScaffoldMessenger.of(context).showSnackBar(
-              HummingSnackbar(
+              BodymoodSnackbar(
                 message: '포스터를 삭제하였습니다.',
                 bottom: 156,
               ),

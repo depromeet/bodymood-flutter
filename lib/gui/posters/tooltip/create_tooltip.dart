@@ -1,8 +1,8 @@
-import 'package:bodymood/bloc/posters/riverpod/poster_album_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../bloc/posters/riverpod/poster_album_provider.dart';
 import '../../constants/color.dart';
 
 class CreateTooltip extends ConsumerWidget {

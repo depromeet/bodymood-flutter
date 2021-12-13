@@ -8,7 +8,7 @@ import '../../constants/color.dart';
 import '../../widgets/appbar/appbar.dart';
 import '../../widgets/appbar/back_button.dart';
 import '../../widgets/appbar/text_title.dart';
-import '../../widgets/snackbar/humming_snackbar.dart';
+import '../../widgets/snackbar/bodymood_snackbar.dart';
 import '../clickable_item/clickable_item.dart';
 
 class BodymoodSignout extends StatelessWidget {
@@ -105,7 +105,7 @@ class SignoutPage extends ConsumerWidget {
     await ref.read(appStateManagerProvider.notifier).resetApp();
     Navigator.of(context).pop();
     ScaffoldMessenger.of(context).showSnackBar(
-      HummingSnackbar(
+      BodymoodSnackbar(
         message: '계정이 삭제되었습니다.',
       ),
     );
