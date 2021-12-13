@@ -11,6 +11,7 @@ import '../widgets/appbar/appbar.dart';
 import 'button/create_poster_button.dart';
 import 'posters_view/empty_posters_view.dart';
 import 'posters_view/grid_view.dart';
+import 'tooltip/create_tooltip.dart';
 
 class AlbumPage extends ConsumerWidget {
   const AlbumPage({Key? key}) : super(key: key);
@@ -60,10 +61,20 @@ class AlbumPage extends ConsumerWidget {
                 ),
               ],
             ),
+            _buildTooltip(),
             _buildFloatingCreatePosterButton(),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildTooltip() {
+    return const Positioned(
+      bottom: 148,
+      left: 0,
+      right: 0,
+      child: CreateTooltip(),
     );
   }
 
