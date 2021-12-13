@@ -1,8 +1,8 @@
-import 'emotion_selector/emotional_background.dart';
 import 'package:flutter/material.dart';
 
-import 'item_editor.dart';
 import 'background_image.dart';
+import 'emotion_selector/emotional_background.dart';
+import 'item_editor.dart';
 
 class EditablePosterArea extends StatelessWidget {
   const EditablePosterArea({

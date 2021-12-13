@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import '../../../../bloc/editor/model/emotion.dart';
 import 'hex_to_color.dart';
-import 'package:flutter/material.dart';
 
 Gradient emotionToLinearGradient(BodymoodEmotion emotion,
     [double opacity = 1.0]) {

@@ -1,5 +1,6 @@
-import 'fetched_image.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import 'fetched_image.dart';
 
 part 'fetch_result.g.dart';
 
