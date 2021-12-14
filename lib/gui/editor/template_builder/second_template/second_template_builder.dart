@@ -32,6 +32,9 @@ class SecondTemplateBuilder extends TemplateBuilder {
     );
     final exercises = [
       ..._exercises,
+      for (int i = 0; i < 6 - _exercises.length; i++)
+        const ExerciseDetail(
+            englishName: '', koreanName: '', categoryId: 0, detailId: 0),
     ];
     return Column(
       children: [
