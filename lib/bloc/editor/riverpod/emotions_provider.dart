@@ -1,7 +1,7 @@
-import '../../auth/controller/auth_token_manager_provider.dart';
-import '../api/emotion_api.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../auth/controller/auth_token_manager_provider.dart';
+import '../api/emotion_api.dart';
 import '../model/emotion.dart';
 
 final emotionsProvider = FutureProvider<List<BodymoodEmotion>>(

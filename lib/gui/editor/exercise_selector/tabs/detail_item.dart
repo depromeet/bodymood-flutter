@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../bloc/editor/model/exercise_detail.dart';
 import '../../../../encloser/editor_view/editor_view_poster_state.dart';
-import '../../../constants/color.dart';
 import '../util/get_font_color.dart';
 
 class ExerciseDetailItem extends ConsumerWidget {
@@ -21,11 +20,11 @@ class ExerciseDetailItem extends ConsumerWidget {
   Widget build(BuildContext context, ref) {
     final isSelected =
         ref.watch(editorViewPosterEncloser).containsExercise(_thisItem);
+    final fontColor = getFontColorFromMood(ref.read);
     final backgroundColor =
-        isSelected ? clPrimaryBlack.withOpacity(0.1) : Colors.transparent;
+        isSelected ? fontColor.withOpacity(0.1) : Colors.transparent;
     final padding =
         isSelected ? const EdgeInsets.only(left: 24) : EdgeInsets.zero;
-    final fontColor = getFontColorFromMood(ref.read);
 
     return TextButton(
       style: TextButton.styleFrom(

@@ -1,5 +1,6 @@
-import 'emotion_data.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import 'emotion_data.dart';
 
 part 'emotion_response.g.dart';
 
